@@ -23,9 +23,12 @@ describe("statistics", () => {
   });
 
   it("retrieveHourly", async () => {
-    const params = { channelId: "550e8400-e29b-41d4-a716-446655440000", from: "2024-01-01T00:00:00Z", to: "2024-01-01T00:00:00Z", tag: "example" };
-
-    const result = await client.statistics.retrieveHourly(params);
+    const result = await client.statistics.retrieveHourly({
+      channelId: "550e8400-e29b-41d4-a716-446655440000",
+      from: "2024-01-01T00:00:00Z",
+      to: "2024-01-01T00:00:00Z",
+      tag: "example"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -34,9 +37,13 @@ describe("statistics", () => {
   });
 
   it("retrieveDaily", async () => {
-    const params = { channelId: "550e8400-e29b-41d4-a716-446655440000", from: "2024-01-01", to: "2024-01-01", tag: "example", timezone: "example" };
-
-    const result = await client.statistics.retrieveDaily(params);
+    const result = await client.statistics.retrieveDaily({
+      channelId: "550e8400-e29b-41d4-a716-446655440000",
+      from: "2024-01-01",
+      to: "2024-01-01",
+      tag: "example",
+      timezone: "example"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -45,9 +52,12 @@ describe("statistics", () => {
   });
 
   it("retrieveTotals", async () => {
-    const params = { channelId: "550e8400-e29b-41d4-a716-446655440000", from: "2024-01-01T00:00:00Z", to: "2024-01-01T00:00:00Z", tag: "example" };
-
-    const result = await client.statistics.retrieveTotals(params);
+    const result = await client.statistics.retrieveTotals({
+      channelId: "550e8400-e29b-41d4-a716-446655440000",
+      from: "2024-01-01T00:00:00Z",
+      to: "2024-01-01T00:00:00Z",
+      tag: "example"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");

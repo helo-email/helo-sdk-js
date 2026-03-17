@@ -11,7 +11,7 @@
 
 ## list
 
-> list(params) → Object
+> list({ ... }) → Object
 
 List all channels
 
@@ -24,20 +24,19 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.channels.list({
   limit: 10,
   offset: 10,
   name: "example",
   channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
   deliveryType: "live"
-};
-const result = await helo.channels.list(params);
+});
 ```
 
 
 ## create
 
-> create(params) → Object
+> create({ ... }) → Object
 
 Create a channel
 
@@ -50,19 +49,18 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.channels.create({
   name: "test-name",
   deliveryType: "live",
   trackLinks: true,
   trackOpens: true
-};
-const result = await helo.channels.create(params);
+});
 ```
 
 
 ## retrieve
 
-> retrieve(id) → Object
+> retrieve({ ... }) → Object
 
 Retrieve a channel
 
@@ -75,14 +73,15 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const id = "550e8400-e29b-41d4-a716-446655440000";
-const result = await helo.channels.retrieve(id);
+const result = await helo.channels.retrieve({
+  id: "550e8400-e29b-41d4-a716-446655440000"
+});
 ```
 
 
 ## update
 
-> update(id, params) → Object
+> update({ ... }) → Object
 
 Update a channel
 
@@ -95,20 +94,19 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const id = "550e8400-e29b-41d4-a716-446655440000";
-const params = {
+const result = await helo.channels.update({
+  id: "550e8400-e29b-41d4-a716-446655440000",
   name: "test-name",
   deliveryType: "live",
   trackLinks: true,
   trackOpens: true
-};
-const result = await helo.channels.update(id, params);
+});
 ```
 
 
 ## del
 
-> del(id) → null
+> del({ ... }) → null
 
 Delete a channel
 
@@ -121,7 +119,8 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const id = "550e8400-e29b-41d4-a716-446655440000";
-await helo.channels.del(id);
+await helo.channels.del({
+  id: "550e8400-e29b-41d4-a716-446655440000"
+});
 ```
 

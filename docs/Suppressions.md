@@ -9,7 +9,7 @@
 
 ## list
 
-> list(params) → Object
+> list({ ... }) → Object
 
 List suppressions
 
@@ -22,21 +22,20 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.suppressions.list({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   mailType: "transactional",
   reason: "bounce",
   email: "example",
   limit: 10,
   offset: 10
-};
-const result = await helo.suppressions.list(params);
+});
 ```
 
 
 ## create
 
-> create(params) → Object
+> create({ ... }) → Object
 
 Create suppressions
 
@@ -49,18 +48,17 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.suppressions.create({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   mailType: "transactional",
   emails: ["example1", "example2"]
-};
-const result = await helo.suppressions.create(params);
+});
 ```
 
 
 ## remove
 
-> remove(params) → Object
+> remove({ ... }) → Object
 
 Remove suppressions
 
@@ -73,11 +71,10 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.suppressions.remove({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   mailType: "transactional",
   emails: ["example1", "example2"]
-};
-const result = await helo.suppressions.remove(params);
+});
 ```
 

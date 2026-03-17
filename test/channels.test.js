@@ -23,9 +23,13 @@ describe("channels", () => {
   });
 
   it("list", async () => {
-    const params = { limit: 10, offset: 10, name: "example", channelIds: ["550e8400-e29b-41d4-a716-446655440000"], deliveryType: "live" };
-
-    const result = await client.channels.list(params);
+    const result = await client.channels.list({
+      limit: 10,
+      offset: 10,
+      name: "example",
+      channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
+      deliveryType: "live"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -34,9 +38,12 @@ describe("channels", () => {
   });
 
   it("create", async () => {
-    const params = { name: "test-name", deliveryType: "live", trackLinks: true, trackOpens: true };
-
-    const result = await client.channels.create(params);
+    const result = await client.channels.create({
+      name: "test-name",
+      deliveryType: "live",
+      trackLinks: true,
+      trackOpens: true
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -45,9 +52,9 @@ describe("channels", () => {
   });
 
   it("retrieve", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-
-    const result = await client.channels.retrieve(id);
+    const result = await client.channels.retrieve({
+      id: "550e8400-e29b-41d4-a716-446655440000"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -56,10 +63,13 @@ describe("channels", () => {
   });
 
   it("update", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-    const params = { name: "test-name", deliveryType: "live", trackLinks: true, trackOpens: true };
-
-    const result = await client.channels.update(id, params);
+    const result = await client.channels.update({
+      id: "550e8400-e29b-41d4-a716-446655440000",
+      name: "test-name",
+      deliveryType: "live",
+      trackLinks: true,
+      trackOpens: true
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -68,9 +78,9 @@ describe("channels", () => {
   });
 
   it("del", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-
-    const result = await client.channels.del(id);
+    const result = await client.channels.del({
+      id: "550e8400-e29b-41d4-a716-446655440000"
+    });
 
     expect(result).toBeNull();
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");

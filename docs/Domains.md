@@ -13,7 +13,7 @@
 
 ## list
 
-> list(params) → Object
+> list({ ... }) → Object
 
 List all domains
 
@@ -26,19 +26,18 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.domains.list({
   limit: 10,
   offset: 10,
   name: "example",
   channelIds: ["550e8400-e29b-41d4-a716-446655440000"]
-};
-const result = await helo.domains.list(params);
+});
 ```
 
 
 ## create
 
-> create(params) → Object
+> create({ ... }) → Object
 
 Create a domain
 
@@ -51,17 +50,16 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.domains.create({
   name: "test-name",
   channelIds: ["550e8400-e29b-41d4-a716-446655440000"]
-};
-const result = await helo.domains.create(params);
+});
 ```
 
 
 ## retrieve
 
-> retrieve(id) → Object
+> retrieve({ ... }) → Object
 
 Retrieve a domain
 
@@ -74,14 +72,15 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const id = "550e8400-e29b-41d4-a716-446655440000";
-const result = await helo.domains.retrieve(id);
+const result = await helo.domains.retrieve({
+  id: "550e8400-e29b-41d4-a716-446655440000"
+});
 ```
 
 
 ## update
 
-> update(id, params) → Object
+> update({ ... }) → Object
 
 Update a domain
 
@@ -94,17 +93,16 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const id = "550e8400-e29b-41d4-a716-446655440000";
-const params = {
+const result = await helo.domains.update({
+  id: "550e8400-e29b-41d4-a716-446655440000",
   channelIds: ["550e8400-e29b-41d4-a716-446655440000"]
-};
-const result = await helo.domains.update(id, params);
+});
 ```
 
 
 ## del
 
-> del(id) → null
+> del({ ... }) → null
 
 Delete a domain
 
@@ -117,14 +115,15 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const id = "550e8400-e29b-41d4-a716-446655440000";
-await helo.domains.del(id);
+await helo.domains.del({
+  id: "550e8400-e29b-41d4-a716-446655440000"
+});
 ```
 
 
 ## verify
 
-> verify(id) → Object
+> verify({ ... }) → Object
 
 Verify a domain
 
@@ -137,14 +136,15 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const id = "550e8400-e29b-41d4-a716-446655440000";
-const result = await helo.domains.verify(id);
+const result = await helo.domains.verify({
+  id: "550e8400-e29b-41d4-a716-446655440000"
+});
 ```
 
 
 ## rotateKey
 
-> rotateKey(id) → Object
+> rotateKey({ ... }) → Object
 
 Rotate a domain key
 
@@ -157,7 +157,8 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const id = "550e8400-e29b-41d4-a716-446655440000";
-const result = await helo.domains.rotateKey(id);
+const result = await helo.domains.rotateKey({
+  id: "550e8400-e29b-41d4-a716-446655440000"
+});
 ```
 

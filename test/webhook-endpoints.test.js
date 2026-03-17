@@ -23,9 +23,11 @@ describe("webhookEndpoints", () => {
   });
 
   it("list", async () => {
-    const params = { limit: 10, offset: 10, channelIds: ["550e8400-e29b-41d4-a716-446655440000"] };
-
-    const result = await client.webhookEndpoints.list(params);
+    const result = await client.webhookEndpoints.list({
+      limit: 10,
+      offset: 10,
+      channelIds: ["550e8400-e29b-41d4-a716-446655440000"]
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -34,9 +36,13 @@ describe("webhookEndpoints", () => {
   });
 
   it("create", async () => {
-    const params = { url: "test-url", events: ["accepted", "processed"], channelId: "550e8400-e29b-41d4-a716-446655440000", additionalHeaders: [], enabled: true };
-
-    const result = await client.webhookEndpoints.create(params);
+    const result = await client.webhookEndpoints.create({
+      url: "test-url",
+      events: ["accepted", "processed"],
+      channelId: "550e8400-e29b-41d4-a716-446655440000",
+      additionalHeaders: [],
+      enabled: true
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -45,9 +51,9 @@ describe("webhookEndpoints", () => {
   });
 
   it("retrieve", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-
-    const result = await client.webhookEndpoints.retrieve(id);
+    const result = await client.webhookEndpoints.retrieve({
+      id: "550e8400-e29b-41d4-a716-446655440000"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -56,10 +62,14 @@ describe("webhookEndpoints", () => {
   });
 
   it("update", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-    const params = { url: "test-url", events: ["accepted", "processed"], channelId: "550e8400-e29b-41d4-a716-446655440000", additionalHeaders: [], enabled: true };
-
-    const result = await client.webhookEndpoints.update(id, params);
+    const result = await client.webhookEndpoints.update({
+      id: "550e8400-e29b-41d4-a716-446655440000",
+      url: "test-url",
+      events: ["accepted", "processed"],
+      channelId: "550e8400-e29b-41d4-a716-446655440000",
+      additionalHeaders: [],
+      enabled: true
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -68,9 +78,9 @@ describe("webhookEndpoints", () => {
   });
 
   it("del", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-
-    const result = await client.webhookEndpoints.del(id);
+    const result = await client.webhookEndpoints.del({
+      id: "550e8400-e29b-41d4-a716-446655440000"
+    });
 
     expect(result).toBeNull();
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
@@ -78,9 +88,9 @@ describe("webhookEndpoints", () => {
   });
 
   it("regenerateSigningKey", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-
-    const result = await client.webhookEndpoints.regenerateSigningKey(id);
+    const result = await client.webhookEndpoints.regenerateSigningKey({
+      id: "550e8400-e29b-41d4-a716-446655440000"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");

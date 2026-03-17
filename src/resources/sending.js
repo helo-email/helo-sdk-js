@@ -9,32 +9,32 @@ export class Sending {
   /**
    * Send a transactional email
    */
-  async transactional(params) {
-    const response = await this._client.request("post", `/send/transactional`, { body: params });
+  async transactional({ from, to, cc, bcc, replyTo, subject, html, text, template, tracking, attachments, tags, headers, metadata }) {
+    const response = await this._client.request("post", `/send/transactional`, { body: { from, to, cc, bcc, replyTo, subject, html, text, template, tracking, attachments, tags, headers, metadata } });
     return response.json();
   }
 
   /**
    * Send transactional emails in batch
    */
-  async transactionalBatch(params) {
-    const response = await this._client.request("post", `/send/transactional/batch`, { body: params });
+  async transactionalBatch({ requests }) {
+    const response = await this._client.request("post", `/send/transactional/batch`, { body: { requests } });
     return response.json();
   }
 
   /**
    * Send a broadcast email
    */
-  async broadcast(params) {
-    const response = await this._client.request("post", `/send/broadcast`, { body: params });
+  async broadcast({ from, replyTo, template, tracking, attachments, tags, headers, metadata, messages }) {
+    const response = await this._client.request("post", `/send/broadcast`, { body: { from, replyTo, template, tracking, attachments, tags, headers, metadata, messages } });
     return response.json();
   }
 
   /**
    * Send a single broadcast email
    */
-  async broadcastMessage(params) {
-    const response = await this._client.request("post", `/send/broadcast/message`, { body: params });
+  async broadcastMessage({ from, to, cc, bcc, replyTo, subject, html, text, template, tracking, attachments, tags, headers, metadata }) {
+    const response = await this._client.request("post", `/send/broadcast/message`, { body: { from, to, cc, bcc, replyTo, subject, html, text, template, tracking, attachments, tags, headers, metadata } });
     return response.json();
   }
 }

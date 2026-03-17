@@ -23,9 +23,21 @@ describe("sending", () => {
   });
 
   it("transactional", async () => {
-    const params = { to: [], cc: [], bcc: [], replyTo: [], subject: "test-subject", html: "test-html", text: "test-text", template: {}, tracking: {}, attachments: [], tags: ["example1", "example2"], headers: {}, metadata: {} };
-
-    const result = await client.sending.transactional(params);
+    const result = await client.sending.transactional({
+      to: [],
+      cc: [],
+      bcc: [],
+      replyTo: [],
+      subject: "test-subject",
+      html: "test-html",
+      text: "test-text",
+      template: {},
+      tracking: {},
+      attachments: [],
+      tags: ["example1", "example2"],
+      headers: {},
+      metadata: {}
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -34,9 +46,9 @@ describe("sending", () => {
   });
 
   it("transactionalBatch", async () => {
-    const params = { requests: [] };
-
-    const result = await client.sending.transactionalBatch(params);
+    const result = await client.sending.transactionalBatch({
+      requests: []
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -45,9 +57,16 @@ describe("sending", () => {
   });
 
   it("broadcast", async () => {
-    const params = { replyTo: [], template: {}, tracking: {}, attachments: [], tags: ["example1", "example2"], headers: {}, metadata: {}, messages: [] };
-
-    const result = await client.sending.broadcast(params);
+    const result = await client.sending.broadcast({
+      replyTo: [],
+      template: {},
+      tracking: {},
+      attachments: [],
+      tags: ["example1", "example2"],
+      headers: {},
+      metadata: {},
+      messages: []
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -56,9 +75,21 @@ describe("sending", () => {
   });
 
   it("broadcastMessage", async () => {
-    const params = { to: [], cc: [], bcc: [], replyTo: [], subject: "test-subject", html: "test-html", text: "test-text", template: {}, tracking: {}, attachments: [], tags: ["example1", "example2"], headers: {}, metadata: {} };
-
-    const result = await client.sending.broadcastMessage(params);
+    const result = await client.sending.broadcastMessage({
+      to: [],
+      cc: [],
+      bcc: [],
+      replyTo: [],
+      subject: "test-subject",
+      html: "test-html",
+      text: "test-text",
+      template: {},
+      tracking: {},
+      attachments: [],
+      tags: ["example1", "example2"],
+      headers: {},
+      metadata: {}
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");

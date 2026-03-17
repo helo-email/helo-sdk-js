@@ -23,9 +23,12 @@ describe("domains", () => {
   });
 
   it("list", async () => {
-    const params = { limit: 10, offset: 10, name: "example", channelIds: ["550e8400-e29b-41d4-a716-446655440000"] };
-
-    const result = await client.domains.list(params);
+    const result = await client.domains.list({
+      limit: 10,
+      offset: 10,
+      name: "example",
+      channelIds: ["550e8400-e29b-41d4-a716-446655440000"]
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -34,9 +37,10 @@ describe("domains", () => {
   });
 
   it("create", async () => {
-    const params = { name: "test-name", channelIds: ["550e8400-e29b-41d4-a716-446655440000"] };
-
-    const result = await client.domains.create(params);
+    const result = await client.domains.create({
+      name: "test-name",
+      channelIds: ["550e8400-e29b-41d4-a716-446655440000"]
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -45,9 +49,9 @@ describe("domains", () => {
   });
 
   it("retrieve", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-
-    const result = await client.domains.retrieve(id);
+    const result = await client.domains.retrieve({
+      id: "550e8400-e29b-41d4-a716-446655440000"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -56,10 +60,10 @@ describe("domains", () => {
   });
 
   it("update", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-    const params = { channelIds: ["550e8400-e29b-41d4-a716-446655440000"] };
-
-    const result = await client.domains.update(id, params);
+    const result = await client.domains.update({
+      id: "550e8400-e29b-41d4-a716-446655440000",
+      channelIds: ["550e8400-e29b-41d4-a716-446655440000"]
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -68,9 +72,9 @@ describe("domains", () => {
   });
 
   it("del", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-
-    const result = await client.domains.del(id);
+    const result = await client.domains.del({
+      id: "550e8400-e29b-41d4-a716-446655440000"
+    });
 
     expect(result).toBeNull();
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
@@ -78,9 +82,9 @@ describe("domains", () => {
   });
 
   it("verify", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-
-    const result = await client.domains.verify(id);
+    const result = await client.domains.verify({
+      id: "550e8400-e29b-41d4-a716-446655440000"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -89,9 +93,9 @@ describe("domains", () => {
   });
 
   it("rotateKey", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-
-    const result = await client.domains.rotateKey(id);
+    const result = await client.domains.rotateKey({
+      id: "550e8400-e29b-41d4-a716-446655440000"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");

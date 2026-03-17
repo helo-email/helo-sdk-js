@@ -9,12 +9,12 @@ export class Statistics {
   /**
    * Retrieve hourly statistics
    */
-  async retrieveHourly(params = {}) {
+  async retrieveHourly({ channelId, from, to, tag } = {}) {
     const query = {};
-    if (params.channelId !== undefined) query.channelId = params.channelId;
-    if (params.from !== undefined) query.from = params.from;
-    if (params.to !== undefined) query.to = params.to;
-    if (params.tag !== undefined) query.tag = params.tag;
+    if (channelId !== undefined) query.channelId = channelId;
+    if (from !== undefined) query.from = from;
+    if (to !== undefined) query.to = to;
+    if (tag !== undefined) query.tag = tag;
     const response = await this._client.request("get", `/activity/statistics/hourly`, { params: query });
     return response.json();
   }
@@ -22,13 +22,13 @@ export class Statistics {
   /**
    * Retrieve daily statistics
    */
-  async retrieveDaily(params = {}) {
+  async retrieveDaily({ channelId, from, to, tag, timezone } = {}) {
     const query = {};
-    if (params.channelId !== undefined) query.channelId = params.channelId;
-    if (params.from !== undefined) query.from = params.from;
-    if (params.to !== undefined) query.to = params.to;
-    if (params.tag !== undefined) query.tag = params.tag;
-    if (params.timezone !== undefined) query.timezone = params.timezone;
+    if (channelId !== undefined) query.channelId = channelId;
+    if (from !== undefined) query.from = from;
+    if (to !== undefined) query.to = to;
+    if (tag !== undefined) query.tag = tag;
+    if (timezone !== undefined) query.timezone = timezone;
     const response = await this._client.request("get", `/activity/statistics/daily`, { params: query });
     return response.json();
   }
@@ -36,12 +36,12 @@ export class Statistics {
   /**
    * Retrieve all time statistics
    */
-  async retrieveTotals(params = {}) {
+  async retrieveTotals({ channelId, from, to, tag } = {}) {
     const query = {};
-    if (params.channelId !== undefined) query.channelId = params.channelId;
-    if (params.from !== undefined) query.from = params.from;
-    if (params.to !== undefined) query.to = params.to;
-    if (params.tag !== undefined) query.tag = params.tag;
+    if (channelId !== undefined) query.channelId = channelId;
+    if (from !== undefined) query.from = from;
+    if (to !== undefined) query.to = to;
+    if (tag !== undefined) query.tag = tag;
     const response = await this._client.request("get", `/activity/statistics/totals`, { params: query });
     return response.json();
   }

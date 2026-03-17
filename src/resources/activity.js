@@ -9,18 +9,18 @@ export class Activity {
   /**
    * List activity events
    */
-  async listEvents(params = {}) {
+  async listEvents({ channelId, messageId, after, startDate, endDate, limit, recipient, subject, tags, eventTypes } = {}) {
     const query = {};
-    if (params.channelId !== undefined) query.channelId = params.channelId;
-    if (params.messageId !== undefined) query.messageId = params.messageId;
-    if (params.after !== undefined) query.after = params.after;
-    if (params.startDate !== undefined) query.startDate = params.startDate;
-    if (params.endDate !== undefined) query.endDate = params.endDate;
-    if (params.limit !== undefined) query.limit = params.limit;
-    if (params.recipient !== undefined) query.recipient = params.recipient;
-    if (params.subject !== undefined) query.subject = params.subject;
-    if (params.tags !== undefined) query.tags = params.tags;
-    if (params.eventTypes !== undefined) query.eventTypes = params.eventTypes;
+    if (channelId !== undefined) query.channelId = channelId;
+    if (messageId !== undefined) query.messageId = messageId;
+    if (after !== undefined) query.after = after;
+    if (startDate !== undefined) query.startDate = startDate;
+    if (endDate !== undefined) query.endDate = endDate;
+    if (limit !== undefined) query.limit = limit;
+    if (recipient !== undefined) query.recipient = recipient;
+    if (subject !== undefined) query.subject = subject;
+    if (tags !== undefined) query.tags = tags;
+    if (eventTypes !== undefined) query.eventTypes = eventTypes;
     const response = await this._client.request("get", `/activity/events`, { params: query });
     return response.json();
   }
@@ -28,17 +28,17 @@ export class Activity {
   /**
    * List messages
    */
-  async listMessages(params = {}) {
+  async listMessages({ channelId, after, startDate, endDate, limit, recipient, subject, tag, status } = {}) {
     const query = {};
-    if (params.channelId !== undefined) query.channelId = params.channelId;
-    if (params.after !== undefined) query.after = params.after;
-    if (params.startDate !== undefined) query.startDate = params.startDate;
-    if (params.endDate !== undefined) query.endDate = params.endDate;
-    if (params.limit !== undefined) query.limit = params.limit;
-    if (params.recipient !== undefined) query.recipient = params.recipient;
-    if (params.subject !== undefined) query.subject = params.subject;
-    if (params.tag !== undefined) query.tag = params.tag;
-    if (params.status !== undefined) query.status = params.status;
+    if (channelId !== undefined) query.channelId = channelId;
+    if (after !== undefined) query.after = after;
+    if (startDate !== undefined) query.startDate = startDate;
+    if (endDate !== undefined) query.endDate = endDate;
+    if (limit !== undefined) query.limit = limit;
+    if (recipient !== undefined) query.recipient = recipient;
+    if (subject !== undefined) query.subject = subject;
+    if (tag !== undefined) query.tag = tag;
+    if (status !== undefined) query.status = status;
     const response = await this._client.request("get", `/activity/messages`, { params: query });
     return response.json();
   }
@@ -46,7 +46,7 @@ export class Activity {
   /**
    * Retrieve message details
    */
-  async retrieveMessage(id) {
+  async retrieveMessage({ id }) {
     const response = await this._client.request("get", `/activity/messages/${id}`);
     return response.json();
   }

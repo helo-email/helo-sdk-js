@@ -23,9 +23,18 @@ describe("activity", () => {
   });
 
   it("listEvents", async () => {
-    const params = { channelId: "550e8400-e29b-41d4-a716-446655440000", messageId: "550e8400-e29b-41d4-a716-446655440000", after: 10, startDate: "2024-01-01T00:00:00Z", endDate: "2024-01-01T00:00:00Z", limit: 10, recipient: "example", subject: "example", tags: ["example1", "example2"], eventTypes: ["accepted", "processed"] };
-
-    const result = await client.activity.listEvents(params);
+    const result = await client.activity.listEvents({
+      channelId: "550e8400-e29b-41d4-a716-446655440000",
+      messageId: "550e8400-e29b-41d4-a716-446655440000",
+      after: 10,
+      startDate: "2024-01-01T00:00:00Z",
+      endDate: "2024-01-01T00:00:00Z",
+      limit: 10,
+      recipient: "example",
+      subject: "example",
+      tags: ["example1", "example2"],
+      eventTypes: ["accepted", "processed"]
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -34,9 +43,17 @@ describe("activity", () => {
   });
 
   it("listMessages", async () => {
-    const params = { channelId: "550e8400-e29b-41d4-a716-446655440000", after: 10, startDate: "2024-01-01T00:00:00Z", endDate: "2024-01-01T00:00:00Z", limit: 10, recipient: "example", subject: "example", tag: "example", status: "sent" };
-
-    const result = await client.activity.listMessages(params);
+    const result = await client.activity.listMessages({
+      channelId: "550e8400-e29b-41d4-a716-446655440000",
+      after: 10,
+      startDate: "2024-01-01T00:00:00Z",
+      endDate: "2024-01-01T00:00:00Z",
+      limit: 10,
+      recipient: "example",
+      subject: "example",
+      tag: "example",
+      status: "sent"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -45,9 +62,9 @@ describe("activity", () => {
   });
 
   it("retrieveMessage", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-
-    const result = await client.activity.retrieveMessage(id);
+    const result = await client.activity.retrieveMessage({
+      id: "550e8400-e29b-41d4-a716-446655440000"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");

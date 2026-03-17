@@ -9,14 +9,14 @@ export class Suppressions {
   /**
    * List suppressions
    */
-  async list(params = {}) {
+  async list({ channelId, mailType, reason, email, limit, offset } = {}) {
     const query = {};
-    if (params.channelId !== undefined) query.channelId = params.channelId;
-    if (params.mailType !== undefined) query.mailType = params.mailType;
-    if (params.reason !== undefined) query.reason = params.reason;
-    if (params.email !== undefined) query.email = params.email;
-    if (params.limit !== undefined) query.limit = params.limit;
-    if (params.offset !== undefined) query.offset = params.offset;
+    if (channelId !== undefined) query.channelId = channelId;
+    if (mailType !== undefined) query.mailType = mailType;
+    if (reason !== undefined) query.reason = reason;
+    if (email !== undefined) query.email = email;
+    if (limit !== undefined) query.limit = limit;
+    if (offset !== undefined) query.offset = offset;
     const response = await this._client.request("get", `/suppressions`, { params: query });
     return response.json();
   }
@@ -24,16 +24,16 @@ export class Suppressions {
   /**
    * Create suppressions
    */
-  async create(params) {
-    const response = await this._client.request("post", `/suppressions`, { body: params });
+  async create({ channelId, mailType, emails }) {
+    const response = await this._client.request("post", `/suppressions`, { body: { channelId, mailType, emails } });
     return response.json();
   }
 
   /**
    * Remove suppressions
    */
-  async remove(params) {
-    const response = await this._client.request("post", `/suppressions/remove`, { body: params });
+  async remove({ channelId, mailType, emails }) {
+    const response = await this._client.request("post", `/suppressions/remove`, { body: { channelId, mailType, emails } });
     return response.json();
   }
 }

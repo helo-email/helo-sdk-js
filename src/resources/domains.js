@@ -9,12 +9,12 @@ export class Domains {
   /**
    * List all domains
    */
-  async list(params = {}) {
+  async list({ limit, offset, name, channelIds } = {}) {
     const query = {};
-    if (params.limit !== undefined) query.limit = params.limit;
-    if (params.offset !== undefined) query.offset = params.offset;
-    if (params.name !== undefined) query.name = params.name;
-    if (params.channelIds !== undefined) query.channelIds = params.channelIds;
+    if (limit !== undefined) query.limit = limit;
+    if (offset !== undefined) query.offset = offset;
+    if (name !== undefined) query.name = name;
+    if (channelIds !== undefined) query.channelIds = channelIds;
     const response = await this._client.request("get", `/domains`, { params: query });
     return response.json();
   }
@@ -22,15 +22,15 @@ export class Domains {
   /**
    * Create a domain
    */
-  async create(params) {
-    const response = await this._client.request("post", `/domains`, { body: params });
+  async create({ name, channelIds }) {
+    const response = await this._client.request("post", `/domains`, { body: { name, channelIds } });
     return response.json();
   }
 
   /**
    * Retrieve a domain
    */
-  async retrieve(id) {
+  async retrieve({ id }) {
     const response = await this._client.request("get", `/domains/${id}`);
     return response.json();
   }
@@ -38,15 +38,15 @@ export class Domains {
   /**
    * Update a domain
    */
-  async update(id, params) {
-    const response = await this._client.request("patch", `/domains/${id}`, { body: params });
+  async update({ id, channelIds }) {
+    const response = await this._client.request("patch", `/domains/${id}`, { body: { channelIds } });
     return response.json();
   }
 
   /**
    * Delete a domain
    */
-  async del(id) {
+  async del({ id }) {
     const response = await this._client.request("delete", `/domains/${id}`);
     return null;
   }
@@ -54,7 +54,7 @@ export class Domains {
   /**
    * Verify a domain
    */
-  async verify(id) {
+  async verify({ id }) {
     const response = await this._client.request("post", `/domains/${id}/verify`);
     return response.json();
   }
@@ -62,7 +62,7 @@ export class Domains {
   /**
    * Rotate a domain key
    */
-  async rotateKey(id) {
+  async rotateKey({ id }) {
     const response = await this._client.request("post", `/domains/${id}/rotate-key`);
     return response.json();
   }

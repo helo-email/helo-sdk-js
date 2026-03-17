@@ -10,7 +10,7 @@
 
 ## transactional
 
-> transactional(params) → Object
+> transactional({ ... }) → Object
 
 Send a transactional email
 
@@ -23,7 +23,7 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.sending.transactional({
   to: [],
   cc: [],
   bcc: [],
@@ -37,14 +37,13 @@ const params = {
   tags: ["example1", "example2"],
   headers: {},
   metadata: {}
-};
-const result = await helo.sending.transactional(params);
+});
 ```
 
 
 ## transactionalBatch
 
-> transactionalBatch(params) → Object
+> transactionalBatch({ ... }) → Object
 
 Send transactional emails in batch
 
@@ -57,16 +56,15 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.sending.transactionalBatch({
   requests: []
-};
-const result = await helo.sending.transactionalBatch(params);
+});
 ```
 
 
 ## broadcast
 
-> broadcast(params) → Object
+> broadcast({ ... }) → Object
 
 Send a broadcast email
 
@@ -79,7 +77,7 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.sending.broadcast({
   replyTo: [],
   template: {},
   tracking: {},
@@ -88,14 +86,13 @@ const params = {
   headers: {},
   metadata: {},
   messages: []
-};
-const result = await helo.sending.broadcast(params);
+});
 ```
 
 
 ## broadcastMessage
 
-> broadcastMessage(params) → Object
+> broadcastMessage({ ... }) → Object
 
 Send a single broadcast email
 
@@ -108,7 +105,7 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.sending.broadcastMessage({
   to: [],
   cc: [],
   bcc: [],
@@ -122,7 +119,6 @@ const params = {
   tags: ["example1", "example2"],
   headers: {},
   metadata: {}
-};
-const result = await helo.sending.broadcastMessage(params);
+});
 ```
 

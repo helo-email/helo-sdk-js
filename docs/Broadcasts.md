@@ -10,7 +10,7 @@
 
 ## list
 
-> list(params) → Object
+> list({ ... }) → Object
 
 List broadcasts
 
@@ -23,20 +23,19 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.broadcasts.list({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   status: "accepted",
   subject: "example",
   limit: 10,
   offset: 10
-};
-const result = await helo.broadcasts.list(params);
+});
 ```
 
 
 ## retrieve
 
-> retrieve(id) → Object
+> retrieve({ ... }) → Object
 
 Retrieve a broadcast
 
@@ -49,14 +48,15 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const id = "550e8400-e29b-41d4-a716-446655440000";
-const result = await helo.broadcasts.retrieve(id);
+const result = await helo.broadcasts.retrieve({
+  id: "550e8400-e29b-41d4-a716-446655440000"
+});
 ```
 
 
 ## listFailures
 
-> listFailures(id) → Object
+> listFailures({ ... }) → Object
 
 List broadcast failures
 
@@ -69,14 +69,15 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const id = "550e8400-e29b-41d4-a716-446655440000";
-const result = await helo.broadcasts.listFailures(id);
+const result = await helo.broadcasts.listFailures({
+  id: "550e8400-e29b-41d4-a716-446655440000"
+});
 ```
 
 
 ## listSuppressions
 
-> listSuppressions(id) → Object
+> listSuppressions({ ... }) → Object
 
 List broadcast suppressions
 
@@ -89,7 +90,8 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const id = "550e8400-e29b-41d4-a716-446655440000";
-const result = await helo.broadcasts.listSuppressions(id);
+const result = await helo.broadcasts.listSuppressions({
+  id: "550e8400-e29b-41d4-a716-446655440000"
+});
 ```
 

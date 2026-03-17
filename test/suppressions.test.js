@@ -23,9 +23,14 @@ describe("suppressions", () => {
   });
 
   it("list", async () => {
-    const params = { channelId: "550e8400-e29b-41d4-a716-446655440000", mailType: "transactional", reason: "bounce", email: "example", limit: 10, offset: 10 };
-
-    const result = await client.suppressions.list(params);
+    const result = await client.suppressions.list({
+      channelId: "550e8400-e29b-41d4-a716-446655440000",
+      mailType: "transactional",
+      reason: "bounce",
+      email: "example",
+      limit: 10,
+      offset: 10
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -34,9 +39,11 @@ describe("suppressions", () => {
   });
 
   it("create", async () => {
-    const params = { channelId: "550e8400-e29b-41d4-a716-446655440000", mailType: "transactional", emails: ["example1", "example2"] };
-
-    const result = await client.suppressions.create(params);
+    const result = await client.suppressions.create({
+      channelId: "550e8400-e29b-41d4-a716-446655440000",
+      mailType: "transactional",
+      emails: ["example1", "example2"]
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -45,9 +52,11 @@ describe("suppressions", () => {
   });
 
   it("remove", async () => {
-    const params = { channelId: "550e8400-e29b-41d4-a716-446655440000", mailType: "transactional", emails: ["example1", "example2"] };
-
-    const result = await client.suppressions.remove(params);
+    const result = await client.suppressions.remove({
+      channelId: "550e8400-e29b-41d4-a716-446655440000",
+      mailType: "transactional",
+      emails: ["example1", "example2"]
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");

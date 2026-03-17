@@ -23,9 +23,13 @@ describe("broadcasts", () => {
   });
 
   it("list", async () => {
-    const params = { channelId: "550e8400-e29b-41d4-a716-446655440000", status: "accepted", subject: "example", limit: 10, offset: 10 };
-
-    const result = await client.broadcasts.list(params);
+    const result = await client.broadcasts.list({
+      channelId: "550e8400-e29b-41d4-a716-446655440000",
+      status: "accepted",
+      subject: "example",
+      limit: 10,
+      offset: 10
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -34,9 +38,9 @@ describe("broadcasts", () => {
   });
 
   it("retrieve", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-
-    const result = await client.broadcasts.retrieve(id);
+    const result = await client.broadcasts.retrieve({
+      id: "550e8400-e29b-41d4-a716-446655440000"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -45,9 +49,9 @@ describe("broadcasts", () => {
   });
 
   it("listFailures", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-
-    const result = await client.broadcasts.listFailures(id);
+    const result = await client.broadcasts.listFailures({
+      id: "550e8400-e29b-41d4-a716-446655440000"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
@@ -56,9 +60,9 @@ describe("broadcasts", () => {
   });
 
   it("listSuppressions", async () => {
-    const id = "550e8400-e29b-41d4-a716-446655440000";
-
-    const result = await client.broadcasts.listSuppressions(id);
+    const result = await client.broadcasts.listSuppressions({
+      id: "550e8400-e29b-41d4-a716-446655440000"
+    });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");

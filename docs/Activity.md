@@ -9,7 +9,7 @@
 
 ## listEvents
 
-> listEvents(params) → Object
+> listEvents({ ... }) → Object
 
 List activity events
 
@@ -22,7 +22,7 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.activity.listEvents({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   messageId: "550e8400-e29b-41d4-a716-446655440000",
   after: 10,
@@ -33,14 +33,13 @@ const params = {
   subject: "example",
   tags: ["example1", "example2"],
   eventTypes: ["accepted", "processed"]
-};
-const result = await helo.activity.listEvents(params);
+});
 ```
 
 
 ## listMessages
 
-> listMessages(params) → Object
+> listMessages({ ... }) → Object
 
 List messages
 
@@ -53,7 +52,7 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const params = {
+const result = await helo.activity.listMessages({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   after: 10,
   startDate: "2024-01-01T00:00:00Z",
@@ -63,14 +62,13 @@ const params = {
   subject: "example",
   tag: "example",
   status: "sent"
-};
-const result = await helo.activity.listMessages(params);
+});
 ```
 
 
 ## retrieveMessage
 
-> retrieveMessage(id) → Object
+> retrieveMessage({ ... }) → Object
 
 Retrieve message details
 
@@ -83,7 +81,8 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const id = "550e8400-e29b-41d4-a716-446655440000";
-const result = await helo.activity.retrieveMessage(id);
+const result = await helo.activity.retrieveMessage({
+  id: "550e8400-e29b-41d4-a716-446655440000"
+});
 ```
 
