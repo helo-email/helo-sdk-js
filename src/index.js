@@ -34,7 +34,7 @@ class Helo {
 
     this._client = new Client({
       accessToken,
-      baseUrl: options.baseUrl || "https://app.helo.email",
+      baseUrl: options.baseUrl || "http://localhost:8002/",
       fetch: options.fetch || undefined,
     });
 

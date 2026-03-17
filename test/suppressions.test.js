@@ -27,7 +27,7 @@ describe("suppressions", () => {
       channelId: "550e8400-e29b-41d4-a716-446655440000",
       mailType: Helo.MailType.TRANSACTIONAL,
       reason: Helo.SuppressionReason.BOUNCE,
-      email: "example",
+      email: "test@example.com",
       limit: 10,
       offset: 10,
     });
@@ -46,7 +46,7 @@ describe("suppressions", () => {
     expect(url.searchParams.get("reason")).toBe(
       String(Helo.SuppressionReason.BOUNCE),
     );
-    expect(url.searchParams.get("email")).toBe(String("example"));
+    expect(url.searchParams.get("email")).toBe(String("test@example.com"));
     expect(url.searchParams.get("limit")).toBe(String(10));
     expect(url.searchParams.get("offset")).toBe(String(10));
   });

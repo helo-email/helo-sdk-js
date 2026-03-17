@@ -32,9 +32,11 @@ export class Client {
         ? this._config.accessToken()
         : this._config.accessToken;
 
-    if (token) {
-      headers["Authorization"] = `Bearer ${token}`;
+    if (!token) {
+      throw new ApiError("No access token provided");
     }
+
+    headers["Authorization"] = `Bearer ${token}`;
 
     const fetchOptions = { method: method.toUpperCase(), headers };
 
@@ -47,7 +49,8 @@ export class Client {
       const fetchFn = this._config.fetch || globalThis.fetch;
       response = await fetchFn(url.toString(), fetchOptions);
     } catch (err) {
-      throw new ApiError(`Connection failed: ${err.message}`);
+      const detail = err.cause?.message || err.message;
+      throw new ApiError(`Connection failed: ${detail}`, null, null, null, err);
     }
 
     if (!response.ok) {

@@ -7,8 +7,9 @@ export class ApiError extends Error {
     code = null,
     responseBody = null,
     responseHeaders = null,
+    cause = null,
   ) {
-    super(message);
+    super(message, cause ? { cause } : undefined);
     this.name = "ApiError";
     this.code = code;
     this.responseBody = responseBody;

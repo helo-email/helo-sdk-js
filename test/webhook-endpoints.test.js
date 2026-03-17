@@ -46,7 +46,7 @@ describe("webhookEndpoints", () => {
       url: "test-url",
       events: [Helo.WebhookEvent.ACCEPTED, Helo.WebhookEvent.PROCESSED],
       channelId: "550e8400-e29b-41d4-a716-446655440000",
-      additionalHeaders: [],
+      additionalHeaders: [{ name: "test-name", value: "test-value" }],
       enabled: true,
     });
 
@@ -61,7 +61,9 @@ describe("webhookEndpoints", () => {
       Helo.WebhookEvent.PROCESSED,
     ]);
     expect(body.channelId).toEqual("550e8400-e29b-41d4-a716-446655440000");
-    expect(body.additionalHeaders).toEqual([]);
+    expect(body.additionalHeaders).toEqual([
+      { name: "test-name", value: "test-value" },
+    ]);
     expect(body.enabled).toEqual(true);
   });
 
@@ -86,7 +88,7 @@ describe("webhookEndpoints", () => {
         url: "test-url",
         events: [Helo.WebhookEvent.ACCEPTED, Helo.WebhookEvent.PROCESSED],
         channelId: "550e8400-e29b-41d4-a716-446655440000",
-        additionalHeaders: [],
+        additionalHeaders: [{ name: "test-name", value: "test-value" }],
         enabled: true,
       },
     );
@@ -102,7 +104,9 @@ describe("webhookEndpoints", () => {
       Helo.WebhookEvent.PROCESSED,
     ]);
     expect(body.channelId).toEqual("550e8400-e29b-41d4-a716-446655440000");
-    expect(body.additionalHeaders).toEqual([]);
+    expect(body.additionalHeaders).toEqual([
+      { name: "test-name", value: "test-value" },
+    ]);
     expect(body.enabled).toEqual(true);
     expect(lastRequest.url).toContain(
       "/webhook-endpoints/550e8400-e29b-41d4-a716-446655440000",

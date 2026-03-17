@@ -23,16 +23,32 @@ import Helo from "helo";
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
 const result = await helo.sending.transactional({
-  to: [],
-  cc: [],
-  bcc: [],
-  replyTo: [],
+  from: { email: "test@example.com", name: "test-name" },
+  to: [{ email: "test@example.com", name: "test-name" }],
+  cc: [{ email: "test@example.com", name: "test-name" }],
+  bcc: [{ email: "test@example.com", name: "test-name" }],
+  replyTo: [{ email: "test@example.com", name: "test-name" }],
   subject: "test-subject",
   html: "test-html",
   text: "test-text",
-  template: {},
-  tracking: {},
-  attachments: [],
+  template: {
+    id: "test-id",
+    subject: "test-subject",
+    html: "test-html",
+    text: "test-text",
+    inlineStyles: true,
+    data: {},
+  },
+  tracking: { opens: true, links: true },
+  attachments: [
+    {
+      content: "test-content",
+      contentId: "test-contentId",
+      contentType: "test-contentType",
+      fileName: "test-fileName",
+      disposition: Helo.AttachmentDisposition.ATTACHMENT,
+    },
+  ],
   tags: ["example1", "example2"],
   headers: {},
   metadata: {},
@@ -55,7 +71,39 @@ import Helo from "helo";
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
 const result = await helo.sending.transactionalBatch({
-  requests: [],
+  requests: [
+    {
+      from: { email: "test@example.com", name: "test-name" },
+      to: [{ email: "test@example.com", name: "test-name" }],
+      cc: [{ email: "test@example.com", name: "test-name" }],
+      bcc: [{ email: "test@example.com", name: "test-name" }],
+      replyTo: [{ email: "test@example.com", name: "test-name" }],
+      subject: "test-subject",
+      html: "test-html",
+      text: "test-text",
+      template: {
+        id: "test-id",
+        subject: "test-subject",
+        html: "test-html",
+        text: "test-text",
+        inlineStyles: true,
+        data: {},
+      },
+      tracking: { opens: true, links: true },
+      attachments: [
+        {
+          content: "test-content",
+          contentId: "test-contentId",
+          contentType: "test-contentType",
+          fileName: "test-fileName",
+          disposition: Helo.AttachmentDisposition.ATTACHMENT,
+        },
+      ],
+      tags: ["example1", "example2"],
+      headers: {},
+      metadata: {},
+    },
+  ],
 });
 ```
 
@@ -75,14 +123,40 @@ import Helo from "helo";
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
 const result = await helo.sending.broadcast({
-  replyTo: [],
-  template: {},
-  tracking: {},
-  attachments: [],
+  from: { email: "test@example.com", name: "test-name" },
+  replyTo: [{ email: "test@example.com", name: "test-name" }],
+  template: {
+    id: "test-id",
+    subject: "test-subject",
+    html: "test-html",
+    text: "test-text",
+    inlineStyles: true,
+    data: {},
+  },
+  tracking: { opens: true, links: true },
+  attachments: [
+    {
+      content: "test-content",
+      contentId: "test-contentId",
+      contentType: "test-contentType",
+      fileName: "test-fileName",
+      disposition: Helo.AttachmentDisposition.ATTACHMENT,
+    },
+  ],
   tags: ["example1", "example2"],
   headers: {},
   metadata: {},
-  messages: [],
+  messages: [
+    {
+      to: [{ email: "test@example.com", name: "test-name" }],
+      cc: [{ email: "test@example.com", name: "test-name" }],
+      bcc: [{ email: "test@example.com", name: "test-name" }],
+      tags: ["example1", "example2"],
+      headers: {},
+      metadata: {},
+      data: {},
+    },
+  ],
 });
 ```
 
@@ -102,16 +176,32 @@ import Helo from "helo";
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
 const result = await helo.sending.broadcastMessage({
-  to: [],
-  cc: [],
-  bcc: [],
-  replyTo: [],
+  from: { email: "test@example.com", name: "test-name" },
+  to: [{ email: "test@example.com", name: "test-name" }],
+  cc: [{ email: "test@example.com", name: "test-name" }],
+  bcc: [{ email: "test@example.com", name: "test-name" }],
+  replyTo: [{ email: "test@example.com", name: "test-name" }],
   subject: "test-subject",
   html: "test-html",
   text: "test-text",
-  template: {},
-  tracking: {},
-  attachments: [],
+  template: {
+    id: "test-id",
+    subject: "test-subject",
+    html: "test-html",
+    text: "test-text",
+    inlineStyles: true,
+    data: {},
+  },
+  tracking: { opens: true, links: true },
+  attachments: [
+    {
+      content: "test-content",
+      contentId: "test-contentId",
+      contentType: "test-contentType",
+      fileName: "test-fileName",
+      disposition: Helo.AttachmentDisposition.ATTACHMENT,
+    },
+  ],
   tags: ["example1", "example2"],
   headers: {},
   metadata: {},
