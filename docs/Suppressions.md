@@ -1,0 +1,83 @@
+# Helo.suppressions
+
+| Method | HTTP request | Description |
+| ------ | ------------ | ----------- |
+| [**list**](Suppressions.md#list) | **GET** /suppressions | List suppressions |
+| [**create**](Suppressions.md#create) | **POST** /suppressions | Create suppressions |
+| [**remove**](Suppressions.md#remove) | **POST** /suppressions/remove | Remove suppressions |
+
+
+## list
+
+> list(params) → Object
+
+List suppressions
+
+Retrieves a list of suppressed email addresses for a channel.
+
+### Example
+
+```javascript Suppressions_list
+import Helo from "helo";
+
+const helo = new Helo("YOUR_ACCESS_TOKEN");
+
+const params = {
+  channelId: "550e8400-e29b-41d4-a716-446655440000",
+  mailType: "transactional",
+  reason: "bounce",
+  email: "example",
+  limit: 10,
+  offset: 10
+};
+const result = await helo.suppressions.list(params);
+```
+
+
+## create
+
+> create(params) → Object
+
+Create suppressions
+
+Adds email addresses to the suppression list to prevent future sends.
+
+### Example
+
+```javascript Suppressions_create
+import Helo from "helo";
+
+const helo = new Helo("YOUR_ACCESS_TOKEN");
+
+const params = {
+  channelId: "550e8400-e29b-41d4-a716-446655440000",
+  mailType: "transactional",
+  emails: ["example1", "example2"]
+};
+const result = await helo.suppressions.create(params);
+```
+
+
+## remove
+
+> remove(params) → Object
+
+Remove suppressions
+
+Removes email addresses from the suppression list to allow future sends.
+
+### Example
+
+```javascript Suppressions_remove
+import Helo from "helo";
+
+const helo = new Helo("YOUR_ACCESS_TOKEN");
+
+const params = {
+  channelId: "550e8400-e29b-41d4-a716-446655440000",
+  mailType: "transactional",
+  emails: ["example1", "example2"]
+};
+const result = await helo.suppressions.remove(params);
+```
+

@@ -1,0 +1,148 @@
+# Helo.webhookEndpoints
+
+| Method | HTTP request | Description |
+| ------ | ------------ | ----------- |
+| [**list**](WebhookEndpoints.md#list) | **GET** /webhook-endpoints | List all webhook endpoints |
+| [**create**](WebhookEndpoints.md#create) | **POST** /webhook-endpoints | Create a webhook endpoint |
+| [**retrieve**](WebhookEndpoints.md#retrieve) | **GET** /webhook-endpoints/{id} | Retrieve a webhook endpoint |
+| [**update**](WebhookEndpoints.md#update) | **PATCH** /webhook-endpoints/{id} | Update a webhook endpoint |
+| [**del**](WebhookEndpoints.md#del) | **DELETE** /webhook-endpoints/{id} | Delete a webhook endpoint |
+| [**regenerateSigningKey**](WebhookEndpoints.md#regenerateSigningKey) | **POST** /webhook-endpoints/{id}/regenerate-signing-key | Regenerate webhook signing key |
+
+
+## list
+
+> list(params) → Object
+
+List all webhook endpoints
+
+Retrieves all webhook endpoints configured for the account.
+
+### Example
+
+```javascript WebhookEndpoints_list
+import Helo from "helo";
+
+const helo = new Helo("YOUR_ACCESS_TOKEN");
+
+const params = {
+  limit: 10,
+  offset: 10,
+  channelIds: ["550e8400-e29b-41d4-a716-446655440000"]
+};
+const result = await helo.webhookEndpoints.list(params);
+```
+
+
+## create
+
+> create(params) → Object
+
+Create a webhook endpoint
+
+Registers a new webhook endpoint to receive event notifications.
+
+### Example
+
+```javascript WebhookEndpoints_create
+import Helo from "helo";
+
+const helo = new Helo("YOUR_ACCESS_TOKEN");
+
+const params = {
+  url: "test-url",
+  events: ["accepted", "processed"],
+  channelId: "550e8400-e29b-41d4-a716-446655440000",
+  additionalHeaders: [],
+  enabled: true
+};
+const result = await helo.webhookEndpoints.create(params);
+```
+
+
+## retrieve
+
+> retrieve(id) → Object
+
+Retrieve a webhook endpoint
+
+Fetches the details and configuration of a specific webhook endpoint.
+
+### Example
+
+```javascript WebhookEndpoints_retrieve
+import Helo from "helo";
+
+const helo = new Helo("YOUR_ACCESS_TOKEN");
+
+const id = "550e8400-e29b-41d4-a716-446655440000";
+const result = await helo.webhookEndpoints.retrieve(id);
+```
+
+
+## update
+
+> update(id, params) → Object
+
+Update a webhook endpoint
+
+Modifies the configuration of an existing webhook endpoint.
+
+### Example
+
+```javascript WebhookEndpoints_update
+import Helo from "helo";
+
+const helo = new Helo("YOUR_ACCESS_TOKEN");
+
+const id = "550e8400-e29b-41d4-a716-446655440000";
+const params = {
+  url: "test-url",
+  events: ["accepted", "processed"],
+  channelId: "550e8400-e29b-41d4-a716-446655440000",
+  additionalHeaders: [],
+  enabled: true
+};
+const result = await helo.webhookEndpoints.update(id, params);
+```
+
+
+## del
+
+> del(id) → null
+
+Delete a webhook endpoint
+
+Permanently removes a webhook endpoint.
+
+### Example
+
+```javascript WebhookEndpoints_delete
+import Helo from "helo";
+
+const helo = new Helo("YOUR_ACCESS_TOKEN");
+
+const id = "550e8400-e29b-41d4-a716-446655440000";
+await helo.webhookEndpoints.del(id);
+```
+
+
+## regenerateSigningKey
+
+> regenerateSigningKey(id) → Object
+
+Regenerate webhook signing key
+
+Generates a new signing key for webhook payload verification.
+
+### Example
+
+```javascript WebhookEndpoints_regenerateSigningKey
+import Helo from "helo";
+
+const helo = new Helo("YOUR_ACCESS_TOKEN");
+
+const id = "550e8400-e29b-41d4-a716-446655440000";
+const result = await helo.webhookEndpoints.regenerateSigningKey(id);
+```
+
