@@ -1,0 +1,14 @@
+{
+  "name": "helo",
+  "version": "1.0.0",
+  "description": "Helo API",
+  "type": "module",
+  "exports": "./src/index.js",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^3.0.0"
+  }
+}
