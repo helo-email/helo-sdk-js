@@ -49,7 +49,7 @@ const helo = new Helo("YOUR_ACCESS_TOKEN");
 
 const result = await helo.channels.create({
   name: "test-name",
-  deliveryType: "live",
+  deliveryType: Helo.DeliveryType.LIVE,
   trackLinks: true,
   trackOpens: true,
 });
@@ -94,7 +94,7 @@ const result = await helo.channels.update(
   "550e8400-e29b-41d4-a716-446655440000",
   {
     name: "test-name",
-    deliveryType: "live",
+    deliveryType: Helo.DeliveryType.LIVE,
     trackLinks: true,
     trackOpens: true,
   },

@@ -48,7 +48,7 @@ const helo = new Helo("YOUR_ACCESS_TOKEN");
 
 const result = await helo.webhookEndpoints.create({
   url: "test-url",
-  events: ["accepted", "processed"],
+  events: [Helo.WebhookEvent.ACCEPTED, Helo.WebhookEvent.PROCESSED],
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   additionalHeaders: [],
   enabled: true,
@@ -94,7 +94,7 @@ const result = await helo.webhookEndpoints.update(
   "550e8400-e29b-41d4-a716-446655440000",
   {
     url: "test-url",
-    events: ["accepted", "processed"],
+    events: [Helo.WebhookEvent.ACCEPTED, Helo.WebhookEvent.PROCESSED],
     channelId: "550e8400-e29b-41d4-a716-446655440000",
     additionalHeaders: [],
     enabled: true,

@@ -44,7 +44,7 @@ describe("webhookEndpoints", () => {
   it("create", async () => {
     const result = await client.webhookEndpoints.create({
       url: "test-url",
-      events: ["accepted", "processed"],
+      events: [Helo.WebhookEvent.ACCEPTED, Helo.WebhookEvent.PROCESSED],
       channelId: "550e8400-e29b-41d4-a716-446655440000",
       additionalHeaders: [],
       enabled: true,
@@ -56,7 +56,10 @@ describe("webhookEndpoints", () => {
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     const body = JSON.parse(lastRequest.body);
     expect(body.url).toEqual("test-url");
-    expect(body.events).toEqual(["accepted", "processed"]);
+    expect(body.events).toEqual([
+      Helo.WebhookEvent.ACCEPTED,
+      Helo.WebhookEvent.PROCESSED,
+    ]);
     expect(body.channelId).toEqual("550e8400-e29b-41d4-a716-446655440000");
     expect(body.additionalHeaders).toEqual([]);
     expect(body.enabled).toEqual(true);
@@ -81,7 +84,7 @@ describe("webhookEndpoints", () => {
       "550e8400-e29b-41d4-a716-446655440000",
       {
         url: "test-url",
-        events: ["accepted", "processed"],
+        events: [Helo.WebhookEvent.ACCEPTED, Helo.WebhookEvent.PROCESSED],
         channelId: "550e8400-e29b-41d4-a716-446655440000",
         additionalHeaders: [],
         enabled: true,
@@ -94,7 +97,10 @@ describe("webhookEndpoints", () => {
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     const body = JSON.parse(lastRequest.body);
     expect(body.url).toEqual("test-url");
-    expect(body.events).toEqual(["accepted", "processed"]);
+    expect(body.events).toEqual([
+      Helo.WebhookEvent.ACCEPTED,
+      Helo.WebhookEvent.PROCESSED,
+    ]);
     expect(body.channelId).toEqual("550e8400-e29b-41d4-a716-446655440000");
     expect(body.additionalHeaders).toEqual([]);
     expect(body.enabled).toEqual(true);

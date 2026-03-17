@@ -33,7 +33,7 @@ describe("activity", () => {
       recipient: "example",
       subject: "example",
       tags: ["example1", "example2"],
-      eventTypes: ["accepted", "processed"],
+      eventTypes: [Helo.EventType.ACCEPTED, Helo.EventType.PROCESSED],
     });
 
     expect(result).toBeDefined();
@@ -59,7 +59,7 @@ describe("activity", () => {
     expect(url.searchParams.get("subject")).toBe(String("example"));
     expect(url.searchParams.get("tags")).toBe(String(["example1", "example2"]));
     expect(url.searchParams.get("eventTypes")).toBe(
-      String(["accepted", "processed"]),
+      String([Helo.EventType.ACCEPTED, Helo.EventType.PROCESSED]),
     );
   });
 

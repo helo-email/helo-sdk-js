@@ -25,7 +25,7 @@ describe("broadcasts", () => {
   it("list", async () => {
     const result = await client.broadcasts.list({
       channelId: "550e8400-e29b-41d4-a716-446655440000",
-      status: "accepted",
+      status: Helo.BroadcastStatus.ACCEPTED,
       subject: "example",
       limit: 10,
       offset: 10,
@@ -39,7 +39,9 @@ describe("broadcasts", () => {
     expect(url.searchParams.get("channelId")).toBe(
       String("550e8400-e29b-41d4-a716-446655440000"),
     );
-    expect(url.searchParams.get("status")).toBe(String("accepted"));
+    expect(url.searchParams.get("status")).toBe(
+      String(Helo.BroadcastStatus.ACCEPTED),
+    );
     expect(url.searchParams.get("subject")).toBe(String("example"));
     expect(url.searchParams.get("limit")).toBe(String(10));
     expect(url.searchParams.get("offset")).toBe(String(10));

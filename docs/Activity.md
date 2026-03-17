@@ -31,7 +31,7 @@ const result = await helo.activity.listEvents({
   recipient: "example",
   subject: "example",
   tags: ["example1", "example2"],
-  eventTypes: ["accepted", "processed"],
+  eventTypes: [Helo.EventType.ACCEPTED, Helo.EventType.PROCESSED],
 });
 ```
 

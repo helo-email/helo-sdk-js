@@ -24,7 +24,7 @@ const helo = new Helo("YOUR_ACCESS_TOKEN");
 
 const result = await helo.broadcasts.list({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
-  status: "accepted",
+  status: Helo.BroadcastStatus.ACCEPTED,
   subject: "example",
   limit: 10,
   offset: 10,
