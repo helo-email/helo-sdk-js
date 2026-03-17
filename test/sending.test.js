@@ -36,24 +36,38 @@ describe("sending", () => {
       attachments: [],
       tags: ["example1", "example2"],
       headers: {},
-      metadata: {}
+      metadata: {},
     });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
-    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.method).toBe("POST");
+    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    const body = JSON.parse(lastRequest.body);
+    expect(body.to).toEqual([]);
+    expect(body.cc).toEqual([]);
+    expect(body.bcc).toEqual([]);
+    expect(body.replyTo).toEqual([]);
+    expect(body.subject).toEqual("test-subject");
+    expect(body.html).toEqual("test-html");
+    expect(body.text).toEqual("test-text");
+    expect(body.template).toEqual({});
+    expect(body.tracking).toEqual({});
+    expect(body.attachments).toEqual([]);
+    expect(body.tags).toEqual(["example1", "example2"]);
+    expect(body.headers).toEqual({});
+    expect(body.metadata).toEqual({});
   });
 
   it("transactionalBatch", async () => {
-    const result = await client.sending.transactionalBatch({
-      requests: []
-    });
+    const result = await client.sending.transactionalBatch({ requests: [] });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
-    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.method).toBe("POST");
+    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    const body = JSON.parse(lastRequest.body);
+    expect(body.requests).toEqual([]);
   });
 
   it("broadcast", async () => {
@@ -65,13 +79,22 @@ describe("sending", () => {
       tags: ["example1", "example2"],
       headers: {},
       metadata: {},
-      messages: []
+      messages: [],
     });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
-    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.method).toBe("POST");
+    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    const body = JSON.parse(lastRequest.body);
+    expect(body.replyTo).toEqual([]);
+    expect(body.template).toEqual({});
+    expect(body.tracking).toEqual({});
+    expect(body.attachments).toEqual([]);
+    expect(body.tags).toEqual(["example1", "example2"]);
+    expect(body.headers).toEqual({});
+    expect(body.metadata).toEqual({});
+    expect(body.messages).toEqual([]);
   });
 
   it("broadcastMessage", async () => {
@@ -88,13 +111,26 @@ describe("sending", () => {
       attachments: [],
       tags: ["example1", "example2"],
       headers: {},
-      metadata: {}
+      metadata: {},
     });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
-    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.method).toBe("POST");
+    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    const body = JSON.parse(lastRequest.body);
+    expect(body.to).toEqual([]);
+    expect(body.cc).toEqual([]);
+    expect(body.bcc).toEqual([]);
+    expect(body.replyTo).toEqual([]);
+    expect(body.subject).toEqual("test-subject");
+    expect(body.html).toEqual("test-html");
+    expect(body.text).toEqual("test-text");
+    expect(body.template).toEqual({});
+    expect(body.tracking).toEqual({});
+    expect(body.attachments).toEqual([]);
+    expect(body.tags).toEqual(["example1", "example2"]);
+    expect(body.headers).toEqual({});
+    expect(body.metadata).toEqual({});
   });
-
 });

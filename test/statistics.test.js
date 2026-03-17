@@ -27,13 +27,20 @@ describe("statistics", () => {
       channelId: "550e8400-e29b-41d4-a716-446655440000",
       from: "2024-01-01T00:00:00Z",
       to: "2024-01-01T00:00:00Z",
-      tag: "example"
+      tag: "example",
     });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
-    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.method).toBe("GET");
+    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    const url = new URL(lastRequest.url);
+    expect(url.searchParams.get("channelId")).toBe(
+      String("550e8400-e29b-41d4-a716-446655440000"),
+    );
+    expect(url.searchParams.get("from")).toBe(String("2024-01-01T00:00:00Z"));
+    expect(url.searchParams.get("to")).toBe(String("2024-01-01T00:00:00Z"));
+    expect(url.searchParams.get("tag")).toBe(String("example"));
   });
 
   it("retrieveDaily", async () => {
@@ -42,13 +49,21 @@ describe("statistics", () => {
       from: "2024-01-01",
       to: "2024-01-01",
       tag: "example",
-      timezone: "example"
+      timezone: "example",
     });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
-    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.method).toBe("GET");
+    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    const url = new URL(lastRequest.url);
+    expect(url.searchParams.get("channelId")).toBe(
+      String("550e8400-e29b-41d4-a716-446655440000"),
+    );
+    expect(url.searchParams.get("from")).toBe(String("2024-01-01"));
+    expect(url.searchParams.get("to")).toBe(String("2024-01-01"));
+    expect(url.searchParams.get("tag")).toBe(String("example"));
+    expect(url.searchParams.get("timezone")).toBe(String("example"));
   });
 
   it("retrieveTotals", async () => {
@@ -56,13 +71,19 @@ describe("statistics", () => {
       channelId: "550e8400-e29b-41d4-a716-446655440000",
       from: "2024-01-01T00:00:00Z",
       to: "2024-01-01T00:00:00Z",
-      tag: "example"
+      tag: "example",
     });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
-    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.method).toBe("GET");
+    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    const url = new URL(lastRequest.url);
+    expect(url.searchParams.get("channelId")).toBe(
+      String("550e8400-e29b-41d4-a716-446655440000"),
+    );
+    expect(url.searchParams.get("from")).toBe(String("2024-01-01T00:00:00Z"));
+    expect(url.searchParams.get("to")).toBe(String("2024-01-01T00:00:00Z"));
+    expect(url.searchParams.get("tag")).toBe(String("example"));
   });
-
 });

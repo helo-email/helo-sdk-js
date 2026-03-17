@@ -1,11 +1,10 @@
 # Helo.activity
 
-| Method | HTTP request | Description |
-| ------ | ------------ | ----------- |
-| [**listEvents**](Activity.md#listEvents) | **GET** /activity/events | List activity events |
-| [**listMessages**](Activity.md#listMessages) | **GET** /activity/messages | List messages |
+| Method                                             | HTTP request                    | Description              |
+| -------------------------------------------------- | ------------------------------- | ------------------------ |
+| [**listEvents**](Activity.md#listEvents)           | **GET** /activity/events        | List activity events     |
+| [**listMessages**](Activity.md#listMessages)       | **GET** /activity/messages      | List messages            |
 | [**retrieveMessage**](Activity.md#retrieveMessage) | **GET** /activity/messages/{id} | Retrieve message details |
-
 
 ## listEvents
 
@@ -32,10 +31,9 @@ const result = await helo.activity.listEvents({
   recipient: "example",
   subject: "example",
   tags: ["example1", "example2"],
-  eventTypes: ["accepted", "processed"]
+  eventTypes: ["accepted", "processed"],
 });
 ```
-
 
 ## listMessages
 
@@ -61,14 +59,13 @@ const result = await helo.activity.listMessages({
   recipient: "example",
   subject: "example",
   tag: "example",
-  status: "sent"
+  status: "sent",
 });
 ```
 
-
 ## retrieveMessage
 
-> retrieveMessage({ ... }) → Object
+> retrieveMessage(id) → Object
 
 Retrieve message details
 
@@ -81,8 +78,7 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const result = await helo.activity.retrieveMessage({
-  id: "550e8400-e29b-41d4-a716-446655440000"
-});
+const result = await helo.activity.retrieveMessage(
+  "550e8400-e29b-41d4-a716-446655440000",
+);
 ```
-

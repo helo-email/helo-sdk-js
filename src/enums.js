@@ -61,4 +61,3 @@ export const WebhookEvent = Object.freeze({
   UNSUBSCRIBED: "unsubscribed",
   RESUBSCRIBED: "resubscribed",
 });
-

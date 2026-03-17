@@ -5,10 +5,15 @@
   "type": "module",
   "exports": "./src/index.js",
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "format": "prettier --write ."
+  },
+  "prettier": {
+    "trailingComma": "all"
   },
   "license": "MIT",
   "devDependencies": {
+    "prettier": "^3.0.0",
     "vitest": "^3.0.0"
   }
 }

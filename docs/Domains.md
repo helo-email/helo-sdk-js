@@ -1,15 +1,14 @@
 # Helo.domains
 
-| Method | HTTP request | Description |
-| ------ | ------------ | ----------- |
-| [**list**](Domains.md#list) | **GET** /domains | List all domains |
-| [**create**](Domains.md#create) | **POST** /domains | Create a domain |
-| [**retrieve**](Domains.md#retrieve) | **GET** /domains/{id} | Retrieve a domain |
-| [**update**](Domains.md#update) | **PATCH** /domains/{id} | Update a domain |
-| [**del**](Domains.md#del) | **DELETE** /domains/{id} | Delete a domain |
-| [**verify**](Domains.md#verify) | **POST** /domains/{id}/verify | Verify a domain |
+| Method                                | HTTP request                      | Description         |
+| ------------------------------------- | --------------------------------- | ------------------- |
+| [**list**](Domains.md#list)           | **GET** /domains                  | List all domains    |
+| [**create**](Domains.md#create)       | **POST** /domains                 | Create a domain     |
+| [**retrieve**](Domains.md#retrieve)   | **GET** /domains/{id}             | Retrieve a domain   |
+| [**update**](Domains.md#update)       | **PATCH** /domains/{id}           | Update a domain     |
+| [**del**](Domains.md#del)             | **DELETE** /domains/{id}          | Delete a domain     |
+| [**verify**](Domains.md#verify)       | **POST** /domains/{id}/verify     | Verify a domain     |
 | [**rotateKey**](Domains.md#rotateKey) | **POST** /domains/{id}/rotate-key | Rotate a domain key |
-
 
 ## list
 
@@ -30,10 +29,9 @@ const result = await helo.domains.list({
   limit: 10,
   offset: 10,
   name: "example",
-  channelIds: ["550e8400-e29b-41d4-a716-446655440000"]
+  channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
 });
 ```
-
 
 ## create
 
@@ -52,14 +50,13 @@ const helo = new Helo("YOUR_ACCESS_TOKEN");
 
 const result = await helo.domains.create({
   name: "test-name",
-  channelIds: ["550e8400-e29b-41d4-a716-446655440000"]
+  channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
 });
 ```
 
-
 ## retrieve
 
-> retrieve({ ... }) → Object
+> retrieve(id) → Object
 
 Retrieve a domain
 
@@ -72,15 +69,14 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const result = await helo.domains.retrieve({
-  id: "550e8400-e29b-41d4-a716-446655440000"
-});
+const result = await helo.domains.retrieve(
+  "550e8400-e29b-41d4-a716-446655440000",
+);
 ```
-
 
 ## update
 
-> update({ ... }) → Object
+> update(id, { ... }) → Object
 
 Update a domain
 
@@ -93,16 +89,17 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const result = await helo.domains.update({
-  id: "550e8400-e29b-41d4-a716-446655440000",
-  channelIds: ["550e8400-e29b-41d4-a716-446655440000"]
-});
+const result = await helo.domains.update(
+  "550e8400-e29b-41d4-a716-446655440000",
+  {
+    channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
+  },
+);
 ```
-
 
 ## del
 
-> del({ ... }) → null
+> del(id) → null
 
 Delete a domain
 
@@ -115,15 +112,12 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-await helo.domains.del({
-  id: "550e8400-e29b-41d4-a716-446655440000"
-});
+await helo.domains.del("550e8400-e29b-41d4-a716-446655440000");
 ```
-
 
 ## verify
 
-> verify({ ... }) → Object
+> verify(id) → Object
 
 Verify a domain
 
@@ -136,15 +130,14 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const result = await helo.domains.verify({
-  id: "550e8400-e29b-41d4-a716-446655440000"
-});
+const result = await helo.domains.verify(
+  "550e8400-e29b-41d4-a716-446655440000",
+);
 ```
-
 
 ## rotateKey
 
-> rotateKey({ ... }) → Object
+> rotateKey(id) → Object
 
 Rotate a domain key
 
@@ -157,8 +150,7 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const result = await helo.domains.rotateKey({
-  id: "550e8400-e29b-41d4-a716-446655440000"
-});
+const result = await helo.domains.rotateKey(
+  "550e8400-e29b-41d4-a716-446655440000",
+);
 ```
-

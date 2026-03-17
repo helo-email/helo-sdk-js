@@ -1,11 +1,10 @@
 # Helo.statistics
 
-| Method | HTTP request | Description |
-| ------ | ------------ | ----------- |
-| [**retrieveHourly**](Statistics.md#retrieveHourly) | **GET** /activity/statistics/hourly | Retrieve hourly statistics |
-| [**retrieveDaily**](Statistics.md#retrieveDaily) | **GET** /activity/statistics/daily | Retrieve daily statistics |
+| Method                                             | HTTP request                        | Description                  |
+| -------------------------------------------------- | ----------------------------------- | ---------------------------- |
+| [**retrieveHourly**](Statistics.md#retrieveHourly) | **GET** /activity/statistics/hourly | Retrieve hourly statistics   |
+| [**retrieveDaily**](Statistics.md#retrieveDaily)   | **GET** /activity/statistics/daily  | Retrieve daily statistics    |
 | [**retrieveTotals**](Statistics.md#retrieveTotals) | **GET** /activity/statistics/totals | Retrieve all time statistics |
-
 
 ## retrieveHourly
 
@@ -26,10 +25,9 @@ const result = await helo.statistics.retrieveHourly({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   from: "2024-01-01T00:00:00Z",
   to: "2024-01-01T00:00:00Z",
-  tag: "example"
+  tag: "example",
 });
 ```
-
 
 ## retrieveDaily
 
@@ -51,10 +49,9 @@ const result = await helo.statistics.retrieveDaily({
   from: "2024-01-01",
   to: "2024-01-01",
   tag: "example",
-  timezone: "example"
+  timezone: "example",
 });
 ```
-
 
 ## retrieveTotals
 
@@ -75,7 +72,6 @@ const result = await helo.statistics.retrieveTotals({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   from: "2024-01-01T00:00:00Z",
   to: "2024-01-01T00:00:00Z",
-  tag: "example"
+  tag: "example",
 });
 ```
-

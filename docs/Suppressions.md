@@ -1,11 +1,10 @@
 # Helo.suppressions
 
-| Method | HTTP request | Description |
-| ------ | ------------ | ----------- |
-| [**list**](Suppressions.md#list) | **GET** /suppressions | List suppressions |
-| [**create**](Suppressions.md#create) | **POST** /suppressions | Create suppressions |
+| Method                               | HTTP request                  | Description         |
+| ------------------------------------ | ----------------------------- | ------------------- |
+| [**list**](Suppressions.md#list)     | **GET** /suppressions         | List suppressions   |
+| [**create**](Suppressions.md#create) | **POST** /suppressions        | Create suppressions |
 | [**remove**](Suppressions.md#remove) | **POST** /suppressions/remove | Remove suppressions |
-
 
 ## list
 
@@ -28,10 +27,9 @@ const result = await helo.suppressions.list({
   reason: "bounce",
   email: "example",
   limit: 10,
-  offset: 10
+  offset: 10,
 });
 ```
-
 
 ## create
 
@@ -51,10 +49,9 @@ const helo = new Helo("YOUR_ACCESS_TOKEN");
 const result = await helo.suppressions.create({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   mailType: "transactional",
-  emails: ["example1", "example2"]
+  emails: ["example1", "example2"],
 });
 ```
-
 
 ## remove
 
@@ -74,7 +71,6 @@ const helo = new Helo("YOUR_ACCESS_TOKEN");
 const result = await helo.suppressions.remove({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   mailType: "transactional",
-  emails: ["example1", "example2"]
+  emails: ["example1", "example2"],
 });
 ```
-

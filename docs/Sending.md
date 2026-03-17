@@ -1,12 +1,11 @@
 # Helo.sending
 
-| Method | HTTP request | Description |
-| ------ | ------------ | ----------- |
-| [**transactional**](Sending.md#transactional) | **POST** /send/transactional | Send a transactional email |
+| Method                                                  | HTTP request                       | Description                        |
+| ------------------------------------------------------- | ---------------------------------- | ---------------------------------- |
+| [**transactional**](Sending.md#transactional)           | **POST** /send/transactional       | Send a transactional email         |
 | [**transactionalBatch**](Sending.md#transactionalBatch) | **POST** /send/transactional/batch | Send transactional emails in batch |
-| [**broadcast**](Sending.md#broadcast) | **POST** /send/broadcast | Send a broadcast email |
-| [**broadcastMessage**](Sending.md#broadcastMessage) | **POST** /send/broadcast/message | Send a single broadcast email |
-
+| [**broadcast**](Sending.md#broadcast)                   | **POST** /send/broadcast           | Send a broadcast email             |
+| [**broadcastMessage**](Sending.md#broadcastMessage)     | **POST** /send/broadcast/message   | Send a single broadcast email      |
 
 ## transactional
 
@@ -36,10 +35,9 @@ const result = await helo.sending.transactional({
   attachments: [],
   tags: ["example1", "example2"],
   headers: {},
-  metadata: {}
+  metadata: {},
 });
 ```
-
 
 ## transactionalBatch
 
@@ -57,10 +55,9 @@ import Helo from "helo";
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
 const result = await helo.sending.transactionalBatch({
-  requests: []
+  requests: [],
 });
 ```
-
 
 ## broadcast
 
@@ -85,10 +82,9 @@ const result = await helo.sending.broadcast({
   tags: ["example1", "example2"],
   headers: {},
   metadata: {},
-  messages: []
+  messages: [],
 });
 ```
-
 
 ## broadcastMessage
 
@@ -118,7 +114,6 @@ const result = await helo.sending.broadcastMessage({
   attachments: [],
   tags: ["example1", "example2"],
   headers: {},
-  metadata: {}
+  metadata: {},
 });
 ```
-

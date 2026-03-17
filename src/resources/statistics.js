@@ -10,12 +10,11 @@ export class Statistics {
    * Retrieve hourly statistics
    */
   async retrieveHourly({ channelId, from, to, tag } = {}) {
-    const query = {};
-    if (channelId !== undefined) query.channelId = channelId;
-    if (from !== undefined) query.from = from;
-    if (to !== undefined) query.to = to;
-    if (tag !== undefined) query.tag = tag;
-    const response = await this._client.request("get", `/activity/statistics/hourly`, { params: query });
+    const response = await this._client.request(
+      "get",
+      `/activity/statistics/hourly`,
+      { params: { channelId, from, to, tag } },
+    );
     return response.json();
   }
 
@@ -23,13 +22,11 @@ export class Statistics {
    * Retrieve daily statistics
    */
   async retrieveDaily({ channelId, from, to, tag, timezone } = {}) {
-    const query = {};
-    if (channelId !== undefined) query.channelId = channelId;
-    if (from !== undefined) query.from = from;
-    if (to !== undefined) query.to = to;
-    if (tag !== undefined) query.tag = tag;
-    if (timezone !== undefined) query.timezone = timezone;
-    const response = await this._client.request("get", `/activity/statistics/daily`, { params: query });
+    const response = await this._client.request(
+      "get",
+      `/activity/statistics/daily`,
+      { params: { channelId, from, to, tag, timezone } },
+    );
     return response.json();
   }
 
@@ -37,12 +34,11 @@ export class Statistics {
    * Retrieve all time statistics
    */
   async retrieveTotals({ channelId, from, to, tag } = {}) {
-    const query = {};
-    if (channelId !== undefined) query.channelId = channelId;
-    if (from !== undefined) query.from = from;
-    if (to !== undefined) query.to = to;
-    if (tag !== undefined) query.tag = tag;
-    const response = await this._client.request("get", `/activity/statistics/totals`, { params: query });
+    const response = await this._client.request(
+      "get",
+      `/activity/statistics/totals`,
+      { params: { channelId, from, to, tag } },
+    );
     return response.json();
   }
 }

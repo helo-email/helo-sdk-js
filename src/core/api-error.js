@@ -2,7 +2,12 @@
  * Error class for API request failures.
  */
 export class ApiError extends Error {
-  constructor(message, code = null, responseBody = null, responseHeaders = null) {
+  constructor(
+    message,
+    code = null,
+    responseBody = null,
+    responseHeaders = null,
+  ) {
     super(message);
     this.name = "ApiError";
     this.code = code;

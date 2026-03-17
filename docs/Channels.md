@@ -1,13 +1,12 @@
 # Helo.channels
 
-| Method | HTTP request | Description |
-| ------ | ------------ | ----------- |
-| [**list**](Channels.md#list) | **GET** /channels | List all channels |
-| [**create**](Channels.md#create) | **POST** /channels | Create a channel |
-| [**retrieve**](Channels.md#retrieve) | **GET** /channels/{id} | Retrieve a channel |
-| [**update**](Channels.md#update) | **PATCH** /channels/{id} | Update a channel |
-| [**del**](Channels.md#del) | **DELETE** /channels/{id} | Delete a channel |
-
+| Method                               | HTTP request              | Description        |
+| ------------------------------------ | ------------------------- | ------------------ |
+| [**list**](Channels.md#list)         | **GET** /channels         | List all channels  |
+| [**create**](Channels.md#create)     | **POST** /channels        | Create a channel   |
+| [**retrieve**](Channels.md#retrieve) | **GET** /channels/{id}    | Retrieve a channel |
+| [**update**](Channels.md#update)     | **PATCH** /channels/{id}  | Update a channel   |
+| [**del**](Channels.md#del)           | **DELETE** /channels/{id} | Delete a channel   |
 
 ## list
 
@@ -29,10 +28,9 @@ const result = await helo.channels.list({
   offset: 10,
   name: "example",
   channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
-  deliveryType: "live"
+  deliveryType: "live",
 });
 ```
-
 
 ## create
 
@@ -53,14 +51,13 @@ const result = await helo.channels.create({
   name: "test-name",
   deliveryType: "live",
   trackLinks: true,
-  trackOpens: true
+  trackOpens: true,
 });
 ```
 
-
 ## retrieve
 
-> retrieve({ ... }) → Object
+> retrieve(id) → Object
 
 Retrieve a channel
 
@@ -73,15 +70,14 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const result = await helo.channels.retrieve({
-  id: "550e8400-e29b-41d4-a716-446655440000"
-});
+const result = await helo.channels.retrieve(
+  "550e8400-e29b-41d4-a716-446655440000",
+);
 ```
-
 
 ## update
 
-> update({ ... }) → Object
+> update(id, { ... }) → Object
 
 Update a channel
 
@@ -94,19 +90,20 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-const result = await helo.channels.update({
-  id: "550e8400-e29b-41d4-a716-446655440000",
-  name: "test-name",
-  deliveryType: "live",
-  trackLinks: true,
-  trackOpens: true
-});
+const result = await helo.channels.update(
+  "550e8400-e29b-41d4-a716-446655440000",
+  {
+    name: "test-name",
+    deliveryType: "live",
+    trackLinks: true,
+    trackOpens: true,
+  },
+);
 ```
-
 
 ## del
 
-> del({ ... }) → null
+> del(id) → null
 
 Delete a channel
 
@@ -119,8 +116,5 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_ACCESS_TOKEN");
 
-await helo.channels.del({
-  id: "550e8400-e29b-41d4-a716-446655440000"
-});
+await helo.channels.del("550e8400-e29b-41d4-a716-446655440000");
 ```
-

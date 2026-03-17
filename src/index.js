@@ -28,7 +28,7 @@ class Helo {
   constructor(accessToken, options = {}) {
     if (!accessToken) {
       throw new Error(
-        "Helo requires an access token. Pass it as the first argument: new Helo(\"your-token\")"
+        'Helo requires an access token. Pass it as the first argument: new Helo("your-token")',
       );
     }
 

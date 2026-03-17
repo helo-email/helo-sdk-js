@@ -33,13 +33,34 @@ describe("activity", () => {
       recipient: "example",
       subject: "example",
       tags: ["example1", "example2"],
-      eventTypes: ["accepted", "processed"]
+      eventTypes: ["accepted", "processed"],
     });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
-    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.method).toBe("GET");
+    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    const url = new URL(lastRequest.url);
+    expect(url.searchParams.get("channelId")).toBe(
+      String("550e8400-e29b-41d4-a716-446655440000"),
+    );
+    expect(url.searchParams.get("messageId")).toBe(
+      String("550e8400-e29b-41d4-a716-446655440000"),
+    );
+    expect(url.searchParams.get("after")).toBe(String(10));
+    expect(url.searchParams.get("startDate")).toBe(
+      String("2024-01-01T00:00:00Z"),
+    );
+    expect(url.searchParams.get("endDate")).toBe(
+      String("2024-01-01T00:00:00Z"),
+    );
+    expect(url.searchParams.get("limit")).toBe(String(10));
+    expect(url.searchParams.get("recipient")).toBe(String("example"));
+    expect(url.searchParams.get("subject")).toBe(String("example"));
+    expect(url.searchParams.get("tags")).toBe(String(["example1", "example2"]));
+    expect(url.searchParams.get("eventTypes")).toBe(
+      String(["accepted", "processed"]),
+    );
   });
 
   it("listMessages", async () => {
@@ -52,24 +73,42 @@ describe("activity", () => {
       recipient: "example",
       subject: "example",
       tag: "example",
-      status: "sent"
+      status: "sent",
     });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
-    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.method).toBe("GET");
+    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    const url = new URL(lastRequest.url);
+    expect(url.searchParams.get("channelId")).toBe(
+      String("550e8400-e29b-41d4-a716-446655440000"),
+    );
+    expect(url.searchParams.get("after")).toBe(String(10));
+    expect(url.searchParams.get("startDate")).toBe(
+      String("2024-01-01T00:00:00Z"),
+    );
+    expect(url.searchParams.get("endDate")).toBe(
+      String("2024-01-01T00:00:00Z"),
+    );
+    expect(url.searchParams.get("limit")).toBe(String(10));
+    expect(url.searchParams.get("recipient")).toBe(String("example"));
+    expect(url.searchParams.get("subject")).toBe(String("example"));
+    expect(url.searchParams.get("tag")).toBe(String("example"));
+    expect(url.searchParams.get("status")).toBe(String("sent"));
   });
 
   it("retrieveMessage", async () => {
-    const result = await client.activity.retrieveMessage({
-      id: "550e8400-e29b-41d4-a716-446655440000"
-    });
+    const result = await client.activity.retrieveMessage(
+      "550e8400-e29b-41d4-a716-446655440000",
+    );
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
-    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.method).toBe("GET");
+    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    expect(lastRequest.url).toContain(
+      "/activity/messages/550e8400-e29b-41d4-a716-446655440000",
+    );
   });
-
 });
