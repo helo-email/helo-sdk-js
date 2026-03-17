@@ -1,17 +1,37 @@
+import { Client } from "../core/client.js";
+import type {
+  CreateDomainRequest,
+  DnsRecordResponse,
+  DnsRecordsResponse,
+  DomainResponse,
+  DomainWithDnsResponse,
+  PaginatedResponseOfDomainResponse,
+  UpdateDomainRequest,
+} from "../types.js";
+
 /**
  * Domains resource.
  */
 export class Domains {
-  constructor(client) {
+  private _client: Client;
+
+  constructor(client: Client) {
     this._client = client;
   }
 
   /**
    * List all domains
    */
-  async list({ limit, offset, name, channelIds } = {}) {
+  async list(
+    params: {
+      limit?: number;
+      offset?: number;
+      name?: string;
+      channelIds?: string[];
+    } = {},
+  ): Promise<PaginatedResponseOfDomainResponse> {
     const response = await this._client.request("get", `/domains`, {
-      params: { limit, offset, name, channelIds },
+      params: params as Record<string, unknown>,
     });
     return response.json();
   }
@@ -19,9 +39,9 @@ export class Domains {
   /**
    * Create a domain
    */
-  async create({ name, channelIds }) {
+  async create(params: CreateDomainRequest): Promise<DomainWithDnsResponse> {
     const response = await this._client.request("post", `/domains`, {
-      body: { name, channelIds },
+      body: params,
     });
     return response.json();
   }
@@ -29,7 +49,7 @@ export class Domains {
   /**
    * Retrieve a domain
    */
-  async retrieve(id) {
+  async retrieve(id: string): Promise<DomainWithDnsResponse> {
     const response = await this._client.request("get", `/domains/${id}`);
     return response.json();
   }
@@ -37,9 +57,12 @@ export class Domains {
   /**
    * Update a domain
    */
-  async update(id, { channelIds }) {
+  async update(
+    id: string,
+    params: UpdateDomainRequest,
+  ): Promise<DomainResponse> {
     const response = await this._client.request("patch", `/domains/${id}`, {
-      body: { channelIds },
+      body: params,
     });
     return response.json();
   }
@@ -47,7 +70,7 @@ export class Domains {
   /**
    * Delete a domain
    */
-  async del(id) {
+  async del(id: string): Promise<null> {
     const response = await this._client.request("delete", `/domains/${id}`);
     return null;
   }
@@ -55,7 +78,7 @@ export class Domains {
   /**
    * Verify a domain
    */
-  async verify(id) {
+  async verify(id: string): Promise<DnsRecordsResponse> {
     const response = await this._client.request(
       "post",
       `/domains/${id}/verify`,
@@ -66,7 +89,7 @@ export class Domains {
   /**
    * Rotate a domain key
    */
-  async rotateKey(id) {
+  async rotateKey(id: string): Promise<DnsRecordResponse> {
     const response = await this._client.request(
       "post",
       `/domains/${id}/rotate-key`,

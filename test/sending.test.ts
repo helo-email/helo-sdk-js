@@ -2,22 +2,27 @@ import { describe, it, expect, beforeEach } from "vitest";
 import Helo from "../src/index.js";
 
 describe("sending", () => {
-  let client;
-  let lastRequest;
+  let client: InstanceType<typeof Helo>;
+  let lastRequest: {
+    url: string;
+    method: string;
+    headers: Record<string, string>;
+    body?: string;
+  };
 
   beforeEach(() => {
-    lastRequest = null;
+    lastRequest = null!;
 
     client = new Helo("test-token-123", {
       baseUrl: "http://localhost:8002",
       fetch: async (url, options) => {
-        lastRequest = { url, ...options };
+        lastRequest = { url: url as string, ...options } as typeof lastRequest;
         return {
           ok: true,
           status: 200,
           headers: new Headers({ "Content-Type": "application/json" }),
           json: async () => ({}),
-        };
+        } as Response;
       },
     });
   });
@@ -59,7 +64,7 @@ describe("sending", () => {
     expect(typeof result).toBe("object");
     expect(lastRequest.method).toBe("POST");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
-    const body = JSON.parse(lastRequest.body);
+    const body = JSON.parse(lastRequest.body!);
     expect(body.from).toEqual({ email: "test@example.com", name: "test-name" });
     expect(body.to).toEqual([{ email: "test@example.com", name: "test-name" }]);
     expect(body.cc).toEqual([{ email: "test@example.com", name: "test-name" }]);
@@ -136,7 +141,7 @@ describe("sending", () => {
     expect(typeof result).toBe("object");
     expect(lastRequest.method).toBe("POST");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
-    const body = JSON.parse(lastRequest.body);
+    const body = JSON.parse(lastRequest.body!);
     expect(body.requests).toEqual([
       {
         from: { email: "test@example.com", name: "test-name" },
@@ -214,7 +219,7 @@ describe("sending", () => {
     expect(typeof result).toBe("object");
     expect(lastRequest.method).toBe("POST");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
-    const body = JSON.parse(lastRequest.body);
+    const body = JSON.parse(lastRequest.body!);
     expect(body.from).toEqual({ email: "test@example.com", name: "test-name" });
     expect(body.replyTo).toEqual([
       { email: "test@example.com", name: "test-name" },
@@ -290,7 +295,7 @@ describe("sending", () => {
     expect(typeof result).toBe("object");
     expect(lastRequest.method).toBe("POST");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
-    const body = JSON.parse(lastRequest.body);
+    const body = JSON.parse(lastRequest.body!);
     expect(body.from).toEqual({ email: "test@example.com", name: "test-name" });
     expect(body.to).toEqual([{ email: "test@example.com", name: "test-name" }]);
     expect(body.cc).toEqual([{ email: "test@example.com", name: "test-name" }]);

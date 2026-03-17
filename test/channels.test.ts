@@ -1,33 +1,39 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import Helo from "../src/index.js";
 
-describe("domains", () => {
-  let client;
-  let lastRequest;
+describe("channels", () => {
+  let client: InstanceType<typeof Helo>;
+  let lastRequest: {
+    url: string;
+    method: string;
+    headers: Record<string, string>;
+    body?: string;
+  };
 
   beforeEach(() => {
-    lastRequest = null;
+    lastRequest = null!;
 
     client = new Helo("test-token-123", {
       baseUrl: "http://localhost:8002",
       fetch: async (url, options) => {
-        lastRequest = { url, ...options };
+        lastRequest = { url: url as string, ...options } as typeof lastRequest;
         return {
           ok: true,
           status: 200,
           headers: new Headers({ "Content-Type": "application/json" }),
           json: async () => ({}),
-        };
+        } as Response;
       },
     });
   });
 
   it("list", async () => {
-    const result = await client.domains.list({
+    const result = await client.channels.list({
       limit: 10,
       offset: 10,
       name: "example",
       channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
+      deliveryType: "live",
     });
 
     expect(result).toBeDefined();
@@ -41,25 +47,30 @@ describe("domains", () => {
     expect(url.searchParams.get("channelIds")).toBe(
       String(["550e8400-e29b-41d4-a716-446655440000"]),
     );
+    expect(url.searchParams.get("deliveryType")).toBe(String("live"));
   });
 
   it("create", async () => {
-    const result = await client.domains.create({
+    const result = await client.channels.create({
       name: "test-name",
-      channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
+      deliveryType: Helo.DeliveryType.LIVE,
+      trackLinks: true,
+      trackOpens: true,
     });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
     expect(lastRequest.method).toBe("POST");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
-    const body = JSON.parse(lastRequest.body);
+    const body = JSON.parse(lastRequest.body!);
     expect(body.name).toEqual("test-name");
-    expect(body.channelIds).toEqual(["550e8400-e29b-41d4-a716-446655440000"]);
+    expect(body.deliveryType).toEqual(Helo.DeliveryType.LIVE);
+    expect(body.trackLinks).toEqual(true);
+    expect(body.trackOpens).toEqual(true);
   });
 
   it("retrieve", async () => {
-    const result = await client.domains.retrieve(
+    const result = await client.channels.retrieve(
       "550e8400-e29b-41d4-a716-446655440000",
     );
 
@@ -68,29 +79,37 @@ describe("domains", () => {
     expect(lastRequest.method).toBe("GET");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.url).toContain(
-      "/domains/550e8400-e29b-41d4-a716-446655440000",
+      "/channels/550e8400-e29b-41d4-a716-446655440000",
     );
   });
 
   it("update", async () => {
-    const result = await client.domains.update(
+    const result = await client.channels.update(
       "550e8400-e29b-41d4-a716-446655440000",
-      { channelIds: ["550e8400-e29b-41d4-a716-446655440000"] },
+      {
+        name: "test-name",
+        deliveryType: Helo.DeliveryType.LIVE,
+        trackLinks: true,
+        trackOpens: true,
+      },
     );
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
     expect(lastRequest.method).toBe("PATCH");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
-    const body = JSON.parse(lastRequest.body);
-    expect(body.channelIds).toEqual(["550e8400-e29b-41d4-a716-446655440000"]);
+    const body = JSON.parse(lastRequest.body!);
+    expect(body.name).toEqual("test-name");
+    expect(body.deliveryType).toEqual(Helo.DeliveryType.LIVE);
+    expect(body.trackLinks).toEqual(true);
+    expect(body.trackOpens).toEqual(true);
     expect(lastRequest.url).toContain(
-      "/domains/550e8400-e29b-41d4-a716-446655440000",
+      "/channels/550e8400-e29b-41d4-a716-446655440000",
     );
   });
 
   it("del", async () => {
-    const result = await client.domains.del(
+    const result = await client.channels.del(
       "550e8400-e29b-41d4-a716-446655440000",
     );
 
@@ -98,35 +117,7 @@ describe("domains", () => {
     expect(lastRequest.method).toBe("DELETE");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.url).toContain(
-      "/domains/550e8400-e29b-41d4-a716-446655440000",
-    );
-  });
-
-  it("verify", async () => {
-    const result = await client.domains.verify(
-      "550e8400-e29b-41d4-a716-446655440000",
-    );
-
-    expect(result).toBeDefined();
-    expect(typeof result).toBe("object");
-    expect(lastRequest.method).toBe("POST");
-    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
-    expect(lastRequest.url).toContain(
-      "/domains/550e8400-e29b-41d4-a716-446655440000/verify",
-    );
-  });
-
-  it("rotateKey", async () => {
-    const result = await client.domains.rotateKey(
-      "550e8400-e29b-41d4-a716-446655440000",
-    );
-
-    expect(result).toBeDefined();
-    expect(typeof result).toBe("object");
-    expect(lastRequest.method).toBe("POST");
-    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
-    expect(lastRequest.url).toContain(
-      "/domains/550e8400-e29b-41d4-a716-446655440000/rotate-key",
+      "/channels/550e8400-e29b-41d4-a716-446655440000",
     );
   });
 });

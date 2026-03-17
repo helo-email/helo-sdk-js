@@ -1,17 +1,29 @@
+import { Client } from "../core/client.js";
+import type {
+  CreateWebhookEndpointRequest,
+  PaginationResultOfWebhookEndpointResponse,
+  UpdateWebhookEndpointRequest,
+  WebhookEndpointResponse,
+} from "../types.js";
+
 /**
  * WebhookEndpoints resource.
  */
 export class WebhookEndpoints {
-  constructor(client) {
+  private _client: Client;
+
+  constructor(client: Client) {
     this._client = client;
   }
 
   /**
    * List all webhook endpoints
    */
-  async list({ limit, offset, channelIds } = {}) {
+  async list(
+    params: { limit?: number; offset?: number; channelIds?: string[] } = {},
+  ): Promise<PaginationResultOfWebhookEndpointResponse> {
     const response = await this._client.request("get", `/webhook-endpoints`, {
-      params: { limit, offset, channelIds },
+      params: params as Record<string, unknown>,
     });
     return response.json();
   }
@@ -19,9 +31,11 @@ export class WebhookEndpoints {
   /**
    * Create a webhook endpoint
    */
-  async create({ url, events, channelId, additionalHeaders, enabled }) {
+  async create(
+    params: CreateWebhookEndpointRequest,
+  ): Promise<WebhookEndpointResponse> {
     const response = await this._client.request("post", `/webhook-endpoints`, {
-      body: { url, events, channelId, additionalHeaders, enabled },
+      body: params,
     });
     return response.json();
   }
@@ -29,7 +43,7 @@ export class WebhookEndpoints {
   /**
    * Retrieve a webhook endpoint
    */
-  async retrieve(id) {
+  async retrieve(id: string): Promise<WebhookEndpointResponse> {
     const response = await this._client.request(
       "get",
       `/webhook-endpoints/${id}`,
@@ -40,11 +54,14 @@ export class WebhookEndpoints {
   /**
    * Update a webhook endpoint
    */
-  async update(id, { url, events, channelId, additionalHeaders, enabled }) {
+  async update(
+    id: string,
+    params: UpdateWebhookEndpointRequest,
+  ): Promise<WebhookEndpointResponse> {
     const response = await this._client.request(
       "patch",
       `/webhook-endpoints/${id}`,
-      { body: { url, events, channelId, additionalHeaders, enabled } },
+      { body: params },
     );
     return response.json();
   }
@@ -52,7 +69,7 @@ export class WebhookEndpoints {
   /**
    * Delete a webhook endpoint
    */
-  async del(id) {
+  async del(id: string): Promise<null> {
     const response = await this._client.request(
       "delete",
       `/webhook-endpoints/${id}`,
@@ -63,7 +80,7 @@ export class WebhookEndpoints {
   /**
    * Regenerate webhook signing key
    */
-  async regenerateSigningKey(id) {
+  async regenerateSigningKey(id: string): Promise<WebhookEndpointResponse> {
     const response = await this._client.request(
       "post",
       `/webhook-endpoints/${id}/regenerate-signing-key`,
