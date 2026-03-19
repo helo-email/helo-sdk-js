@@ -54,7 +54,7 @@ describe("statistics", () => {
       from: "2024-01-01",
       to: "2024-01-01",
       tag: "example",
-      timezone: "example",
+      timezone: "America/New_York",
     });
 
     expect(result).toBeDefined();
@@ -68,7 +68,7 @@ describe("statistics", () => {
     expect(url.searchParams.get("from")).toBe(String("2024-01-01"));
     expect(url.searchParams.get("to")).toBe(String("2024-01-01"));
     expect(url.searchParams.get("tag")).toBe(String("example"));
-    expect(url.searchParams.get("timezone")).toBe(String("example"));
+    expect(url.searchParams.get("timezone")).toBe(String("America/New_York"));
   });
 
   it("retrieveTotals", async () => {
