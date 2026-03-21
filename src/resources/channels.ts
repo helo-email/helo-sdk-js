@@ -1,8 +1,8 @@
 import { Client } from "../core/client.js";
 import type {
-  ChannelResponse,
+  ChannelDetailsResponse,
   CreateChannelRequest,
-  PaginationResultOfChannelResponse,
+  PaginationResultOfChannelBasicResponse,
   UpdateChannelRequest,
 } from "../types.js";
 
@@ -27,7 +27,7 @@ export class Channels {
       channelIds?: string[];
       deliveryType?: "live" | "sandbox";
     } = {},
-  ): Promise<PaginationResultOfChannelResponse> {
+  ): Promise<PaginationResultOfChannelBasicResponse> {
     const response = await this._client.request("get", `/channels`, {
       params: params as Record<string, unknown>,
     });
@@ -37,7 +37,7 @@ export class Channels {
   /**
    * Create a channel
    */
-  async create(params: CreateChannelRequest): Promise<ChannelResponse> {
+  async create(params: CreateChannelRequest): Promise<ChannelDetailsResponse> {
     const response = await this._client.request("post", `/channels`, {
       body: params,
     });
@@ -47,7 +47,7 @@ export class Channels {
   /**
    * Retrieve a channel
    */
-  async retrieve(id: string): Promise<ChannelResponse> {
+  async retrieve(id: string): Promise<ChannelDetailsResponse> {
     const response = await this._client.request("get", `/channels/${id}`);
     return response.json();
   }
@@ -58,7 +58,7 @@ export class Channels {
   async update(
     id: string,
     params: UpdateChannelRequest,
-  ): Promise<ChannelResponse> {
+  ): Promise<ChannelDetailsResponse> {
     const response = await this._client.request("patch", `/channels/${id}`, {
       body: params,
     });

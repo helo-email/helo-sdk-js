@@ -10,14 +10,25 @@ import type {
   WebhookEvent,
 } from "./enums.js";
 
-export interface ChannelResponse {
+export interface ChannelDetailsResponse {
   id?: string;
   name?: string;
   deliveryType?: DeliveryType;
-  trackLinks?: boolean;
-  trackOpens?: boolean;
   createdAt?: string;
   updatedAt?: string;
+  tracking?: ChannelTracking;
+}
+
+export interface ChannelBasicResponse {
+  id?: string;
+  name?: string;
+  deliveryType?: DeliveryType;
+  createdAt?: string;
+}
+
+export interface ChannelTracking {
+  links: boolean;
+  opens: boolean;
 }
 
 export interface CreateChannelRequest {
@@ -42,8 +53,8 @@ export interface ErrorResponse {
   errors?: Record<string, unknown>;
 }
 
-export interface PaginationResultOfChannelResponse {
-  results: ChannelResponse[];
+export interface PaginationResultOfChannelBasicResponse {
+  results: ChannelBasicResponse[];
   totalCount: number;
 }
 
