@@ -54,8 +54,7 @@ describe("channels", () => {
     const result = await client.channels.create({
       name: "test-name",
       deliveryType: Helo.DeliveryType.LIVE,
-      trackLinks: true,
-      trackOpens: true,
+      tracking: { links: true, opens: true },
     });
 
     expect(result).toBeDefined();
@@ -65,8 +64,7 @@ describe("channels", () => {
     const body = JSON.parse(lastRequest.body!);
     expect(body.name).toEqual("test-name");
     expect(body.deliveryType).toEqual(Helo.DeliveryType.LIVE);
-    expect(body.trackLinks).toEqual(true);
-    expect(body.trackOpens).toEqual(true);
+    expect(body.tracking).toEqual({ links: true, opens: true });
   });
 
   it("retrieve", async () => {
@@ -89,8 +87,7 @@ describe("channels", () => {
       {
         name: "test-name",
         deliveryType: Helo.DeliveryType.LIVE,
-        trackLinks: true,
-        trackOpens: true,
+        tracking: { links: true, opens: true },
       },
     );
 
@@ -101,8 +98,7 @@ describe("channels", () => {
     const body = JSON.parse(lastRequest.body!);
     expect(body.name).toEqual("test-name");
     expect(body.deliveryType).toEqual(Helo.DeliveryType.LIVE);
-    expect(body.trackLinks).toEqual(true);
-    expect(body.trackOpens).toEqual(true);
+    expect(body.tracking).toEqual({ links: true, opens: true });
     expect(lastRequest.url).toContain(
       "/channels/550e8400-e29b-41d4-a716-446655440000",
     );

@@ -34,8 +34,12 @@ export interface ChannelTracking {
 export interface CreateChannelRequest {
   name: string;
   deliveryType: DeliveryType;
-  trackLinks?: boolean;
-  trackOpens?: boolean;
+  tracking?: CreateChannelTracking;
+}
+
+export interface CreateChannelTracking {
+  links?: boolean;
+  opens?: boolean;
 }
 
 export interface ValidationError {
@@ -61,8 +65,12 @@ export interface PaginationResultOfChannelBasicResponse {
 export interface UpdateChannelRequest {
   name?: string;
   deliveryType?: DeliveryType;
-  trackLinks?: boolean;
-  trackOpens?: boolean;
+  tracking?: UpdateChannelTracking;
+}
+
+export interface UpdateChannelTracking {
+  links?: boolean;
+  opens?: boolean;
 }
 
 export interface MailAddress {

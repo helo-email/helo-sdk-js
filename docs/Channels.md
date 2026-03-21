@@ -50,8 +50,7 @@ const helo = new Helo("YOUR_ACCESS_TOKEN");
 const result = await helo.channels.create({
   name: "test-name",
   deliveryType: Helo.DeliveryType.LIVE,
-  trackLinks: true,
-  trackOpens: true,
+  tracking: { links: true, opens: true },
 });
 ```
 
@@ -95,8 +94,7 @@ const result = await helo.channels.update(
   {
     name: "test-name",
     deliveryType: Helo.DeliveryType.LIVE,
-    trackLinks: true,
-    trackOpens: true,
+    tracking: { links: true, opens: true },
   },
 );
 ```
