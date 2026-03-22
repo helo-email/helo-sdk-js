@@ -30,6 +30,7 @@ export class Activity {
       recipient?: string;
       subject?: string;
       tags?: string[];
+      mailType?: "transactional" | "broadcast";
       eventTypes?: EventType[];
     } = {},
   ): Promise<PaginatedEventsResponse> {
@@ -52,6 +53,7 @@ export class Activity {
       recipient?: string;
       subject?: string;
       tag?: string;
+      mailType?: "transactional" | "broadcast";
       status?: "sent" | "queued";
     } = {},
   ): Promise<MessagesResponse> {

@@ -38,6 +38,7 @@ describe("activity", () => {
       recipient: "example",
       subject: "example",
       tags: ["example1", "example2"],
+      mailType: "transactional",
       eventTypes: [Helo.EventType.ACCEPTED, Helo.EventType.PROCESSED],
     });
 
@@ -63,6 +64,7 @@ describe("activity", () => {
     expect(url.searchParams.get("recipient")).toBe(String("example"));
     expect(url.searchParams.get("subject")).toBe(String("example"));
     expect(url.searchParams.get("tags")).toBe(String(["example1", "example2"]));
+    expect(url.searchParams.get("mailType")).toBe(String("transactional"));
     expect(url.searchParams.get("eventTypes")).toBe(
       String([Helo.EventType.ACCEPTED, Helo.EventType.PROCESSED]),
     );
@@ -78,6 +80,7 @@ describe("activity", () => {
       recipient: "example",
       subject: "example",
       tag: "example",
+      mailType: "transactional",
       status: "sent",
     });
 
@@ -100,6 +103,7 @@ describe("activity", () => {
     expect(url.searchParams.get("recipient")).toBe(String("example"));
     expect(url.searchParams.get("subject")).toBe(String("example"));
     expect(url.searchParams.get("tag")).toBe(String("example"));
+    expect(url.searchParams.get("mailType")).toBe(String("transactional"));
     expect(url.searchParams.get("status")).toBe(String("sent"));
   });
 

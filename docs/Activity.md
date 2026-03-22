@@ -31,6 +31,7 @@ const result = await helo.activity.listEvents({
   recipient: "example",
   subject: "example",
   tags: ["example1", "example2"],
+  mailType: "transactional",
   eventTypes: [Helo.EventType.ACCEPTED, Helo.EventType.PROCESSED],
 });
 ```
@@ -59,6 +60,7 @@ const result = await helo.activity.listMessages({
   recipient: "example",
   subject: "example",
   tag: "example",
+  mailType: "transactional",
   status: "sent",
 });
 ```
