@@ -25,7 +25,7 @@ const result = await helo.statistics.retrieveHourly({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   from: "2024-01-01T00:00:00Z",
   to: "2024-01-01T00:00:00Z",
-  tag: "example",
+  tags: ["example1", "example2"],
 });
 ```
 
@@ -48,7 +48,7 @@ const result = await helo.statistics.retrieveDaily({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   from: "2024-01-01",
   to: "2024-01-01",
-  tag: "example",
+  tags: ["example1", "example2"],
   timezone: "America/New_York",
 });
 ```
@@ -72,6 +72,6 @@ const result = await helo.statistics.retrieveTotals({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   from: "2024-01-01T00:00:00Z",
   to: "2024-01-01T00:00:00Z",
-  tag: "example",
+  tags: ["example1", "example2"],
 });
 ```

@@ -22,7 +22,7 @@ export class Statistics {
     channelId?: string;
     from: string;
     to: string;
-    tag?: string;
+    tags?: string[];
   }): Promise<StatisticsHourlyResponse> {
     const response = await this._client.request(
       "get",
@@ -39,7 +39,7 @@ export class Statistics {
     channelId?: string;
     from: string;
     to: string;
-    tag?: string;
+    tags?: string[];
     timezone: string;
   }): Promise<StatisticsDailyResponse> {
     const response = await this._client.request(
@@ -57,7 +57,7 @@ export class Statistics {
     channelId?: string;
     from: string;
     to: string;
-    tag?: string;
+    tags?: string[];
   }): Promise<StatisticsTotalsResponse> {
     const response = await this._client.request(
       "get",

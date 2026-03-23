@@ -32,7 +32,7 @@ describe("statistics", () => {
       channelId: "550e8400-e29b-41d4-a716-446655440000",
       from: "2024-01-01T00:00:00Z",
       to: "2024-01-01T00:00:00Z",
-      tag: "example",
+      tags: ["example1", "example2"],
     });
 
     expect(result).toBeDefined();
@@ -45,7 +45,7 @@ describe("statistics", () => {
     );
     expect(url.searchParams.get("from")).toBe(String("2024-01-01T00:00:00Z"));
     expect(url.searchParams.get("to")).toBe(String("2024-01-01T00:00:00Z"));
-    expect(url.searchParams.get("tag")).toBe(String("example"));
+    expect(url.searchParams.get("tags")).toBe(String(["example1", "example2"]));
   });
 
   it("retrieveDaily", async () => {
@@ -53,7 +53,7 @@ describe("statistics", () => {
       channelId: "550e8400-e29b-41d4-a716-446655440000",
       from: "2024-01-01",
       to: "2024-01-01",
-      tag: "example",
+      tags: ["example1", "example2"],
       timezone: "America/New_York",
     });
 
@@ -67,7 +67,7 @@ describe("statistics", () => {
     );
     expect(url.searchParams.get("from")).toBe(String("2024-01-01"));
     expect(url.searchParams.get("to")).toBe(String("2024-01-01"));
-    expect(url.searchParams.get("tag")).toBe(String("example"));
+    expect(url.searchParams.get("tags")).toBe(String(["example1", "example2"]));
     expect(url.searchParams.get("timezone")).toBe(String("America/New_York"));
   });
 
@@ -76,7 +76,7 @@ describe("statistics", () => {
       channelId: "550e8400-e29b-41d4-a716-446655440000",
       from: "2024-01-01T00:00:00Z",
       to: "2024-01-01T00:00:00Z",
-      tag: "example",
+      tags: ["example1", "example2"],
     });
 
     expect(result).toBeDefined();
@@ -89,6 +89,6 @@ describe("statistics", () => {
     );
     expect(url.searchParams.get("from")).toBe(String("2024-01-01T00:00:00Z"));
     expect(url.searchParams.get("to")).toBe(String("2024-01-01T00:00:00Z"));
-    expect(url.searchParams.get("tag")).toBe(String("example"));
+    expect(url.searchParams.get("tags")).toBe(String(["example1", "example2"]));
   });
 });
