@@ -109,6 +109,7 @@ export interface MessagesResponse {
     mailSource?: "api" | "smtp";
     deliveryType?: "live" | "sandbox";
     status?: "queued" | "sent";
+    subject?: string;
     recipients?: string[];
   }[];
 }
