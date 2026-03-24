@@ -59,7 +59,7 @@ const result = await helo.activity.listMessages({
   limit: 10,
   recipient: "example",
   subject: "example",
-  tag: "example",
+  tags: ["example1", "example2"],
   mailType: "transactional",
   status: "sent",
 });

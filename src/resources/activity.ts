@@ -1,8 +1,8 @@
 import { Client } from "../core/client.js";
 import type {
   MessageDetailsResponse,
-  MessagesResponse,
   PaginatedEventsResponse,
+  PaginatedMessagesResponse,
 } from "../types.js";
 import type { EventType } from "../enums.js";
 
@@ -52,11 +52,11 @@ export class Activity {
       limit?: number;
       recipient?: string;
       subject?: string;
-      tag?: string;
+      tags?: string[];
       mailType?: "transactional" | "broadcast";
       status?: "sent" | "queued";
     } = {},
-  ): Promise<MessagesResponse> {
+  ): Promise<PaginatedMessagesResponse> {
     const response = await this._client.request("get", `/activity/messages`, {
       params: params as Record<string, unknown>,
     });

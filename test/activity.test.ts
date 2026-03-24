@@ -79,7 +79,7 @@ describe("activity", () => {
       limit: 10,
       recipient: "example",
       subject: "example",
-      tag: "example",
+      tags: ["example1", "example2"],
       mailType: "transactional",
       status: "sent",
     });
@@ -102,7 +102,7 @@ describe("activity", () => {
     expect(url.searchParams.get("limit")).toBe(String(10));
     expect(url.searchParams.get("recipient")).toBe(String("example"));
     expect(url.searchParams.get("subject")).toBe(String("example"));
-    expect(url.searchParams.get("tag")).toBe(String("example"));
+    expect(url.searchParams.get("tags")).toBe(String(["example1", "example2"]));
     expect(url.searchParams.get("mailType")).toBe(String("transactional"));
     expect(url.searchParams.get("status")).toBe(String("sent"));
   });

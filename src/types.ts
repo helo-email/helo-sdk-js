@@ -98,20 +98,22 @@ export interface PaginatedEventsResponse {
   results: ActivityEvent[];
 }
 
-export interface MessagesResponse {
+export interface PaginatedMessagesResponse {
   after?: number;
   totalCount: number;
-  results: {
-    messageId?: string;
-    channelId?: string;
-    timestamp?: string;
-    mailType?: "transactional" | "broadcast";
-    mailSource?: "api" | "smtp";
-    deliveryType?: "live" | "sandbox";
-    status?: "queued" | "sent";
-    subject?: string;
-    recipients?: string[];
-  }[];
+  results: Message[];
+}
+
+export interface Message {
+  messageId: string;
+  channelId: string;
+  timestamp: string;
+  mailType: "transactional" | "broadcast";
+  mailSource: "api" | "smtp";
+  deliveryType: "live" | "sandbox";
+  status: "queued" | "sent";
+  subject: string;
+  recipients: string[];
 }
 
 export interface MessageDetailsResponse {
