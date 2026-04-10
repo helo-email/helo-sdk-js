@@ -216,7 +216,6 @@ export interface SendBroadcastRequest {
   from: MailAddress1;
   replyTo?: MailAddress1[];
   template: {
-    id?: string;
     subject?: string;
     html?: string;
     text?: string;
@@ -254,7 +253,6 @@ export interface SendMessageRequest {
   html?: string;
   text?: string;
   template?: {
-    id?: string;
     subject?: string;
     html?: string;
     text?: string;

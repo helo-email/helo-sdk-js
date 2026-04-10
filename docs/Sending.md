@@ -32,7 +32,6 @@ const result = await helo.sending.transactional({
   html: "test-html",
   text: "test-text",
   template: {
-    id: "test-id",
     subject: "test-subject",
     html: "test-html",
     text: "test-text",
@@ -82,7 +81,6 @@ const result = await helo.sending.transactionalBatch({
       html: "test-html",
       text: "test-text",
       template: {
-        id: "test-id",
         subject: "test-subject",
         html: "test-html",
         text: "test-text",
@@ -126,7 +124,6 @@ const result = await helo.sending.broadcast({
   from: { email: "test@example.com", name: "test-name" },
   replyTo: [{ email: "test@example.com", name: "test-name" }],
   template: {
-    id: "test-id",
     subject: "test-subject",
     html: "test-html",
     text: "test-text",
@@ -185,7 +182,6 @@ const result = await helo.sending.broadcastMessage({
   html: "test-html",
   text: "test-text",
   template: {
-    id: "test-id",
     subject: "test-subject",
     html: "test-html",
     text: "test-text",

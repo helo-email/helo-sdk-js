@@ -38,7 +38,6 @@ describe("sending", () => {
       html: "test-html",
       text: "test-text",
       template: {
-        id: "test-id",
         subject: "test-subject",
         html: "test-html",
         text: "test-text",
@@ -78,7 +77,6 @@ describe("sending", () => {
     expect(body.html).toEqual("test-html");
     expect(body.text).toEqual("test-text");
     expect(body.template).toEqual({
-      id: "test-id",
       subject: "test-subject",
       html: "test-html",
       text: "test-text",
@@ -113,7 +111,6 @@ describe("sending", () => {
           html: "test-html",
           text: "test-text",
           template: {
-            id: "test-id",
             subject: "test-subject",
             html: "test-html",
             text: "test-text",
@@ -153,7 +150,6 @@ describe("sending", () => {
         html: "test-html",
         text: "test-text",
         template: {
-          id: "test-id",
           subject: "test-subject",
           html: "test-html",
           text: "test-text",
@@ -182,7 +178,6 @@ describe("sending", () => {
       from: { email: "test@example.com", name: "test-name" },
       replyTo: [{ email: "test@example.com", name: "test-name" }],
       template: {
-        id: "test-id",
         subject: "test-subject",
         html: "test-html",
         text: "test-text",
@@ -225,7 +220,6 @@ describe("sending", () => {
       { email: "test@example.com", name: "test-name" },
     ]);
     expect(body.template).toEqual({
-      id: "test-id",
       subject: "test-subject",
       html: "test-html",
       text: "test-text",
@@ -269,7 +263,6 @@ describe("sending", () => {
       html: "test-html",
       text: "test-text",
       template: {
-        id: "test-id",
         subject: "test-subject",
         html: "test-html",
         text: "test-text",
@@ -309,7 +302,6 @@ describe("sending", () => {
     expect(body.html).toEqual("test-html");
     expect(body.text).toEqual("test-text");
     expect(body.template).toEqual({
-      id: "test-id",
       subject: "test-subject",
       html: "test-html",
       text: "test-text",
