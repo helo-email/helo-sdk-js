@@ -21,6 +21,7 @@ export const EventType = {
   CLICKED: "clicked",
   COMPLAINED: "complained",
   UNSUBSCRIBED: "unsubscribed",
+  RESUBSCRIBED: "resubscribed",
 } as const;
 
 export type EventType = (typeof EventType)[keyof typeof EventType];

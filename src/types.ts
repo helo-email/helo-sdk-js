@@ -141,7 +141,7 @@ export interface MessageDetailsResponse {
   events: {
     eventType?: EventType;
     timestamp?: string;
-    recipient?: string;
+    recipients?: string[];
     details?: Record<string, unknown>;
   }[];
 }
