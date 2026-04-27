@@ -136,7 +136,11 @@ export interface MessageDetailsResponse {
   tags?: string[];
   headers?: Record<string, unknown>;
   metadata?: Record<string, unknown>;
-  attachments?: string[];
+  attachments?: {
+    fileName?: string;
+    disposition?: "inline" | "attachment";
+    size?: number;
+  }[];
   tracking: { links?: boolean; opens?: boolean };
   events: {
     eventType?: EventType;
