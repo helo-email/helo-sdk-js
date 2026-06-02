@@ -43,13 +43,6 @@ export const DnsRecordType = {
 
 export type DnsRecordType = (typeof DnsRecordType)[keyof typeof DnsRecordType];
 
-export const DeliveryType1 = {
-  LIVE: "live",
-  SANDBOX: "sandbox",
-} as const;
-
-export type DeliveryType1 = (typeof DeliveryType1)[keyof typeof DeliveryType1];
-
 export const BroadcastStatus = {
   ACCEPTED: "accepted",
   PROCESSING: "processing",

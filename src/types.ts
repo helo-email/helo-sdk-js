@@ -4,7 +4,6 @@ import type {
   EventType,
   DnsRecordStatus,
   DnsRecordType,
-  DeliveryType1,
   BroadcastStatus,
   AttachmentDisposition,
   SuppressionReason,
@@ -174,7 +173,7 @@ export interface DnsRecordsResponse {
 export interface DomainChannelResponse {
   id: string;
   name: string;
-  deliveryType: DeliveryType1;
+  deliveryType: DeliveryType;
   deleted?: boolean;
 }
 

@@ -13,7 +13,6 @@ import { DeliveryType } from "./enums.js";
 import { EventType } from "./enums.js";
 import { DnsRecordStatus } from "./enums.js";
 import { DnsRecordType } from "./enums.js";
-import { DeliveryType1 } from "./enums.js";
 import { BroadcastStatus } from "./enums.js";
 import { AttachmentDisposition } from "./enums.js";
 import { SuppressionReason } from "./enums.js";
@@ -72,7 +71,6 @@ class Helo {
   static EventType = EventType;
   static DnsRecordStatus = DnsRecordStatus;
   static DnsRecordType = DnsRecordType;
-  static DeliveryType1 = DeliveryType1;
   static BroadcastStatus = BroadcastStatus;
   static AttachmentDisposition = AttachmentDisposition;
   static SuppressionReason = SuppressionReason;
