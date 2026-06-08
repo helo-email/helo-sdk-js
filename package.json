@@ -1,10 +1,14 @@
 {
-  "name": "helo",
+  "name": "@helo-email/sdk",
   "version": "1.0.0",
-  "description": "Helo API",
+  "description": "Helo API SDK",
   "type": "module",
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "vitest run",
@@ -18,5 +22,9 @@
     "prettier": "^3.0.0",
     "typescript": "^5.0.0",
     "vitest": "^3.0.0"
+  },
+  "repository": "https://github.com/helo-email/helo-sdk-js.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

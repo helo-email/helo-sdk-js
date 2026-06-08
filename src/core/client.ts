@@ -2,7 +2,7 @@ import { ApiError } from "./api-error.js";
 
 export interface ClientConfig {
   baseUrl: string;
-  accessToken: string | (() => string);
+  apiKey: string | (() => string);
   fetch?: typeof fetch;
 }
 
@@ -35,9 +35,9 @@ export class Client {
     }
 
     const token =
-      typeof this._config.accessToken === "function"
-        ? this._config.accessToken()
-        : this._config.accessToken;
+      typeof this._config.apiKey === "function"
+        ? this._config.apiKey()
+        : this._config.apiKey;
 
     if (!token) {
       throw new ApiError("No access token provided");
