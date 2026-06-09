@@ -19,7 +19,7 @@ Retrieves a list of suppressed email addresses for a channel.
 ```javascript Suppressions_list
 import Helo from "helo";
 
-const helo = new Helo("YOUR_ACCESS_TOKEN");
+const helo = new Helo("YOUR_API_KEY");
 
 const result = await helo.suppressions.list({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
@@ -44,7 +44,7 @@ Adds email addresses to the suppression list to prevent future sends.
 ```javascript Suppressions_create
 import Helo from "helo";
 
-const helo = new Helo("YOUR_ACCESS_TOKEN");
+const helo = new Helo("YOUR_API_KEY");
 
 const result = await helo.suppressions.create({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
@@ -66,7 +66,7 @@ Removes email addresses from the suppression list to allow future sends.
 ```javascript Suppressions_remove
 import Helo from "helo";
 
-const helo = new Helo("YOUR_ACCESS_TOKEN");
+const helo = new Helo("YOUR_API_KEY");
 
 const result = await helo.suppressions.remove({
   channelId: "550e8400-e29b-41d4-a716-446655440000",

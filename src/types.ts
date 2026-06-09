@@ -73,7 +73,7 @@ export interface UpdateChannelTracking {
   opens?: boolean;
 }
 
-export interface MailAddress {
+export interface ActivityMailAddress {
   email: string;
   name?: string;
 }
@@ -125,11 +125,11 @@ export interface MessageDetailsResponse {
   deliveryType: "live" | "sandbox";
   status: "queued" | "sent";
   subject: string;
-  from: MailAddress;
-  to: MailAddress[];
-  cc?: MailAddress[];
-  bcc?: MailAddress[];
-  replyTo?: MailAddress[];
+  from: ActivityMailAddress;
+  to: ActivityMailAddress[];
+  cc?: ActivityMailAddress[];
+  bcc?: ActivityMailAddress[];
+  replyTo?: ActivityMailAddress[];
   text?: string;
   html?: string;
   body?: string;
@@ -203,7 +203,7 @@ export interface UpdateDomainRequest {
   channelIds?: string[];
 }
 
-export interface MailAddress1 {
+export interface MailAddress {
   email: string;
   name?: string;
 }
@@ -217,8 +217,8 @@ export interface Attachment {
 }
 
 export interface SendBroadcastRequest {
-  from: MailAddress1;
-  replyTo?: MailAddress1[];
+  from: MailAddress;
+  replyTo?: MailAddress[];
   template: {
     subject?: string;
     html?: string;
@@ -232,9 +232,9 @@ export interface SendBroadcastRequest {
   headers?: Record<string, unknown>;
   metadata?: Record<string, unknown>;
   messages: {
-    to?: MailAddress1[];
-    cc?: MailAddress1[];
-    bcc?: MailAddress1[];
+    to?: MailAddress[];
+    cc?: MailAddress[];
+    bcc?: MailAddress[];
     tags?: string[];
     headers?: Record<string, unknown>;
     metadata?: Record<string, unknown>;
@@ -248,11 +248,11 @@ export interface SendBroadcastResponse {
 }
 
 export interface SendMessageRequest {
-  from: MailAddress1;
-  to: MailAddress1[];
-  cc?: MailAddress1[];
-  bcc?: MailAddress1[];
-  replyTo?: MailAddress1[];
+  from: MailAddress;
+  to: MailAddress[];
+  cc?: MailAddress[];
+  bcc?: MailAddress[];
+  replyTo?: MailAddress[];
   subject?: string;
   html?: string;
   text?: string;
@@ -316,8 +316,8 @@ export interface BroadcastDetailsResponse {
 }
 
 export interface BroadcastContent {
-  from?: MailAddress1;
-  replyTo?: MailAddress1[];
+  from?: MailAddress;
+  replyTo?: MailAddress[];
   template?: { subject?: string; html?: string; text?: string };
   attachments?: {
     fileName?: string;
@@ -352,9 +352,9 @@ export interface BroadcastFailureResponse {
 }
 
 export interface RecipientHeaders {
-  to: MailAddress1[];
-  cc?: MailAddress1[];
-  bcc?: MailAddress1[];
+  to: MailAddress[];
+  cc?: MailAddress[];
+  bcc?: MailAddress[];
 }
 
 export interface PaginatedResponseOfBroadcast {

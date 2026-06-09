@@ -39,18 +39,18 @@ class Helo {
   readonly webhookEndpoints: WebhookEndpoints;
 
   /**
-   * @param accessToken - Bearer token for authentication
+   * @param apiKey - API key for authentication
    * @param options - Configuration options
    */
-  constructor(accessToken: string, options: HeloOptions = {}) {
-    if (!accessToken) {
+  constructor(apiKey: string, options: HeloOptions = {}) {
+    if (!apiKey) {
       throw new Error(
-        'Helo requires an access token. Pass it as the first argument: new Helo("your-token")',
+        'Helo requires an API key. Pass it as the first argument: new Helo("your-api-key")',
       );
     }
 
     const client = new Client({
-      accessToken,
+      apiKey,
       baseUrl: options.baseUrl || "http://localhost:8002/",
       fetch: options.fetch,
     });
