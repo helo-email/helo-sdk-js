@@ -51,7 +51,7 @@ class Helo {
 
     const client = new Client({
       apiKey,
-      baseUrl: options.baseUrl || "http://localhost:8002/",
+      baseUrl: options.baseUrl || "https://api.helohq.com",
       fetch: options.fetch,
     });
 
