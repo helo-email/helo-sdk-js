@@ -23,9 +23,14 @@ export class Sending {
    */
   async transactional(
     params: SendMessageRequest,
+    options: { channelId?: string; idempotencyKey?: string } = {},
   ): Promise<SendMessageAcceptedResponse> {
     const response = await this._client.request("post", `/send/transactional`, {
       body: params,
+      headers: {
+        "X-Helo-Channel-Id": options.channelId,
+        "X-Helo-Idempotency-Key": options.idempotencyKey,
+      },
     });
     return response.json();
   }
@@ -35,11 +40,18 @@ export class Sending {
    */
   async transactionalBatch(
     params: SendMessageBatchRequest,
+    options: { channelId?: string; idempotencyKey?: string } = {},
   ): Promise<SendMessageBatchResponse> {
     const response = await this._client.request(
       "post",
       `/send/transactional/batch`,
-      { body: params },
+      {
+        body: params,
+        headers: {
+          "X-Helo-Channel-Id": options.channelId,
+          "X-Helo-Idempotency-Key": options.idempotencyKey,
+        },
+      },
     );
     return response.json();
   }
@@ -49,9 +61,14 @@ export class Sending {
    */
   async broadcast(
     params: SendBroadcastRequest,
+    options: { channelId?: string; idempotencyKey?: string } = {},
   ): Promise<SendBroadcastResponse> {
     const response = await this._client.request("post", `/send/broadcast`, {
       body: params,
+      headers: {
+        "X-Helo-Channel-Id": options.channelId,
+        "X-Helo-Idempotency-Key": options.idempotencyKey,
+      },
     });
     return response.json();
   }
@@ -61,11 +78,18 @@ export class Sending {
    */
   async broadcastMessage(
     params: SendMessageRequest,
+    options: { channelId?: string; idempotencyKey?: string } = {},
   ): Promise<SendMessageAcceptedResponse> {
     const response = await this._client.request(
       "post",
       `/send/broadcast/message`,
-      { body: params },
+      {
+        body: params,
+        headers: {
+          "X-Helo-Channel-Id": options.channelId,
+          "X-Helo-Idempotency-Key": options.idempotencyKey,
+        },
+      },
     );
     return response.json();
   }

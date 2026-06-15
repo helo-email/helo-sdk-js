@@ -19,7 +19,15 @@ export class Client {
   async request(
     method: string,
     path: string,
-    { params, body }: { params?: Record<string, unknown>; body?: unknown } = {},
+    {
+      params,
+      body,
+      headers: extraHeaders,
+    }: {
+      params?: Record<string, unknown>;
+      body?: unknown;
+      headers?: Record<string, string | undefined>;
+    } = {},
   ): Promise<Response> {
     const url = new URL(path, this._config.baseUrl);
 
@@ -47,6 +55,13 @@ export class Client {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
     };
+
+    if (extraHeaders) {
+      for (const [key, value] of Object.entries(extraHeaders)) {
+        if (value === undefined || value === null) continue;
+        headers[key] = value;
+      }
+    }
 
     const fetchOptions: RequestInit = { method: method.toUpperCase(), headers };
 

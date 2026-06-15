@@ -28,41 +28,51 @@ describe("sending", () => {
   });
 
   it("transactional", async () => {
-    const result = await client.sending.transactional({
-      from: { email: "test@example.com", name: "test-name" },
-      to: [{ email: "test@example.com", name: "test-name" }],
-      cc: [{ email: "test@example.com", name: "test-name" }],
-      bcc: [{ email: "test@example.com", name: "test-name" }],
-      replyTo: [{ email: "test@example.com", name: "test-name" }],
-      subject: "test-subject",
-      html: "test-html",
-      text: "test-text",
-      template: {
+    const result = await client.sending.transactional(
+      {
+        from: { email: "test@example.com", name: "test-name" },
+        to: [{ email: "test@example.com", name: "test-name" }],
+        cc: [{ email: "test@example.com", name: "test-name" }],
+        bcc: [{ email: "test@example.com", name: "test-name" }],
+        replyTo: [{ email: "test@example.com", name: "test-name" }],
         subject: "test-subject",
         html: "test-html",
         text: "test-text",
-        inlineStyles: true,
-        data: {},
-      },
-      tracking: { opens: true, links: true },
-      attachments: [
-        {
-          content: "test-content",
-          contentId: "test-contentId",
-          contentType: "test-contentType",
-          fileName: "test-fileName",
-          disposition: Helo.AttachmentDisposition.ATTACHMENT,
+        template: {
+          subject: "test-subject",
+          html: "test-html",
+          text: "test-text",
+          inlineStyles: true,
+          data: {},
         },
-      ],
-      tags: ["example1", "example2"],
-      headers: {},
-      metadata: {},
-    });
+        tracking: { opens: true, links: true },
+        attachments: [
+          {
+            content: "test-content",
+            contentId: "test-contentId",
+            contentType: "test-contentType",
+            fileName: "test-fileName",
+            disposition: Helo.AttachmentDisposition.ATTACHMENT,
+          },
+        ],
+        tags: ["example1", "example2"],
+        headers: {},
+        metadata: {},
+      },
+      {
+        channelId: "550e8400-e29b-41d4-a716-446655440000",
+        idempotencyKey: "example",
+      },
+    );
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
     expect(lastRequest.method).toBe("POST");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    expect(lastRequest.headers["X-Helo-Channel-Id"]).toBe(
+      "550e8400-e29b-41d4-a716-446655440000",
+    );
+    expect(lastRequest.headers["X-Helo-Idempotency-Key"]).toBe("example");
     const body = JSON.parse(lastRequest.body!);
     expect(body.from).toEqual({ email: "test@example.com", name: "test-name" });
     expect(body.to).toEqual([{ email: "test@example.com", name: "test-name" }]);
@@ -99,45 +109,55 @@ describe("sending", () => {
   });
 
   it("transactionalBatch", async () => {
-    const result = await client.sending.transactionalBatch({
-      requests: [
-        {
-          from: { email: "test@example.com", name: "test-name" },
-          to: [{ email: "test@example.com", name: "test-name" }],
-          cc: [{ email: "test@example.com", name: "test-name" }],
-          bcc: [{ email: "test@example.com", name: "test-name" }],
-          replyTo: [{ email: "test@example.com", name: "test-name" }],
-          subject: "test-subject",
-          html: "test-html",
-          text: "test-text",
-          template: {
+    const result = await client.sending.transactionalBatch(
+      {
+        requests: [
+          {
+            from: { email: "test@example.com", name: "test-name" },
+            to: [{ email: "test@example.com", name: "test-name" }],
+            cc: [{ email: "test@example.com", name: "test-name" }],
+            bcc: [{ email: "test@example.com", name: "test-name" }],
+            replyTo: [{ email: "test@example.com", name: "test-name" }],
             subject: "test-subject",
             html: "test-html",
             text: "test-text",
-            inlineStyles: true,
-            data: {},
-          },
-          tracking: { opens: true, links: true },
-          attachments: [
-            {
-              content: "test-content",
-              contentId: "test-contentId",
-              contentType: "test-contentType",
-              fileName: "test-fileName",
-              disposition: Helo.AttachmentDisposition.ATTACHMENT,
+            template: {
+              subject: "test-subject",
+              html: "test-html",
+              text: "test-text",
+              inlineStyles: true,
+              data: {},
             },
-          ],
-          tags: ["example1", "example2"],
-          headers: {},
-          metadata: {},
-        },
-      ],
-    });
+            tracking: { opens: true, links: true },
+            attachments: [
+              {
+                content: "test-content",
+                contentId: "test-contentId",
+                contentType: "test-contentType",
+                fileName: "test-fileName",
+                disposition: Helo.AttachmentDisposition.ATTACHMENT,
+              },
+            ],
+            tags: ["example1", "example2"],
+            headers: {},
+            metadata: {},
+          },
+        ],
+      },
+      {
+        channelId: "550e8400-e29b-41d4-a716-446655440000",
+        idempotencyKey: "example",
+      },
+    );
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
     expect(lastRequest.method).toBe("POST");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    expect(lastRequest.headers["X-Helo-Channel-Id"]).toBe(
+      "550e8400-e29b-41d4-a716-446655440000",
+    );
+    expect(lastRequest.headers["X-Helo-Idempotency-Key"]).toBe("example");
     const body = JSON.parse(lastRequest.body!);
     expect(body.requests).toEqual([
       {
@@ -174,46 +194,56 @@ describe("sending", () => {
   });
 
   it("broadcast", async () => {
-    const result = await client.sending.broadcast({
-      from: { email: "test@example.com", name: "test-name" },
-      replyTo: [{ email: "test@example.com", name: "test-name" }],
-      template: {
-        subject: "test-subject",
-        html: "test-html",
-        text: "test-text",
-        inlineStyles: true,
-        data: {},
-      },
-      tracking: { opens: true, links: true },
-      attachments: [
-        {
-          content: "test-content",
-          contentId: "test-contentId",
-          contentType: "test-contentType",
-          fileName: "test-fileName",
-          disposition: Helo.AttachmentDisposition.ATTACHMENT,
-        },
-      ],
-      tags: ["example1", "example2"],
-      headers: {},
-      metadata: {},
-      messages: [
-        {
-          to: [{ email: "test@example.com", name: "test-name" }],
-          cc: [{ email: "test@example.com", name: "test-name" }],
-          bcc: [{ email: "test@example.com", name: "test-name" }],
-          tags: ["example1", "example2"],
-          headers: {},
-          metadata: {},
+    const result = await client.sending.broadcast(
+      {
+        from: { email: "test@example.com", name: "test-name" },
+        replyTo: [{ email: "test@example.com", name: "test-name" }],
+        template: {
+          subject: "test-subject",
+          html: "test-html",
+          text: "test-text",
+          inlineStyles: true,
           data: {},
         },
-      ],
-    });
+        tracking: { opens: true, links: true },
+        attachments: [
+          {
+            content: "test-content",
+            contentId: "test-contentId",
+            contentType: "test-contentType",
+            fileName: "test-fileName",
+            disposition: Helo.AttachmentDisposition.ATTACHMENT,
+          },
+        ],
+        tags: ["example1", "example2"],
+        headers: {},
+        metadata: {},
+        messages: [
+          {
+            to: [{ email: "test@example.com", name: "test-name" }],
+            cc: [{ email: "test@example.com", name: "test-name" }],
+            bcc: [{ email: "test@example.com", name: "test-name" }],
+            tags: ["example1", "example2"],
+            headers: {},
+            metadata: {},
+            data: {},
+          },
+        ],
+      },
+      {
+        channelId: "550e8400-e29b-41d4-a716-446655440000",
+        idempotencyKey: "example",
+      },
+    );
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
     expect(lastRequest.method).toBe("POST");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    expect(lastRequest.headers["X-Helo-Channel-Id"]).toBe(
+      "550e8400-e29b-41d4-a716-446655440000",
+    );
+    expect(lastRequest.headers["X-Helo-Idempotency-Key"]).toBe("example");
     const body = JSON.parse(lastRequest.body!);
     expect(body.from).toEqual({ email: "test@example.com", name: "test-name" });
     expect(body.replyTo).toEqual([
@@ -253,41 +283,51 @@ describe("sending", () => {
   });
 
   it("broadcastMessage", async () => {
-    const result = await client.sending.broadcastMessage({
-      from: { email: "test@example.com", name: "test-name" },
-      to: [{ email: "test@example.com", name: "test-name" }],
-      cc: [{ email: "test@example.com", name: "test-name" }],
-      bcc: [{ email: "test@example.com", name: "test-name" }],
-      replyTo: [{ email: "test@example.com", name: "test-name" }],
-      subject: "test-subject",
-      html: "test-html",
-      text: "test-text",
-      template: {
+    const result = await client.sending.broadcastMessage(
+      {
+        from: { email: "test@example.com", name: "test-name" },
+        to: [{ email: "test@example.com", name: "test-name" }],
+        cc: [{ email: "test@example.com", name: "test-name" }],
+        bcc: [{ email: "test@example.com", name: "test-name" }],
+        replyTo: [{ email: "test@example.com", name: "test-name" }],
         subject: "test-subject",
         html: "test-html",
         text: "test-text",
-        inlineStyles: true,
-        data: {},
-      },
-      tracking: { opens: true, links: true },
-      attachments: [
-        {
-          content: "test-content",
-          contentId: "test-contentId",
-          contentType: "test-contentType",
-          fileName: "test-fileName",
-          disposition: Helo.AttachmentDisposition.ATTACHMENT,
+        template: {
+          subject: "test-subject",
+          html: "test-html",
+          text: "test-text",
+          inlineStyles: true,
+          data: {},
         },
-      ],
-      tags: ["example1", "example2"],
-      headers: {},
-      metadata: {},
-    });
+        tracking: { opens: true, links: true },
+        attachments: [
+          {
+            content: "test-content",
+            contentId: "test-contentId",
+            contentType: "test-contentType",
+            fileName: "test-fileName",
+            disposition: Helo.AttachmentDisposition.ATTACHMENT,
+          },
+        ],
+        tags: ["example1", "example2"],
+        headers: {},
+        metadata: {},
+      },
+      {
+        channelId: "550e8400-e29b-41d4-a716-446655440000",
+        idempotencyKey: "example",
+      },
+    );
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
     expect(lastRequest.method).toBe("POST");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    expect(lastRequest.headers["X-Helo-Channel-Id"]).toBe(
+      "550e8400-e29b-41d4-a716-446655440000",
+    );
+    expect(lastRequest.headers["X-Helo-Idempotency-Key"]).toBe("example");
     const body = JSON.parse(lastRequest.body!);
     expect(body.from).toEqual({ email: "test@example.com", name: "test-name" });
     expect(body.to).toEqual([{ email: "test@example.com", name: "test-name" }]);

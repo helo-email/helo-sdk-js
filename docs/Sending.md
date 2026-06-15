@@ -9,7 +9,7 @@
 
 ## transactional
 
-> transactional({ ... }) → Object
+> transactional({ ... }, { channelId, idempotencyKey }) → Object
 
 Send a transactional email
 
@@ -22,41 +22,47 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_API_KEY");
 
-const result = await helo.sending.transactional({
-  from: { email: "test@example.com", name: "test-name" },
-  to: [{ email: "test@example.com", name: "test-name" }],
-  cc: [{ email: "test@example.com", name: "test-name" }],
-  bcc: [{ email: "test@example.com", name: "test-name" }],
-  replyTo: [{ email: "test@example.com", name: "test-name" }],
-  subject: "test-subject",
-  html: "test-html",
-  text: "test-text",
-  template: {
+const result = await helo.sending.transactional(
+  {
+    from: { email: "test@example.com", name: "test-name" },
+    to: [{ email: "test@example.com", name: "test-name" }],
+    cc: [{ email: "test@example.com", name: "test-name" }],
+    bcc: [{ email: "test@example.com", name: "test-name" }],
+    replyTo: [{ email: "test@example.com", name: "test-name" }],
     subject: "test-subject",
     html: "test-html",
     text: "test-text",
-    inlineStyles: true,
-    data: {},
-  },
-  tracking: { opens: true, links: true },
-  attachments: [
-    {
-      content: "test-content",
-      contentId: "test-contentId",
-      contentType: "test-contentType",
-      fileName: "test-fileName",
-      disposition: Helo.AttachmentDisposition.ATTACHMENT,
+    template: {
+      subject: "test-subject",
+      html: "test-html",
+      text: "test-text",
+      inlineStyles: true,
+      data: {},
     },
-  ],
-  tags: ["example1", "example2"],
-  headers: {},
-  metadata: {},
-});
+    tracking: { opens: true, links: true },
+    attachments: [
+      {
+        content: "test-content",
+        contentId: "test-contentId",
+        contentType: "test-contentType",
+        fileName: "test-fileName",
+        disposition: Helo.AttachmentDisposition.ATTACHMENT,
+      },
+    ],
+    tags: ["example1", "example2"],
+    headers: {},
+    metadata: {},
+  },
+  {
+    channelId: "550e8400-e29b-41d4-a716-446655440000",
+    idempotencyKey: "example",
+  },
+);
 ```
 
 ## transactionalBatch
 
-> transactionalBatch({ ... }) → Object
+> transactionalBatch({ ... }, { channelId, idempotencyKey }) → Object
 
 Send transactional emails in batch
 
@@ -69,45 +75,51 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_API_KEY");
 
-const result = await helo.sending.transactionalBatch({
-  requests: [
-    {
-      from: { email: "test@example.com", name: "test-name" },
-      to: [{ email: "test@example.com", name: "test-name" }],
-      cc: [{ email: "test@example.com", name: "test-name" }],
-      bcc: [{ email: "test@example.com", name: "test-name" }],
-      replyTo: [{ email: "test@example.com", name: "test-name" }],
-      subject: "test-subject",
-      html: "test-html",
-      text: "test-text",
-      template: {
+const result = await helo.sending.transactionalBatch(
+  {
+    requests: [
+      {
+        from: { email: "test@example.com", name: "test-name" },
+        to: [{ email: "test@example.com", name: "test-name" }],
+        cc: [{ email: "test@example.com", name: "test-name" }],
+        bcc: [{ email: "test@example.com", name: "test-name" }],
+        replyTo: [{ email: "test@example.com", name: "test-name" }],
         subject: "test-subject",
         html: "test-html",
         text: "test-text",
-        inlineStyles: true,
-        data: {},
-      },
-      tracking: { opens: true, links: true },
-      attachments: [
-        {
-          content: "test-content",
-          contentId: "test-contentId",
-          contentType: "test-contentType",
-          fileName: "test-fileName",
-          disposition: Helo.AttachmentDisposition.ATTACHMENT,
+        template: {
+          subject: "test-subject",
+          html: "test-html",
+          text: "test-text",
+          inlineStyles: true,
+          data: {},
         },
-      ],
-      tags: ["example1", "example2"],
-      headers: {},
-      metadata: {},
-    },
-  ],
-});
+        tracking: { opens: true, links: true },
+        attachments: [
+          {
+            content: "test-content",
+            contentId: "test-contentId",
+            contentType: "test-contentType",
+            fileName: "test-fileName",
+            disposition: Helo.AttachmentDisposition.ATTACHMENT,
+          },
+        ],
+        tags: ["example1", "example2"],
+        headers: {},
+        metadata: {},
+      },
+    ],
+  },
+  {
+    channelId: "550e8400-e29b-41d4-a716-446655440000",
+    idempotencyKey: "example",
+  },
+);
 ```
 
 ## broadcast
 
-> broadcast({ ... }) → Object
+> broadcast({ ... }, { channelId, idempotencyKey }) → Object
 
 Send a broadcast email
 
@@ -120,46 +132,52 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_API_KEY");
 
-const result = await helo.sending.broadcast({
-  from: { email: "test@example.com", name: "test-name" },
-  replyTo: [{ email: "test@example.com", name: "test-name" }],
-  template: {
-    subject: "test-subject",
-    html: "test-html",
-    text: "test-text",
-    inlineStyles: true,
-    data: {},
-  },
-  tracking: { opens: true, links: true },
-  attachments: [
-    {
-      content: "test-content",
-      contentId: "test-contentId",
-      contentType: "test-contentType",
-      fileName: "test-fileName",
-      disposition: Helo.AttachmentDisposition.ATTACHMENT,
-    },
-  ],
-  tags: ["example1", "example2"],
-  headers: {},
-  metadata: {},
-  messages: [
-    {
-      to: [{ email: "test@example.com", name: "test-name" }],
-      cc: [{ email: "test@example.com", name: "test-name" }],
-      bcc: [{ email: "test@example.com", name: "test-name" }],
-      tags: ["example1", "example2"],
-      headers: {},
-      metadata: {},
+const result = await helo.sending.broadcast(
+  {
+    from: { email: "test@example.com", name: "test-name" },
+    replyTo: [{ email: "test@example.com", name: "test-name" }],
+    template: {
+      subject: "test-subject",
+      html: "test-html",
+      text: "test-text",
+      inlineStyles: true,
       data: {},
     },
-  ],
-});
+    tracking: { opens: true, links: true },
+    attachments: [
+      {
+        content: "test-content",
+        contentId: "test-contentId",
+        contentType: "test-contentType",
+        fileName: "test-fileName",
+        disposition: Helo.AttachmentDisposition.ATTACHMENT,
+      },
+    ],
+    tags: ["example1", "example2"],
+    headers: {},
+    metadata: {},
+    messages: [
+      {
+        to: [{ email: "test@example.com", name: "test-name" }],
+        cc: [{ email: "test@example.com", name: "test-name" }],
+        bcc: [{ email: "test@example.com", name: "test-name" }],
+        tags: ["example1", "example2"],
+        headers: {},
+        metadata: {},
+        data: {},
+      },
+    ],
+  },
+  {
+    channelId: "550e8400-e29b-41d4-a716-446655440000",
+    idempotencyKey: "example",
+  },
+);
 ```
 
 ## broadcastMessage
 
-> broadcastMessage({ ... }) → Object
+> broadcastMessage({ ... }, { channelId, idempotencyKey }) → Object
 
 Send a single broadcast email
 
@@ -172,34 +190,40 @@ import Helo from "helo";
 
 const helo = new Helo("YOUR_API_KEY");
 
-const result = await helo.sending.broadcastMessage({
-  from: { email: "test@example.com", name: "test-name" },
-  to: [{ email: "test@example.com", name: "test-name" }],
-  cc: [{ email: "test@example.com", name: "test-name" }],
-  bcc: [{ email: "test@example.com", name: "test-name" }],
-  replyTo: [{ email: "test@example.com", name: "test-name" }],
-  subject: "test-subject",
-  html: "test-html",
-  text: "test-text",
-  template: {
+const result = await helo.sending.broadcastMessage(
+  {
+    from: { email: "test@example.com", name: "test-name" },
+    to: [{ email: "test@example.com", name: "test-name" }],
+    cc: [{ email: "test@example.com", name: "test-name" }],
+    bcc: [{ email: "test@example.com", name: "test-name" }],
+    replyTo: [{ email: "test@example.com", name: "test-name" }],
     subject: "test-subject",
     html: "test-html",
     text: "test-text",
-    inlineStyles: true,
-    data: {},
-  },
-  tracking: { opens: true, links: true },
-  attachments: [
-    {
-      content: "test-content",
-      contentId: "test-contentId",
-      contentType: "test-contentType",
-      fileName: "test-fileName",
-      disposition: Helo.AttachmentDisposition.ATTACHMENT,
+    template: {
+      subject: "test-subject",
+      html: "test-html",
+      text: "test-text",
+      inlineStyles: true,
+      data: {},
     },
-  ],
-  tags: ["example1", "example2"],
-  headers: {},
-  metadata: {},
-});
+    tracking: { opens: true, links: true },
+    attachments: [
+      {
+        content: "test-content",
+        contentId: "test-contentId",
+        contentType: "test-contentType",
+        fileName: "test-fileName",
+        disposition: Helo.AttachmentDisposition.ATTACHMENT,
+      },
+    ],
+    tags: ["example1", "example2"],
+    headers: {},
+    metadata: {},
+  },
+  {
+    channelId: "550e8400-e29b-41d4-a716-446655440000",
+    idempotencyKey: "example",
+  },
+);
 ```
