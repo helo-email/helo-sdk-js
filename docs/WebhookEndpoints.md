@@ -22,7 +22,8 @@ Retrieves all webhook endpoints configured for the account.
 ```javascript WebhookEndpoints_list
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.webhookEndpoints.list({
   limit: 10,
@@ -44,7 +45,8 @@ Registers a new webhook endpoint to receive event notifications.
 ```javascript WebhookEndpoints_create
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.webhookEndpoints.create({
   url: "test-url",
@@ -68,7 +70,8 @@ Fetches the details and configuration of a specific webhook endpoint.
 ```javascript WebhookEndpoints_retrieve
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.webhookEndpoints.retrieve(
   "550e8400-e29b-41d4-a716-446655440000",
@@ -88,7 +91,8 @@ Modifies the configuration of an existing webhook endpoint.
 ```javascript WebhookEndpoints_update
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.webhookEndpoints.update(
   "550e8400-e29b-41d4-a716-446655440000",
@@ -115,7 +119,8 @@ Permanently removes a webhook endpoint.
 ```javascript WebhookEndpoints_delete
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 await helo.webhookEndpoints.del("550e8400-e29b-41d4-a716-446655440000");
 ```
@@ -133,7 +138,8 @@ Generates a new signing key for webhook payload verification.
 ```javascript WebhookEndpoints_regenerateSigningKey
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.webhookEndpoints.regenerateSigningKey(
   "550e8400-e29b-41d4-a716-446655440000",

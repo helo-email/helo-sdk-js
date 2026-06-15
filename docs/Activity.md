@@ -19,7 +19,8 @@ Retrieves activity events for messages, including delivery status, opens, clicks
 ```javascript Activity_listEvents
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.activity.listEvents({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
@@ -49,7 +50,8 @@ Retrieves a paginated list of sent messages with basic tracking information.
 ```javascript Activity_listMessages
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.activity.listMessages({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
@@ -78,7 +80,8 @@ Fetches detailed tracking information for a specific message, including all asso
 ```javascript Activity_retrieveMessage
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.activity.retrieveMessage(
   "550e8400-e29b-41d4-a716-446655440000",

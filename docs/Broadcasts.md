@@ -20,7 +20,8 @@ Retrieves a paginated list of sent broadcasts with summary statistics.
 ```javascript Broadcasts_list
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.broadcasts.list({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
@@ -44,7 +45,8 @@ Fetches details and statistics for a specific broadcast.
 ```javascript Broadcasts_retrieve
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.broadcasts.retrieve(
   "550e8400-e29b-41d4-a716-446655440000",
@@ -64,7 +66,8 @@ Retrieves a list of failed messages for a specific broadcast.
 ```javascript Broadcasts_listFailures
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.broadcasts.listFailures(
   "550e8400-e29b-41d4-a716-446655440000",
@@ -84,7 +87,8 @@ Retrieves a list of suppressed recipients for a specific broadcast.
 ```javascript Broadcasts_listSuppressions
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.broadcasts.listSuppressions(
   "550e8400-e29b-41d4-a716-446655440000",

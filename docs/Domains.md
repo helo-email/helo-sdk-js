@@ -23,7 +23,8 @@ Retrieves all domains associated with the current account, including their verif
 ```javascript Domains_list
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.domains.list({
   limit: 10,
@@ -46,7 +47,8 @@ Registers a new domain for sending emails. The domain must be verified before it
 ```javascript Domains_create
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.domains.create({
   name: "test-name",
@@ -67,7 +69,8 @@ Gets detailed information about a specific domain, including verification status
 ```javascript Domains_retrieve
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.domains.retrieve(
   "550e8400-e29b-41d4-a716-446655440000",
@@ -87,7 +90,8 @@ Modifies the configuration settings of an existing domain.
 ```javascript Domains_update
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.domains.update(
   "550e8400-e29b-41d4-a716-446655440000",
@@ -110,7 +114,8 @@ Removes a domain from the account. This will stop all email sending from this do
 ```javascript Domains_delete
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 await helo.domains.del("550e8400-e29b-41d4-a716-446655440000");
 ```
@@ -128,7 +133,8 @@ Initiates the domain verification process by checking DNS records.
 ```javascript Domains_verify
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.domains.verify(
   "550e8400-e29b-41d4-a716-446655440000",
@@ -148,7 +154,8 @@ Generates new DKIM keys for the domain. This is recommended for security best pr
 ```javascript Domains_rotateKey
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.domains.rotateKey(
   "550e8400-e29b-41d4-a716-446655440000",

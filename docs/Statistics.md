@@ -19,7 +19,8 @@ Fetches hourly aggregated statistics.
 ```javascript Statistics_retrieveHourly
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.statistics.retrieveHourly({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
@@ -42,7 +43,8 @@ Fetches daily aggregated statistics.
 ```javascript Statistics_retrieveDaily
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.statistics.retrieveDaily({
   channelId: "550e8400-e29b-41d4-a716-446655440000",
@@ -66,7 +68,8 @@ Fetches cumulative statistics.
 ```javascript Statistics_retrieveTotals
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.statistics.retrieveTotals({
   channelId: "550e8400-e29b-41d4-a716-446655440000",

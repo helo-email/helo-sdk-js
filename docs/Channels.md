@@ -21,7 +21,8 @@ Retrieves a list of all channels accessible to the current user.
 ```javascript Channels_list
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.channels.list({
   limit: 10,
@@ -45,7 +46,8 @@ Creates a new communication channel for organizing and routing messages.
 ```javascript Channels_create
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.channels.create({
   name: "test-name",
@@ -67,7 +69,8 @@ Fetches the details and configuration of a specific channel.
 ```javascript Channels_retrieve
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.channels.retrieve(
   "550e8400-e29b-41d4-a716-446655440000",
@@ -87,7 +90,8 @@ Modifies the settings and configuration of an existing channel.
 ```javascript Channels_update
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 const result = await helo.channels.update(
   "550e8400-e29b-41d4-a716-446655440000",
@@ -112,7 +116,8 @@ Permanently removes a channel and all associated data.
 ```javascript Channels_delete
 import Helo from "helo";
 
-const helo = new Helo("YOUR_API_KEY");
+const apiKey = process.env.HELO_API_KEY;
+const helo = new Helo(apiKey);
 
 await helo.channels.del("550e8400-e29b-41d4-a716-446655440000");
 ```
