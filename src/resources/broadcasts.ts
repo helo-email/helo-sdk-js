@@ -44,10 +44,14 @@ export class Broadcasts {
   /**
    * List broadcast failures
    */
-  async listFailures(id: string): Promise<PaginatedResponseOfBroadcastFailure> {
+  async listFailures(
+    id: string,
+    params: { limit?: number; offset?: number } = {},
+  ): Promise<PaginatedResponseOfBroadcastFailure> {
     const response = await this._client.request(
       "get",
       `/broadcasts/${id}/failures`,
+      { params: params as Record<string, unknown> },
     );
     return response.json();
   }
@@ -57,10 +61,12 @@ export class Broadcasts {
    */
   async listSuppressions(
     id: string,
+    params: { limit?: number; offset?: number } = {},
   ): Promise<PaginatedResponseOfBroadcastSuppression> {
     const response = await this._client.request(
       "get",
       `/broadcasts/${id}/suppressions`,
+      { params: params as Record<string, unknown> },
     );
     return response.json();
   }

@@ -55,7 +55,7 @@ const result = await helo.broadcasts.retrieve(
 
 ## listFailures
 
-> listFailures(id) → Object
+> listFailures(id, { ... }) → Object
 
 List broadcast failures
 
@@ -71,12 +71,16 @@ const helo = new Helo(apiKey);
 
 const result = await helo.broadcasts.listFailures(
   "550e8400-e29b-41d4-a716-446655440000",
+  {
+    limit: 10,
+    offset: 10,
+  },
 );
 ```
 
 ## listSuppressions
 
-> listSuppressions(id) → Object
+> listSuppressions(id, { ... }) → Object
 
 List broadcast suppressions
 
@@ -92,5 +96,9 @@ const helo = new Helo(apiKey);
 
 const result = await helo.broadcasts.listSuppressions(
   "550e8400-e29b-41d4-a716-446655440000",
+  {
+    limit: 10,
+    offset: 10,
+  },
 );
 ```
