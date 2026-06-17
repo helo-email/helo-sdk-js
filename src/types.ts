@@ -160,6 +160,7 @@ export interface DnsRecordResponse {
   host?: string;
   value?: string;
   status?: DnsRecordStatus;
+  lastCheckedAt?: string;
 }
 
 export interface DnsRecordsResponse {
