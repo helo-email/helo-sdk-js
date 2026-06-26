@@ -481,4 +481,11 @@ export interface WebhookEndpointResponse {
   enabled?: boolean;
   additionalHeaders?: WebhookHeader[];
   events?: WebhookEvent[];
+  lastResponse?: unknown;
+}
+
+export interface WebhookEndpointLastResponse {
+  statusCode?: number;
+  error?: string;
+  at?: string;
 }
