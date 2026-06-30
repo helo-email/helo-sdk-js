@@ -7,7 +7,7 @@ import { Sending } from "./resources/sending.js";
 import { Broadcasts } from "./resources/broadcasts.js";
 import { Statistics } from "./resources/statistics.js";
 import { Suppressions } from "./resources/suppressions.js";
-import { WebhookEndpoints } from "./resources/webhook-endpoints.js";
+import { Webhooks } from "./resources/webhooks.js";
 import { MailType } from "./enums.js";
 import { DeliveryType } from "./enums.js";
 import { EventType } from "./enums.js";
@@ -36,7 +36,7 @@ class Helo {
   readonly broadcasts: Broadcasts;
   readonly statistics: Statistics;
   readonly suppressions: Suppressions;
-  readonly webhookEndpoints: WebhookEndpoints;
+  readonly webhooks: Webhooks;
 
   /**
    * @param apiKey - API key for authentication
@@ -62,7 +62,7 @@ class Helo {
     this.broadcasts = new Broadcasts(client);
     this.statistics = new Statistics(client);
     this.suppressions = new Suppressions(client);
-    this.webhookEndpoints = new WebhookEndpoints(client);
+    this.webhooks = new Webhooks(client);
   }
 
   static ApiError = ApiError;

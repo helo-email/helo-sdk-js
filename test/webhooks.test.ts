@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import Helo from "../src/index.js";
 
-describe("webhookEndpoints", () => {
+describe("webhooks", () => {
   let client: InstanceType<typeof Helo>;
   let lastRequest: {
     url: string;
@@ -27,8 +27,22 @@ describe("webhookEndpoints", () => {
     });
   });
 
+  it("listForChannel", async () => {
+    const result = await client.webhooks.listForChannel(
+      "550e8400-e29b-41d4-a716-446655440000",
+    );
+
+    expect(result).toBeDefined();
+    expect(typeof result).toBe("object");
+    expect(lastRequest.method).toBe("GET");
+    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
+    expect(lastRequest.url).toContain(
+      "/app/channels/550e8400-e29b-41d4-a716-446655440000/webhooks",
+    );
+  });
+
   it("list", async () => {
-    const result = await client.webhookEndpoints.list({
+    const result = await client.webhooks.list({
       limit: 10,
       offset: 10,
       channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
@@ -47,7 +61,7 @@ describe("webhookEndpoints", () => {
   });
 
   it("create", async () => {
-    const result = await client.webhookEndpoints.create({
+    const result = await client.webhooks.create({
       url: "test-url",
       events: [Helo.WebhookEvent.ACCEPTED, Helo.WebhookEvent.PROCESSED],
       channelId: "550e8400-e29b-41d4-a716-446655440000",
@@ -73,7 +87,7 @@ describe("webhookEndpoints", () => {
   });
 
   it("retrieve", async () => {
-    const result = await client.webhookEndpoints.retrieve(
+    const result = await client.webhooks.retrieve(
       "550e8400-e29b-41d4-a716-446655440000",
     );
 
@@ -82,12 +96,12 @@ describe("webhookEndpoints", () => {
     expect(lastRequest.method).toBe("GET");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.url).toContain(
-      "/webhook-endpoints/550e8400-e29b-41d4-a716-446655440000",
+      "/webhooks/550e8400-e29b-41d4-a716-446655440000",
     );
   });
 
   it("update", async () => {
-    const result = await client.webhookEndpoints.update(
+    const result = await client.webhooks.update(
       "550e8400-e29b-41d4-a716-446655440000",
       {
         url: "test-url",
@@ -114,12 +128,12 @@ describe("webhookEndpoints", () => {
     ]);
     expect(body.enabled).toEqual(true);
     expect(lastRequest.url).toContain(
-      "/webhook-endpoints/550e8400-e29b-41d4-a716-446655440000",
+      "/webhooks/550e8400-e29b-41d4-a716-446655440000",
     );
   });
 
   it("del", async () => {
-    const result = await client.webhookEndpoints.del(
+    const result = await client.webhooks.del(
       "550e8400-e29b-41d4-a716-446655440000",
     );
 
@@ -127,12 +141,12 @@ describe("webhookEndpoints", () => {
     expect(lastRequest.method).toBe("DELETE");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.url).toContain(
-      "/webhook-endpoints/550e8400-e29b-41d4-a716-446655440000",
+      "/webhooks/550e8400-e29b-41d4-a716-446655440000",
     );
   });
 
   it("regenerateSigningKey", async () => {
-    const result = await client.webhookEndpoints.regenerateSigningKey(
+    const result = await client.webhooks.regenerateSigningKey(
       "550e8400-e29b-41d4-a716-446655440000",
     );
 
@@ -141,7 +155,7 @@ describe("webhookEndpoints", () => {
     expect(lastRequest.method).toBe("POST");
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     expect(lastRequest.url).toContain(
-      "/webhook-endpoints/550e8400-e29b-41d4-a716-446655440000/regenerate-signing-key",
+      "/webhooks/550e8400-e29b-41d4-a716-446655440000/regenerate-signing-key",
     );
   });
 });

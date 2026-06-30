@@ -447,7 +447,7 @@ export interface RemoveSuppressionResult {
   message?: string;
 }
 
-export interface CreateWebhookEndpointRequest {
+export interface CreateWebhookRequest {
   url: string;
   events: WebhookEvent[];
   channelId?: string;
@@ -460,12 +460,12 @@ export interface WebhookHeader {
   value: string;
 }
 
-export interface PaginationResultOfWebhookEndpointResponse {
-  results: WebhookEndpointResponse[];
+export interface PaginationResultOfWebhookResponse {
+  results: WebhookResponse[];
   totalCount: number;
 }
 
-export interface UpdateWebhookEndpointRequest {
+export interface UpdateWebhookRequest {
   url?: string;
   events?: WebhookEvent[];
   channelId?: string;
@@ -473,7 +473,7 @@ export interface UpdateWebhookEndpointRequest {
   enabled?: boolean;
 }
 
-export interface WebhookEndpointResponse {
+export interface WebhookResponse {
   id?: string;
   channelId?: string;
   url?: string;
@@ -481,11 +481,15 @@ export interface WebhookEndpointResponse {
   enabled?: boolean;
   additionalHeaders?: WebhookHeader[];
   events?: WebhookEvent[];
-  lastResponse?: WebhookEndpointLastResponse;
+  lastResponse?: WebhookLastResponse;
 }
 
-export interface WebhookEndpointLastResponse {
+export interface WebhookLastResponse {
   statusCode?: number;
   error?: string;
   at?: string;
+}
+
+export interface WebhooksResponse {
+  webhooks: WebhookResponse[];
 }
