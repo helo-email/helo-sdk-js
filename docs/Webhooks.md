@@ -2,34 +2,12 @@
 
 | Method                                                       | HTTP request                                   | Description                    |
 | ------------------------------------------------------------ | ---------------------------------------------- | ------------------------------ |
-| [**listForChannel**](Webhooks.md#listForChannel)             | **GET** /app/channels/{id}/webhooks            | listForChannel operation       |
 | [**list**](Webhooks.md#list)                                 | **GET** /webhooks                              | list operation                 |
 | [**create**](Webhooks.md#create)                             | **POST** /webhooks                             | create operation               |
 | [**retrieve**](Webhooks.md#retrieve)                         | **GET** /webhooks/{id}                         | retrieve operation             |
 | [**update**](Webhooks.md#update)                             | **PATCH** /webhooks/{id}                       | update operation               |
 | [**del**](Webhooks.md#del)                                   | **DELETE** /webhooks/{id}                      | del operation                  |
 | [**regenerateSigningKey**](Webhooks.md#regenerateSigningKey) | **POST** /webhooks/{id}/regenerate-signing-key | regenerateSigningKey operation |
-
-## listForChannel
-
-> listForChannel(id) → Object
-
-listForChannel operation
-
-Retrieve all webhooks applicable to a specific channel.
-
-### Example
-
-```javascript Webhooks_listForChannel
-import Helo from "helo";
-
-const apiKey = process.env.HELO_API_KEY;
-const helo = new Helo(apiKey);
-
-const result = await helo.webhooks.listForChannel(
-  "550e8400-e29b-41d4-a716-446655440000",
-);
-```
 
 ## list
 

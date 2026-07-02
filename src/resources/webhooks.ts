@@ -4,7 +4,6 @@ import type {
   PaginationResultOfWebhookResponse,
   UpdateWebhookRequest,
   WebhookResponse,
-  WebhooksResponse,
 } from "../types.js";
 
 /**
@@ -15,17 +14,6 @@ export class Webhooks {
 
   constructor(client: Client) {
     this._client = client;
-  }
-
-  /**
-   * listForChannel operation
-   */
-  async listForChannel(id: string): Promise<WebhooksResponse> {
-    const response = await this._client.request(
-      "get",
-      `/app/channels/${id}/webhooks`,
-    );
-    return response.json();
   }
 
   /**

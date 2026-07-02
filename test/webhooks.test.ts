@@ -27,20 +27,6 @@ describe("webhooks", () => {
     });
   });
 
-  it("listForChannel", async () => {
-    const result = await client.webhooks.listForChannel(
-      "550e8400-e29b-41d4-a716-446655440000",
-    );
-
-    expect(result).toBeDefined();
-    expect(typeof result).toBe("object");
-    expect(lastRequest.method).toBe("GET");
-    expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
-    expect(lastRequest.url).toContain(
-      "/app/channels/550e8400-e29b-41d4-a716-446655440000/webhooks",
-    );
-  });
-
   it("list", async () => {
     const result = await client.webhooks.list({
       limit: 10,

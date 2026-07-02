@@ -489,7 +489,3 @@ export interface WebhookLastResponse {
   error?: string;
   at?: string;
 }
-
-export interface WebhooksResponse {
-  webhooks: WebhookResponse[];
-}
