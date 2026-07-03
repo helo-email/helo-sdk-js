@@ -489,3 +489,36 @@ export interface WebhookLastResponse {
   error?: string;
   at?: string;
 }
+
+export interface WebhookPayloadCommon {
+  timestamp?: string;
+  messageId?: string;
+  channelId?: string;
+  mailType?: MailType;
+  subject?: string;
+  tags?: string[];
+  metadata?: Record<string, unknown>;
+}
+
+export interface AcceptedWebhookPayload {}
+
+export interface ProcessedWebhookPayload {}
+
+export interface DeliveredWebhookPayload {}
+
+export interface BouncedWebhookPayload {}
+
+export interface OpenedWebhookPayload {}
+
+export interface ClickedWebhookPayload {}
+
+export interface ComplainedWebhookPayload {}
+
+export interface UnsubscribedWebhookPayload {}
+
+export interface ResubscribedWebhookPayload {}
+
+export interface RecipientEventFields {
+  recipient: string;
+  details?: unknown;
+}
