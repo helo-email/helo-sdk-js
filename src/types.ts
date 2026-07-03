@@ -500,23 +500,120 @@ export interface WebhookPayloadCommon {
   metadata?: Record<string, unknown>;
 }
 
-export interface AcceptedWebhookPayload {}
+export interface AcceptedWebhookPayload {
+  eventType: "accepted";
+  recipients: string[];
+  timestamp: string;
+  messageId: string;
+  channelId: string;
+  mailType: MailType;
+  subject?: string;
+  tags?: string[];
+  metadata?: Record<string, unknown>;
+}
 
-export interface ProcessedWebhookPayload {}
+export interface ProcessedWebhookPayload {
+  eventType: "processed";
+  recipients: string[];
+  timestamp: string;
+  messageId: string;
+  channelId: string;
+  mailType: MailType;
+  subject?: string;
+  tags?: string[];
+  metadata?: Record<string, unknown>;
+}
 
-export interface DeliveredWebhookPayload {}
+export interface DeliveredWebhookPayload {
+  eventType: "delivered";
+  recipient: string;
+  details?: unknown;
+  timestamp: string;
+  messageId: string;
+  channelId: string;
+  mailType: MailType;
+  subject?: string;
+  tags?: string[];
+  metadata?: Record<string, unknown>;
+}
 
-export interface BouncedWebhookPayload {}
+export interface BouncedWebhookPayload {
+  eventType: "bounced";
+  recipient: string;
+  details?: unknown;
+  timestamp: string;
+  messageId: string;
+  channelId: string;
+  mailType: MailType;
+  subject?: string;
+  tags?: string[];
+  metadata?: Record<string, unknown>;
+}
 
-export interface OpenedWebhookPayload {}
+export interface OpenedWebhookPayload {
+  eventType: "opened";
+  recipient: string;
+  details?: unknown;
+  timestamp: string;
+  messageId: string;
+  channelId: string;
+  mailType: MailType;
+  subject?: string;
+  tags?: string[];
+  metadata?: Record<string, unknown>;
+}
 
-export interface ClickedWebhookPayload {}
+export interface ClickedWebhookPayload {
+  eventType: "clicked";
+  recipient: string;
+  details?: unknown;
+  timestamp: string;
+  messageId: string;
+  channelId: string;
+  mailType: MailType;
+  subject?: string;
+  tags?: string[];
+  metadata?: Record<string, unknown>;
+}
 
-export interface ComplainedWebhookPayload {}
+export interface ComplainedWebhookPayload {
+  eventType: "complained";
+  recipient: string;
+  details?: unknown;
+  timestamp: string;
+  messageId: string;
+  channelId: string;
+  mailType: MailType;
+  subject?: string;
+  tags?: string[];
+  metadata?: Record<string, unknown>;
+}
 
-export interface UnsubscribedWebhookPayload {}
+export interface UnsubscribedWebhookPayload {
+  eventType: "unsubscribed";
+  recipient: string;
+  details?: unknown;
+  timestamp: string;
+  messageId: string;
+  channelId: string;
+  mailType: MailType;
+  subject?: string;
+  tags?: string[];
+  metadata?: Record<string, unknown>;
+}
 
-export interface ResubscribedWebhookPayload {}
+export interface ResubscribedWebhookPayload {
+  eventType: "resubscribed";
+  recipient: string;
+  details?: unknown;
+  timestamp: string;
+  messageId: string;
+  channelId: string;
+  mailType: MailType;
+  subject?: string;
+  tags?: string[];
+  metadata?: Record<string, unknown>;
+}
 
 export interface RecipientEventFields {
   recipient: string;
