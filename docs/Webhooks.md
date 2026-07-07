@@ -20,7 +20,7 @@ List webhooks.
 ### Example
 
 ```javascript Webhooks_list
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -43,7 +43,7 @@ Create a new webhook.
 ### Example
 
 ```javascript Webhooks_create
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -68,7 +68,7 @@ Retrieve a single webhook by ID.
 ### Example
 
 ```javascript Webhooks_retrieve
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -89,7 +89,7 @@ Update an existing webhook.
 ### Example
 
 ```javascript Webhooks_update
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -117,7 +117,7 @@ Delete a webhook by ID.
 ### Example
 
 ```javascript Webhooks_delete
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -136,7 +136,7 @@ Regenerate the signing key used for the webhook signature. This operation replac
 ### Example
 
 ```javascript Webhooks_regenerateSigningKey
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);

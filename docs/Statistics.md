@@ -17,7 +17,7 @@ Fetches hourly aggregated statistics.
 ### Example
 
 ```javascript Statistics_retrieveHourly
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -41,7 +41,7 @@ Fetches daily aggregated statistics.
 ### Example
 
 ```javascript Statistics_retrieveDaily
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -66,7 +66,7 @@ Fetches cumulative statistics.
 ### Example
 
 ```javascript Statistics_retrieveTotals
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);

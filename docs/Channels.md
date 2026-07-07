@@ -19,7 +19,7 @@ Retrieves a list of all channels accessible to the current user.
 ### Example
 
 ```javascript Channels_list
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -44,7 +44,7 @@ Creates a new communication channel for organizing and routing messages.
 ### Example
 
 ```javascript Channels_create
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -67,7 +67,7 @@ Fetches the details and configuration of a specific channel.
 ### Example
 
 ```javascript Channels_retrieve
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -88,7 +88,7 @@ Modifies the settings and configuration of an existing channel.
 ### Example
 
 ```javascript Channels_update
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -114,7 +114,7 @@ Permanently removes a channel and all associated data.
 ### Example
 
 ```javascript Channels_delete
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);

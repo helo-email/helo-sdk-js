@@ -18,7 +18,7 @@ Retrieves a paginated list of sent broadcasts with summary statistics.
 ### Example
 
 ```javascript Broadcasts_list
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -43,7 +43,7 @@ Fetches details and statistics for a specific broadcast.
 ### Example
 
 ```javascript Broadcasts_retrieve
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -64,7 +64,7 @@ Retrieves a list of failed messages for a specific broadcast.
 ### Example
 
 ```javascript Broadcasts_listFailures
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -89,7 +89,7 @@ Retrieves a list of suppressed recipients for a specific broadcast.
 ### Example
 
 ```javascript Broadcasts_listSuppressions
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);

@@ -18,7 +18,7 @@ Sends a single transactional email such as receipts, confirmations, or notificat
 ### Example
 
 ```javascript Sending_transactional
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -72,7 +72,7 @@ Sends multiple transactional emails in a single API request for better performan
 ### Example
 
 ```javascript Sending_transactionalBatch
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -130,7 +130,7 @@ Sends a broadcast email to multiple recipients for marketing or announcement pur
 ### Example
 
 ```javascript Sending_broadcast
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -189,7 +189,7 @@ Sends a single broadcast email message.
 ### Example
 
 ```javascript Sending_broadcastMessage
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);

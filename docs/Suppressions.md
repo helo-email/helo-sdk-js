@@ -17,7 +17,7 @@ Retrieves a list of suppressed email addresses for a channel.
 ### Example
 
 ```javascript Suppressions_list
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -43,7 +43,7 @@ Adds email addresses to the suppression list to prevent future sends.
 ### Example
 
 ```javascript Suppressions_create
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -66,7 +66,7 @@ Removes email addresses from the suppression list to allow future sends.
 ### Example
 
 ```javascript Suppressions_remove
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);

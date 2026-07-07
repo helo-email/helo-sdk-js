@@ -17,7 +17,7 @@ Retrieves activity events for messages, including delivery status, opens, clicks
 ### Example
 
 ```javascript Activity_listEvents
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -48,7 +48,7 @@ Retrieves a paginated list of sent messages with basic tracking information.
 ### Example
 
 ```javascript Activity_listMessages
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -78,7 +78,7 @@ Fetches detailed tracking information for a specific message, including all asso
 ### Example
 
 ```javascript Activity_retrieveMessage
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);

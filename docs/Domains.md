@@ -21,7 +21,7 @@ Retrieves all domains associated with the current account, including their verif
 ### Example
 
 ```javascript Domains_list
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -45,7 +45,7 @@ Registers a new domain for sending emails. The domain must be verified before it
 ### Example
 
 ```javascript Domains_create
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -67,7 +67,7 @@ Gets detailed information about a specific domain, including verification status
 ### Example
 
 ```javascript Domains_retrieve
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -88,7 +88,7 @@ Modifies the configuration settings of an existing domain.
 ### Example
 
 ```javascript Domains_update
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -112,7 +112,7 @@ Removes a domain from the account. This will stop all email sending from this do
 ### Example
 
 ```javascript Domains_delete
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -131,7 +131,7 @@ Initiates the domain verification process by checking DNS records.
 ### Example
 
 ```javascript Domains_verify
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
@@ -152,7 +152,7 @@ Generates new DKIM keys for the domain. This is recommended for security best pr
 ### Example
 
 ```javascript Domains_rotateKey
-import Helo from "helo";
+import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
