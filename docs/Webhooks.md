@@ -2,20 +2,20 @@
 
 | Method                                                       | HTTP request                                   | Description                    |
 | ------------------------------------------------------------ | ---------------------------------------------- | ------------------------------ |
-| [**list**](Webhooks.md#list)                                 | **GET** /webhooks                              | list operation                 |
-| [**create**](Webhooks.md#create)                             | **POST** /webhooks                             | create operation               |
-| [**retrieve**](Webhooks.md#retrieve)                         | **GET** /webhooks/{id}                         | retrieve operation             |
-| [**update**](Webhooks.md#update)                             | **PATCH** /webhooks/{id}                       | update operation               |
-| [**del**](Webhooks.md#del)                                   | **DELETE** /webhooks/{id}                      | del operation                  |
-| [**regenerateSigningKey**](Webhooks.md#regenerateSigningKey) | **POST** /webhooks/{id}/regenerate-signing-key | regenerateSigningKey operation |
+| [**list**](Webhooks.md#list)                                 | **GET** /webhooks                              | List all webhooks              |
+| [**create**](Webhooks.md#create)                             | **POST** /webhooks                             | Create a webhook               |
+| [**retrieve**](Webhooks.md#retrieve)                         | **GET** /webhooks/{id}                         | Retrieve a webhook             |
+| [**update**](Webhooks.md#update)                             | **PATCH** /webhooks/{id}                       | Update a webhook               |
+| [**del**](Webhooks.md#del)                                   | **DELETE** /webhooks/{id}                      | Delete a webhook               |
+| [**regenerateSigningKey**](Webhooks.md#regenerateSigningKey) | **POST** /webhooks/{id}/regenerate-signing-key | Regenerate webhook signing key |
 
 ## list
 
 > list({ ... }) → Object
 
-list operation
+List all webhooks
 
-List webhooks.
+Retrieves all webhooks configured for the account.
 
 ### Example
 
@@ -36,9 +36,9 @@ const result = await helo.webhooks.list({
 
 > create({ ... }) → Object
 
-create operation
+Create a webhook
 
-Create a new webhook.
+Registers a new webhook to receive event notifications.
 
 ### Example
 
@@ -61,9 +61,9 @@ const result = await helo.webhooks.create({
 
 > retrieve(id) → Object
 
-retrieve operation
+Retrieve a webhook
 
-Retrieve a single webhook by ID.
+Fetches the details and configuration of a specific webhook.
 
 ### Example
 
@@ -82,9 +82,9 @@ const result = await helo.webhooks.retrieve(
 
 > update(id, { ... }) → Object
 
-update operation
+Update a webhook
 
-Update an existing webhook.
+Modifies an existing webhook by ID.
 
 ### Example
 
@@ -110,9 +110,9 @@ const result = await helo.webhooks.update(
 
 > del(id) → null
 
-del operation
+Delete a webhook
 
-Delete a webhook by ID.
+Permanently removes a webhook.
 
 ### Example
 
@@ -129,7 +129,7 @@ await helo.webhooks.del("550e8400-e29b-41d4-a716-446655440000");
 
 > regenerateSigningKey(id) → Object
 
-regenerateSigningKey operation
+Regenerate webhook signing key
 
 Regenerate the signing key used for the webhook signature. This operation replaces the old key.
 

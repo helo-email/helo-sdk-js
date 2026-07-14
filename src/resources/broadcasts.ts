@@ -42,7 +42,7 @@ export class Broadcasts {
   }
 
   /**
-   * List broadcast failures
+   * List failed broadcast messages
    */
   async listFailures(
     id: string,
@@ -57,7 +57,7 @@ export class Broadcasts {
   }
 
   /**
-   * List broadcast suppressions
+   * List broadcast suppressed recipients
    */
   async listSuppressions(
     id: string,

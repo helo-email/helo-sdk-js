@@ -17,7 +17,7 @@ export class Webhooks {
   }
 
   /**
-   * list operation
+   * List all webhooks
    */
   async list(
     params: { limit?: number; offset?: number; channelIds?: string[] } = {},
@@ -29,7 +29,7 @@ export class Webhooks {
   }
 
   /**
-   * create operation
+   * Create a webhook
    */
   async create(params: CreateWebhookRequest): Promise<WebhookResponse> {
     const response = await this._client.request("post", `/webhooks`, {
@@ -39,7 +39,7 @@ export class Webhooks {
   }
 
   /**
-   * retrieve operation
+   * Retrieve a webhook
    */
   async retrieve(id: string): Promise<WebhookResponse> {
     const response = await this._client.request("get", `/webhooks/${id}`);
@@ -47,7 +47,7 @@ export class Webhooks {
   }
 
   /**
-   * update operation
+   * Update a webhook
    */
   async update(
     id: string,
@@ -60,7 +60,7 @@ export class Webhooks {
   }
 
   /**
-   * del operation
+   * Delete a webhook
    */
   async del(id: string): Promise<null> {
     const response = await this._client.request("delete", `/webhooks/${id}`);
@@ -68,7 +68,7 @@ export class Webhooks {
   }
 
   /**
-   * regenerateSigningKey operation
+   * Regenerate webhook signing key
    */
   async regenerateSigningKey(id: string): Promise<WebhookResponse> {
     const response = await this._client.request(

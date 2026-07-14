@@ -1,6 +1,6 @@
 {
   "name": "@helo-email/sdk",
-  "version": "1.0.2",
+  "version": "1.0.0-beta.1",
   "description": "Helo API SDK",
   "type": "module",
   "exports": "./dist/index.js",

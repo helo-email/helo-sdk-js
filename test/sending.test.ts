@@ -30,14 +30,14 @@ describe("sending", () => {
   it("transactional", async () => {
     const result = await client.sending.transactional(
       {
-        from: { email: "test@example.com", name: "test-name" },
-        to: [{ email: "test@example.com", name: "test-name" }],
-        cc: [{ email: "test@example.com", name: "test-name" }],
-        bcc: [{ email: "test@example.com", name: "test-name" }],
-        replyTo: [{ email: "test@example.com", name: "test-name" }],
-        subject: "test-subject",
-        html: "test-html",
-        text: "test-text",
+        from: { email: "from@yourdomain.com", name: "From name" },
+        to: [{ email: "to@example.com", name: "To name" }],
+        cc: [{ email: "cc@example.com", name: "Cc name" }],
+        bcc: [{ email: "bcc@example.com", name: "Bcc name" }],
+        replyTo: [{ email: "reply-to@example.com", name: "Reply-To name" }],
+        subject: "Hello from Helo",
+        html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
+        text: "This is a test message, delivered with <3 by Helo.",
         template: {
           subject: "test-subject",
           html: "test-html",
@@ -55,7 +55,7 @@ describe("sending", () => {
             disposition: Helo.AttachmentDisposition.ATTACHMENT,
           },
         ],
-        tags: ["example1", "example2"],
+        tags: ["welcome", "onboarding"],
         headers: {},
         metadata: {},
       },
@@ -74,18 +74,23 @@ describe("sending", () => {
     );
     expect(lastRequest.headers["X-Helo-Idempotency-Key"]).toBe("example");
     const body = JSON.parse(lastRequest.body!);
-    expect(body.from).toEqual({ email: "test@example.com", name: "test-name" });
-    expect(body.to).toEqual([{ email: "test@example.com", name: "test-name" }]);
-    expect(body.cc).toEqual([{ email: "test@example.com", name: "test-name" }]);
-    expect(body.bcc).toEqual([
-      { email: "test@example.com", name: "test-name" },
-    ]);
+    expect(body.from).toEqual({
+      email: "from@yourdomain.com",
+      name: "From name",
+    });
+    expect(body.to).toEqual([{ email: "to@example.com", name: "To name" }]);
+    expect(body.cc).toEqual([{ email: "cc@example.com", name: "Cc name" }]);
+    expect(body.bcc).toEqual([{ email: "bcc@example.com", name: "Bcc name" }]);
     expect(body.replyTo).toEqual([
-      { email: "test@example.com", name: "test-name" },
+      { email: "reply-to@example.com", name: "Reply-To name" },
     ]);
-    expect(body.subject).toEqual("test-subject");
-    expect(body.html).toEqual("test-html");
-    expect(body.text).toEqual("test-text");
+    expect(body.subject).toEqual("Hello from Helo");
+    expect(body.html).toEqual(
+      "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
+    );
+    expect(body.text).toEqual(
+      "This is a test message, delivered with <3 by Helo.",
+    );
     expect(body.template).toEqual({
       subject: "test-subject",
       html: "test-html",
@@ -103,7 +108,7 @@ describe("sending", () => {
         disposition: Helo.AttachmentDisposition.ATTACHMENT,
       },
     ]);
-    expect(body.tags).toEqual(["example1", "example2"]);
+    expect(body.tags).toEqual(["welcome", "onboarding"]);
     expect(body.headers).toEqual({});
     expect(body.metadata).toEqual({});
   });
@@ -285,14 +290,14 @@ describe("sending", () => {
   it("broadcastMessage", async () => {
     const result = await client.sending.broadcastMessage(
       {
-        from: { email: "test@example.com", name: "test-name" },
-        to: [{ email: "test@example.com", name: "test-name" }],
-        cc: [{ email: "test@example.com", name: "test-name" }],
-        bcc: [{ email: "test@example.com", name: "test-name" }],
-        replyTo: [{ email: "test@example.com", name: "test-name" }],
-        subject: "test-subject",
-        html: "test-html",
-        text: "test-text",
+        from: { email: "from@yourdomain.com", name: "From name" },
+        to: [{ email: "to@example.com", name: "To name" }],
+        cc: [{ email: "cc@example.com", name: "Cc name" }],
+        bcc: [{ email: "bcc@example.com", name: "Bcc name" }],
+        replyTo: [{ email: "reply-to@example.com", name: "Reply-To name" }],
+        subject: "Hello from Helo",
+        html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
+        text: "This is a test message, delivered with <3 by Helo.",
         template: {
           subject: "test-subject",
           html: "test-html",
@@ -310,7 +315,7 @@ describe("sending", () => {
             disposition: Helo.AttachmentDisposition.ATTACHMENT,
           },
         ],
-        tags: ["example1", "example2"],
+        tags: ["welcome", "onboarding"],
         headers: {},
         metadata: {},
       },
@@ -329,18 +334,23 @@ describe("sending", () => {
     );
     expect(lastRequest.headers["X-Helo-Idempotency-Key"]).toBe("example");
     const body = JSON.parse(lastRequest.body!);
-    expect(body.from).toEqual({ email: "test@example.com", name: "test-name" });
-    expect(body.to).toEqual([{ email: "test@example.com", name: "test-name" }]);
-    expect(body.cc).toEqual([{ email: "test@example.com", name: "test-name" }]);
-    expect(body.bcc).toEqual([
-      { email: "test@example.com", name: "test-name" },
-    ]);
+    expect(body.from).toEqual({
+      email: "from@yourdomain.com",
+      name: "From name",
+    });
+    expect(body.to).toEqual([{ email: "to@example.com", name: "To name" }]);
+    expect(body.cc).toEqual([{ email: "cc@example.com", name: "Cc name" }]);
+    expect(body.bcc).toEqual([{ email: "bcc@example.com", name: "Bcc name" }]);
     expect(body.replyTo).toEqual([
-      { email: "test@example.com", name: "test-name" },
+      { email: "reply-to@example.com", name: "Reply-To name" },
     ]);
-    expect(body.subject).toEqual("test-subject");
-    expect(body.html).toEqual("test-html");
-    expect(body.text).toEqual("test-text");
+    expect(body.subject).toEqual("Hello from Helo");
+    expect(body.html).toEqual(
+      "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
+    );
+    expect(body.text).toEqual(
+      "This is a test message, delivered with <3 by Helo.",
+    );
     expect(body.template).toEqual({
       subject: "test-subject",
       html: "test-html",
@@ -358,7 +368,7 @@ describe("sending", () => {
         disposition: Helo.AttachmentDisposition.ATTACHMENT,
       },
     ]);
-    expect(body.tags).toEqual(["example1", "example2"]);
+    expect(body.tags).toEqual(["welcome", "onboarding"]);
     expect(body.headers).toEqual({});
     expect(body.metadata).toEqual({});
   });

@@ -1,11 +1,11 @@
 # Helo.broadcasts
 
-| Method                                                 | HTTP request                          | Description                 |
-| ------------------------------------------------------ | ------------------------------------- | --------------------------- |
-| [**list**](Broadcasts.md#list)                         | **GET** /broadcasts                   | List broadcasts             |
-| [**retrieve**](Broadcasts.md#retrieve)                 | **GET** /broadcasts/{id}              | Retrieve a broadcast        |
-| [**listFailures**](Broadcasts.md#listFailures)         | **GET** /broadcasts/{id}/failures     | List broadcast failures     |
-| [**listSuppressions**](Broadcasts.md#listSuppressions) | **GET** /broadcasts/{id}/suppressions | List broadcast suppressions |
+| Method                                                 | HTTP request                          | Description                          |
+| ------------------------------------------------------ | ------------------------------------- | ------------------------------------ |
+| [**list**](Broadcasts.md#list)                         | **GET** /broadcasts                   | List broadcasts                      |
+| [**retrieve**](Broadcasts.md#retrieve)                 | **GET** /broadcasts/{id}              | Retrieve a broadcast                 |
+| [**listFailures**](Broadcasts.md#listFailures)         | **GET** /broadcasts/{id}/failures     | List failed broadcast messages       |
+| [**listSuppressions**](Broadcasts.md#listSuppressions) | **GET** /broadcasts/{id}/suppressions | List broadcast suppressed recipients |
 
 ## list
 
@@ -57,9 +57,9 @@ const result = await helo.broadcasts.retrieve(
 
 > listFailures(id, { ... }) → Object
 
-List broadcast failures
+List failed broadcast messages
 
-Retrieves a list of failed messages for a specific broadcast.
+Returns messages that could not be delivered due to permanent errors (e.g. invalid addresses, domain issues). Transient errors that were retried successfully do not appear here.
 
 ### Example
 
@@ -82,9 +82,9 @@ const result = await helo.broadcasts.listFailures(
 
 > listSuppressions(id, { ... }) → Object
 
-List broadcast suppressions
+List broadcast suppressed recipients
 
-Retrieves a list of suppressed recipients for a specific broadcast.
+Returns recipients that were skipped because they appear on a suppression list (e.g. previous bounces or unsubscribes).
 
 ### Example
 

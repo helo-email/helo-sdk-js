@@ -47,7 +47,7 @@ export const BroadcastStatus = {
   ACCEPTED: "accepted",
   PROCESSING: "processing",
   COMPLETED: "completed",
-  CANCELLED: "cancelled",
+  CANCELED: "canceled",
 } as const;
 
 export type BroadcastStatus =

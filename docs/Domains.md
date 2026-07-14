@@ -83,7 +83,7 @@ const result = await helo.domains.retrieve(
 
 Update a domain
 
-Modifies the configuration settings of an existing domain.
+Modifies an existing domain by ID.
 
 ### Example
 
