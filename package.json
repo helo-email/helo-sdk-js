@@ -23,8 +23,8 @@
     "typescript": "^5.0.0",
     "vitest": "^3.0.0"
   },
-  "repository": "https://github.com/helo-email/helo-sdk-js.git",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helo-email/helo-sdk-js.git"
   }
 }
