@@ -167,8 +167,6 @@ export interface DnsRecordsResponse {
   domainKeyActive?: DnsRecordResponse;
   domainKeyPending?: DnsRecordResponse;
   returnPath?: DnsRecordResponse[];
-  tracking?: DnsRecordResponse;
-  unsubscribe?: DnsRecordResponse;
 }
 
 export interface DomainChannelResponse {
