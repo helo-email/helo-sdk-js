@@ -26,7 +26,7 @@ export class Statistics {
   }): Promise<StatisticsHourlyResponse> {
     const response = await this._client.request(
       "get",
-      `/activity/statistics/hourly`,
+      `/statistics/hourly`,
       { params: params as Record<string, unknown> },
     );
     return response.json();
@@ -44,7 +44,7 @@ export class Statistics {
   }): Promise<StatisticsDailyResponse> {
     const response = await this._client.request(
       "get",
-      `/activity/statistics/daily`,
+      `/statistics/daily`,
       { params: params as Record<string, unknown> },
     );
     return response.json();
@@ -61,7 +61,7 @@ export class Statistics {
   }): Promise<StatisticsTotalsResponse> {
     const response = await this._client.request(
       "get",
-      `/activity/statistics/totals`,
+      `/statistics/totals`,
       { params: params as Record<string, unknown> },
     );
     return response.json();
