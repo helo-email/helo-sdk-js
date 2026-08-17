@@ -114,6 +114,17 @@ export interface Message {
   status: "queued" | "sent";
   subject: string;
   recipients: string[];
+  tags?: string[];
+  statistics: MessageStatistics;
+}
+
+export interface MessageStatistics {
+  delivered: number;
+  bounced: number;
+  opened: number;
+  clicked: number;
+  complained: number;
+  unsubscribed: number;
 }
 
 export interface MessageDetailsResponse {
@@ -148,6 +159,7 @@ export interface MessageDetailsResponse {
     recipients?: string[];
     details?: Record<string, unknown>;
   }[];
+  statistics?: MessageStatistics;
 }
 
 export interface CreateDomainRequest {

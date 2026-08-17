@@ -24,11 +24,9 @@ export class Statistics {
     to: string;
     tags?: string[];
   }): Promise<StatisticsHourlyResponse> {
-    const response = await this._client.request(
-      "get",
-      `/statistics/hourly`,
-      { params: params as Record<string, unknown> },
-    );
+    const response = await this._client.request("get", `/statistics/hourly`, {
+      params: params as Record<string, unknown>,
+    });
     return response.json();
   }
 
@@ -42,11 +40,9 @@ export class Statistics {
     tags?: string[];
     timezone: string;
   }): Promise<StatisticsDailyResponse> {
-    const response = await this._client.request(
-      "get",
-      `/statistics/daily`,
-      { params: params as Record<string, unknown> },
-    );
+    const response = await this._client.request("get", `/statistics/daily`, {
+      params: params as Record<string, unknown>,
+    });
     return response.json();
   }
 
@@ -59,11 +55,9 @@ export class Statistics {
     to: string;
     tags?: string[];
   }): Promise<StatisticsTotalsResponse> {
-    const response = await this._client.request(
-      "get",
-      `/statistics/totals`,
-      { params: params as Record<string, unknown> },
-    );
+    const response = await this._client.request("get", `/statistics/totals`, {
+      params: params as Record<string, unknown>,
+    });
     return response.json();
   }
 }
