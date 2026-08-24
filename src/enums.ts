@@ -81,6 +81,11 @@ export const WebhookEvent = {
   COMPLAINED: "complained",
   UNSUBSCRIBED: "unsubscribed",
   RESUBSCRIBED: "resubscribed",
+  DOMAIN_KEY_VERIFIED: "domain-key-verified",
+  DOMAIN_KEY_VERIFICATION_FAILED: "domain-key-verification-failed",
+  RETURN_PATH_DOMAIN_VERIFIED: "return-path-domain-verified",
+  RETURN_PATH_DOMAIN_VERIFICATION_FAILED:
+    "return-path-domain-verification-failed",
 } as const;
 
 export type WebhookEvent = (typeof WebhookEvent)[keyof typeof WebhookEvent];

@@ -502,130 +502,173 @@ export interface WebhookLastResponse {
 
 export interface WebhookPayloadCommon {
   timestamp?: string;
+}
+
+export interface DeliveryWebhookPayloadCommon {
   messageId?: string;
   channelId?: string;
   mailType?: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp?: string;
 }
 
 export interface AcceptedWebhookPayload {
   eventType: "accepted";
   recipients: string[];
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface ProcessedWebhookPayload {
   eventType: "processed";
   recipients: string[];
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface DeliveredWebhookPayload {
   eventType: "delivered";
   recipient: string;
   details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface BouncedWebhookPayload {
   eventType: "bounced";
   recipient: string;
   details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface OpenedWebhookPayload {
   eventType: "opened";
   recipient: string;
   details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface ClickedWebhookPayload {
   eventType: "clicked";
   recipient: string;
   details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface ComplainedWebhookPayload {
   eventType: "complained";
   recipient: string;
   details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface UnsubscribedWebhookPayload {
   eventType: "unsubscribed";
   recipient: string;
   details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface ResubscribedWebhookPayload {
   eventType: "resubscribed";
   recipient: string;
   details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface RecipientEventFields {
   recipient: string;
   details?: unknown;
+}
+
+export interface DomainPayloadCommon {
+  domainId?: string;
+  domainName?: string;
+  dnsRecordHost?: string;
+  timestamp?: string;
+}
+
+export interface DomainKeyVerifiedPayload {
+  eventType: "domain-key-verified";
+  domainId: string;
+  domainName: string;
+  dnsRecordHost: string;
+  timestamp: string;
+}
+
+export interface DomainKeyVerificationFailedPayload {
+  eventType: "domain-key-verification-failed";
+  domainId: string;
+  domainName: string;
+  dnsRecordHost: string;
+  timestamp: string;
+}
+
+export interface ReturnPathDomainVerifiedPayload {
+  eventType: "return-path-domain-verified";
+  domainId: string;
+  domainName: string;
+  dnsRecordHost: string;
+  timestamp: string;
+}
+
+export interface ReturnPathDomainVerificationFailedPayload {
+  eventType: "return-path-domain-verification-failed";
+  domainId: string;
+  domainName: string;
+  dnsRecordHost: string;
+  timestamp: string;
 }
