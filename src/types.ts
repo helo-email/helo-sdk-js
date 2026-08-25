@@ -540,8 +540,8 @@ export interface ProcessedWebhookPayload {
 
 export interface DeliveredWebhookPayload {
   eventType: "delivered";
+  details?: DeliveredDetails;
   recipient: string;
-  details?: unknown;
   messageId: string;
   channelId: string;
   mailType: MailType;
@@ -553,8 +553,8 @@ export interface DeliveredWebhookPayload {
 
 export interface BouncedWebhookPayload {
   eventType: "bounced";
+  details?: BouncedDetails;
   recipient: string;
-  details?: unknown;
   messageId: string;
   channelId: string;
   mailType: MailType;
@@ -566,8 +566,8 @@ export interface BouncedWebhookPayload {
 
 export interface OpenedWebhookPayload {
   eventType: "opened";
+  details?: OpenedDetails;
   recipient: string;
-  details?: unknown;
   messageId: string;
   channelId: string;
   mailType: MailType;
@@ -579,8 +579,8 @@ export interface OpenedWebhookPayload {
 
 export interface ClickedWebhookPayload {
   eventType: "clicked";
+  details?: ClickedDetails;
   recipient: string;
-  details?: unknown;
   messageId: string;
   channelId: string;
   mailType: MailType;
@@ -592,8 +592,8 @@ export interface ClickedWebhookPayload {
 
 export interface ComplainedWebhookPayload {
   eventType: "complained";
+  details?: ComplainedDetails;
   recipient: string;
-  details?: unknown;
   messageId: string;
   channelId: string;
   mailType: MailType;
@@ -605,8 +605,8 @@ export interface ComplainedWebhookPayload {
 
 export interface UnsubscribedWebhookPayload {
   eventType: "unsubscribed";
+  details?: UnsubscribedDetails;
   recipient: string;
-  details?: unknown;
   messageId: string;
   channelId: string;
   mailType: MailType;
@@ -618,8 +618,8 @@ export interface UnsubscribedWebhookPayload {
 
 export interface ResubscribedWebhookPayload {
   eventType: "resubscribed";
+  details?: ResubscribedDetails;
   recipient: string;
-  details?: unknown;
   messageId: string;
   channelId: string;
   mailType: MailType;
@@ -631,7 +631,64 @@ export interface ResubscribedWebhookPayload {
 
 export interface RecipientEventFields {
   recipient: string;
-  details?: unknown;
+}
+
+export interface ClientDetails {
+  family?: string;
+  version?: string;
+}
+
+export interface DeviceDetails {
+  brand?: string;
+  family?: string;
+  model?: string;
+}
+
+export interface EngagementDetails {
+  ip?: string;
+  country?: string;
+  countryCode?: string;
+  client?: ClientDetails;
+  device?: DeviceDetails;
+}
+
+export interface DeliveredDetails {
+  response?: string;
+}
+
+export interface BouncedDetails {
+  type?: string;
+  subType?: string;
+  code?: string;
+}
+
+export interface OpenedDetails {
+  ip?: string;
+  country?: string;
+  countryCode?: string;
+  client?: ClientDetails;
+  device?: DeviceDetails;
+}
+
+export interface ClickedDetails {
+  link?: string;
+  ip?: string;
+  country?: string;
+  countryCode?: string;
+  client?: ClientDetails;
+  device?: DeviceDetails;
+}
+
+export interface ComplainedDetails {
+  type?: string;
+}
+
+export interface UnsubscribedDetails {
+  ip?: string;
+}
+
+export interface ResubscribedDetails {
+  ip?: string;
 }
 
 export interface DomainPayloadCommon {

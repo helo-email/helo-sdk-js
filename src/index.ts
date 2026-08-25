@@ -20,6 +20,13 @@ import { WebhookEvent } from "./enums.js";
 
 export type { ClientConfig } from "./core/client.js";
 export { ApiError } from "./core/api-error.js";
+export type { WebhookSignatureErrorCode } from "./utils/webhook-signatures.js";
+export {
+  SUPPORTED_WEBHOOK_SIGNATURE_VERSIONS,
+  WebhookSignatureError,
+  verifyWebhookSignature,
+  getWebhookSignature,
+} from "./utils/webhook-signatures.js";
 export * from "./types.js";
 export * from "./enums.js";
 
