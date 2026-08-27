@@ -11,6 +11,7 @@ import { Webhooks } from "./resources/webhooks.js";
 import { MailType } from "./enums.js";
 import { DeliveryType } from "./enums.js";
 import { EventType } from "./enums.js";
+import { MessageStatus } from "./enums.js";
 import { DnsRecordStatus } from "./enums.js";
 import { DnsRecordType } from "./enums.js";
 import { BroadcastStatus } from "./enums.js";
@@ -76,6 +77,7 @@ class Helo {
   static MailType = MailType;
   static DeliveryType = DeliveryType;
   static EventType = EventType;
+  static MessageStatus = MessageStatus;
   static DnsRecordStatus = DnsRecordStatus;
   static DnsRecordType = DnsRecordType;
   static BroadcastStatus = BroadcastStatus;

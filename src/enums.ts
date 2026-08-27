@@ -26,6 +26,13 @@ export const EventType = {
 
 export type EventType = (typeof EventType)[keyof typeof EventType];
 
+export const MessageStatus = {
+  QUEUED: "queued",
+  SENT: "sent",
+} as const;
+
+export type MessageStatus = (typeof MessageStatus)[keyof typeof MessageStatus];
+
 export const DnsRecordStatus = {
   PENDING: "pending",
   VERIFIED: "verified",

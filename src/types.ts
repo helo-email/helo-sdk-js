@@ -2,6 +2,7 @@ import type {
   MailType,
   DeliveryType,
   EventType,
+  MessageStatus,
   DnsRecordStatus,
   DnsRecordType,
   BroadcastStatus,
@@ -111,7 +112,7 @@ export interface Message {
   mailType: "transactional" | "broadcast";
   mailSource: "api" | "smtp";
   deliveryType: "live" | "sandbox";
-  status: "queued" | "sent";
+  status: MessageStatus;
   subject: string;
   recipients: string[];
   tags?: string[];
@@ -134,7 +135,7 @@ export interface MessageDetailsResponse {
   mailType: "transactional" | "broadcast";
   mailSource: "api" | "smtp";
   deliveryType: "live" | "sandbox";
-  status: "queued" | "sent";
+  status: MessageStatus;
   subject: string;
   from: ActivityMailAddress;
   to: ActivityMailAddress[];

@@ -81,7 +81,7 @@ describe("activity", () => {
       subject: "example",
       tags: ["example1", "example2"],
       mailType: "transactional",
-      status: "sent",
+      status: Helo.MessageStatus.QUEUED,
     });
 
     expect(result).toBeDefined();
@@ -104,7 +104,9 @@ describe("activity", () => {
     expect(url.searchParams.get("subject")).toBe(String("example"));
     expect(url.searchParams.get("tags")).toBe(String(["example1", "example2"]));
     expect(url.searchParams.get("mailType")).toBe(String("transactional"));
-    expect(url.searchParams.get("status")).toBe(String("sent"));
+    expect(url.searchParams.get("status")).toBe(
+      String(Helo.MessageStatus.QUEUED),
+    );
   });
 
   it("retrieveMessage", async () => {
