@@ -4,7 +4,7 @@ import type {
   PaginatedEventsResponse,
   PaginatedMessagesResponse,
 } from "../types.js";
-import type { EventType } from "../enums.js";
+import type { EventType, MessageStatus } from "../enums.js";
 
 /**
  * Activity resource.
@@ -54,7 +54,7 @@ export class Activity {
       subject?: string;
       tags?: string[];
       mailType?: "transactional" | "broadcast";
-      status?: "sent" | "queued";
+      status?: MessageStatus;
     } = {},
   ): Promise<PaginatedMessagesResponse> {
     const response = await this._client.request("get", `/activity/messages`, {

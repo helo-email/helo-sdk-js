@@ -2,6 +2,7 @@ import type {
   MailType,
   DeliveryType,
   EventType,
+  MessageStatus,
   DnsRecordStatus,
   DnsRecordType,
   BroadcastStatus,
@@ -111,7 +112,7 @@ export interface Message {
   mailType: "transactional" | "broadcast";
   mailSource: "api" | "smtp";
   deliveryType: "live" | "sandbox";
-  status: "queued" | "sent";
+  status: MessageStatus;
   subject: string;
   recipients: string[];
   tags?: string[];
@@ -134,7 +135,7 @@ export interface MessageDetailsResponse {
   mailType: "transactional" | "broadcast";
   mailSource: "api" | "smtp";
   deliveryType: "live" | "sandbox";
-  status: "queued" | "sent";
+  status: MessageStatus;
   subject: string;
   from: ActivityMailAddress;
   to: ActivityMailAddress[];
@@ -502,130 +503,230 @@ export interface WebhookLastResponse {
 
 export interface WebhookPayloadCommon {
   timestamp?: string;
+}
+
+export interface DeliveryWebhookPayloadCommon {
   messageId?: string;
   channelId?: string;
   mailType?: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp?: string;
 }
 
 export interface AcceptedWebhookPayload {
   eventType: "accepted";
   recipients: string[];
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface ProcessedWebhookPayload {
   eventType: "processed";
   recipients: string[];
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface DeliveredWebhookPayload {
   eventType: "delivered";
+  details?: DeliveredDetails;
   recipient: string;
-  details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface BouncedWebhookPayload {
   eventType: "bounced";
+  details?: BouncedDetails;
   recipient: string;
-  details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface OpenedWebhookPayload {
   eventType: "opened";
+  details?: OpenedDetails;
   recipient: string;
-  details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface ClickedWebhookPayload {
   eventType: "clicked";
+  details?: ClickedDetails;
   recipient: string;
-  details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface ComplainedWebhookPayload {
   eventType: "complained";
+  details?: ComplainedDetails;
   recipient: string;
-  details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface UnsubscribedWebhookPayload {
   eventType: "unsubscribed";
+  details?: UnsubscribedDetails;
   recipient: string;
-  details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface ResubscribedWebhookPayload {
   eventType: "resubscribed";
+  details?: ResubscribedDetails;
   recipient: string;
-  details?: unknown;
-  timestamp: string;
   messageId: string;
   channelId: string;
   mailType: MailType;
   subject?: string;
   tags?: string[];
   metadata?: Record<string, unknown>;
+  timestamp: string;
 }
 
 export interface RecipientEventFields {
   recipient: string;
-  details?: unknown;
+}
+
+export interface ClientDetails {
+  family?: string;
+  version?: string;
+}
+
+export interface DeviceDetails {
+  brand?: string;
+  family?: string;
+  model?: string;
+}
+
+export interface EngagementDetails {
+  ip?: string;
+  country?: string;
+  countryCode?: string;
+  client?: ClientDetails;
+  device?: DeviceDetails;
+}
+
+export interface DeliveredDetails {
+  response?: string;
+}
+
+export interface BouncedDetails {
+  type?: string;
+  subType?: string;
+  code?: string;
+}
+
+export interface OpenedDetails {
+  ip?: string;
+  country?: string;
+  countryCode?: string;
+  client?: ClientDetails;
+  device?: DeviceDetails;
+}
+
+export interface ClickedDetails {
+  link?: string;
+  ip?: string;
+  country?: string;
+  countryCode?: string;
+  client?: ClientDetails;
+  device?: DeviceDetails;
+}
+
+export interface ComplainedDetails {
+  type?: string;
+}
+
+export interface UnsubscribedDetails {
+  ip?: string;
+}
+
+export interface ResubscribedDetails {
+  ip?: string;
+}
+
+export interface DomainPayloadCommon {
+  domainId?: string;
+  domainName?: string;
+  dnsRecordHost?: string;
+  timestamp?: string;
+}
+
+export interface DomainKeyVerifiedPayload {
+  eventType: "domain-key-verified";
+  domainId: string;
+  domainName: string;
+  dnsRecordHost: string;
+  timestamp: string;
+}
+
+export interface DomainKeyVerificationFailedPayload {
+  eventType: "domain-key-verification-failed";
+  domainId: string;
+  domainName: string;
+  dnsRecordHost: string;
+  timestamp: string;
+}
+
+export interface ReturnPathDomainVerifiedPayload {
+  eventType: "return-path-domain-verified";
+  domainId: string;
+  domainName: string;
+  dnsRecordHost: string;
+  timestamp: string;
+}
+
+export interface ReturnPathDomainVerificationFailedPayload {
+  eventType: "return-path-domain-verification-failed";
+  domainId: string;
+  domainName: string;
+  dnsRecordHost: string;
+  timestamp: string;
 }

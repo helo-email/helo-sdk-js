@@ -1,6 +1,6 @@
 {
   "name": "@helo-email/sdk",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.7",
   "description": "Helo API SDK",
   "type": "module",
   "exports": "./dist/index.js",
@@ -19,6 +19,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^22.0.0",
     "prettier": "^3.0.0",
     "typescript": "^5.0.0",
     "vitest": "^3.0.0"

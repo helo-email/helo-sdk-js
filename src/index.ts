@@ -11,6 +11,7 @@ import { Webhooks } from "./resources/webhooks.js";
 import { MailType } from "./enums.js";
 import { DeliveryType } from "./enums.js";
 import { EventType } from "./enums.js";
+import { MessageStatus } from "./enums.js";
 import { DnsRecordStatus } from "./enums.js";
 import { DnsRecordType } from "./enums.js";
 import { BroadcastStatus } from "./enums.js";
@@ -20,6 +21,13 @@ import { WebhookEvent } from "./enums.js";
 
 export type { ClientConfig } from "./core/client.js";
 export { ApiError } from "./core/api-error.js";
+export type { WebhookSignatureErrorCode } from "./utils/webhook-signatures.js";
+export {
+  SUPPORTED_WEBHOOK_SIGNATURE_VERSIONS,
+  WebhookSignatureError,
+  verifyWebhookSignature,
+  getWebhookSignature,
+} from "./utils/webhook-signatures.js";
 export * from "./types.js";
 export * from "./enums.js";
 
@@ -69,6 +77,7 @@ class Helo {
   static MailType = MailType;
   static DeliveryType = DeliveryType;
   static EventType = EventType;
+  static MessageStatus = MessageStatus;
   static DnsRecordStatus = DnsRecordStatus;
   static DnsRecordType = DnsRecordType;
   static BroadcastStatus = BroadcastStatus;

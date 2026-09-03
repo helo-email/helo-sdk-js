@@ -63,7 +63,7 @@ const result = await helo.activity.listMessages({
   subject: "example",
   tags: ["example1", "example2"],
   mailType: "transactional",
-  status: "sent",
+  status: Helo.MessageStatus.QUEUED,
 });
 ```
 
