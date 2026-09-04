@@ -49,7 +49,10 @@ describe("webhooks", () => {
   it("create", async () => {
     const result = await client.webhooks.create({
       url: "test-url",
-      events: [Helo.WebhookEvent.ACCEPTED, Helo.WebhookEvent.PROCESSED],
+      events: [
+        Helo.WebhookEvent.MESSAGE_ACCEPTED,
+        Helo.WebhookEvent.MESSAGE_PROCESSED,
+      ],
       channelId: "550e8400-e29b-41d4-a716-446655440000",
       additionalHeaders: [{ name: "test-name", value: "test-value" }],
       enabled: true,
@@ -62,8 +65,8 @@ describe("webhooks", () => {
     const body = JSON.parse(lastRequest.body!);
     expect(body.url).toEqual("test-url");
     expect(body.events).toEqual([
-      Helo.WebhookEvent.ACCEPTED,
-      Helo.WebhookEvent.PROCESSED,
+      Helo.WebhookEvent.MESSAGE_ACCEPTED,
+      Helo.WebhookEvent.MESSAGE_PROCESSED,
     ]);
     expect(body.channelId).toEqual("550e8400-e29b-41d4-a716-446655440000");
     expect(body.additionalHeaders).toEqual([
@@ -91,7 +94,10 @@ describe("webhooks", () => {
       "550e8400-e29b-41d4-a716-446655440000",
       {
         url: "test-url",
-        events: [Helo.WebhookEvent.ACCEPTED, Helo.WebhookEvent.PROCESSED],
+        events: [
+          Helo.WebhookEvent.MESSAGE_ACCEPTED,
+          Helo.WebhookEvent.MESSAGE_PROCESSED,
+        ],
         channelId: "550e8400-e29b-41d4-a716-446655440000",
         additionalHeaders: [{ name: "test-name", value: "test-value" }],
         enabled: true,
@@ -105,8 +111,8 @@ describe("webhooks", () => {
     const body = JSON.parse(lastRequest.body!);
     expect(body.url).toEqual("test-url");
     expect(body.events).toEqual([
-      Helo.WebhookEvent.ACCEPTED,
-      Helo.WebhookEvent.PROCESSED,
+      Helo.WebhookEvent.MESSAGE_ACCEPTED,
+      Helo.WebhookEvent.MESSAGE_PROCESSED,
     ]);
     expect(body.channelId).toEqual("550e8400-e29b-41d4-a716-446655440000");
     expect(body.additionalHeaders).toEqual([

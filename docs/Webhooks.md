@@ -50,7 +50,10 @@ const helo = new Helo(apiKey);
 
 const result = await helo.webhooks.create({
   url: "test-url",
-  events: [Helo.WebhookEvent.ACCEPTED, Helo.WebhookEvent.PROCESSED],
+  events: [
+    Helo.WebhookEvent.MESSAGE_ACCEPTED,
+    Helo.WebhookEvent.MESSAGE_PROCESSED,
+  ],
   channelId: "550e8400-e29b-41d4-a716-446655440000",
   additionalHeaders: [{ name: "test-name", value: "test-value" }],
   enabled: true,
@@ -98,7 +101,10 @@ const result = await helo.webhooks.update(
   "550e8400-e29b-41d4-a716-446655440000",
   {
     url: "test-url",
-    events: [Helo.WebhookEvent.ACCEPTED, Helo.WebhookEvent.PROCESSED],
+    events: [
+      Helo.WebhookEvent.MESSAGE_ACCEPTED,
+      Helo.WebhookEvent.MESSAGE_PROCESSED,
+    ],
     channelId: "550e8400-e29b-41d4-a716-446655440000",
     additionalHeaders: [{ name: "test-name", value: "test-value" }],
     enabled: true,

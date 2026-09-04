@@ -515,8 +515,8 @@ export interface DeliveryWebhookPayloadCommon {
   timestamp?: string;
 }
 
-export interface AcceptedWebhookPayload {
-  eventType: "accepted";
+export interface MessageAcceptedWebhookPayload {
+  eventType: "message-accepted";
   recipients: string[];
   messageId: string;
   channelId: string;
@@ -527,8 +527,8 @@ export interface AcceptedWebhookPayload {
   timestamp: string;
 }
 
-export interface ProcessedWebhookPayload {
-  eventType: "processed";
+export interface MessageProcessedWebhookPayload {
+  eventType: "message-processed";
   recipients: string[];
   messageId: string;
   channelId: string;
@@ -539,8 +539,8 @@ export interface ProcessedWebhookPayload {
   timestamp: string;
 }
 
-export interface DeliveredWebhookPayload {
-  eventType: "delivered";
+export interface EmailDeliveredWebhookPayload {
+  eventType: "email-delivered";
   details?: DeliveredDetails;
   recipient: string;
   messageId: string;
@@ -552,8 +552,8 @@ export interface DeliveredWebhookPayload {
   timestamp: string;
 }
 
-export interface BouncedWebhookPayload {
-  eventType: "bounced";
+export interface EmailBouncedWebhookPayload {
+  eventType: "email-bounced";
   details?: BouncedDetails;
   recipient: string;
   messageId: string;
@@ -565,8 +565,8 @@ export interface BouncedWebhookPayload {
   timestamp: string;
 }
 
-export interface OpenedWebhookPayload {
-  eventType: "opened";
+export interface EmailOpenedWebhookPayload {
+  eventType: "email-opened";
   details?: OpenedDetails;
   recipient: string;
   messageId: string;
@@ -578,8 +578,8 @@ export interface OpenedWebhookPayload {
   timestamp: string;
 }
 
-export interface ClickedWebhookPayload {
-  eventType: "clicked";
+export interface LinkClickedWebhookPayload {
+  eventType: "link-clicked";
   details?: ClickedDetails;
   recipient: string;
   messageId: string;
@@ -591,8 +591,8 @@ export interface ClickedWebhookPayload {
   timestamp: string;
 }
 
-export interface ComplainedWebhookPayload {
-  eventType: "complained";
+export interface RecipientComplainedWebhookPayload {
+  eventType: "recipient-complained";
   details?: ComplainedDetails;
   recipient: string;
   messageId: string;
@@ -604,8 +604,8 @@ export interface ComplainedWebhookPayload {
   timestamp: string;
 }
 
-export interface UnsubscribedWebhookPayload {
-  eventType: "unsubscribed";
+export interface RecipientUnsubscribedWebhookPayload {
+  eventType: "recipient-unsubscribed";
   details?: UnsubscribedDetails;
   recipient: string;
   messageId: string;
@@ -617,8 +617,8 @@ export interface UnsubscribedWebhookPayload {
   timestamp: string;
 }
 
-export interface ResubscribedWebhookPayload {
-  eventType: "resubscribed";
+export interface RecipientResubscribedWebhookPayload {
+  eventType: "recipient-resubscribed";
   details?: ResubscribedDetails;
   recipient: string;
   messageId: string;
