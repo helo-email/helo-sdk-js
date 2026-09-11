@@ -27,8 +27,8 @@ describe("sending", () => {
     });
   });
 
-  it("transactional", async () => {
-    const result = await client.sending.transactional(
+  it("sendTransactional", async () => {
+    const result = await client.sending.sendTransactional(
       {
         from: { email: "from@yourdomain.com", name: "From name" },
         to: [{ email: "to@example.com", name: "To name" }],
@@ -113,19 +113,19 @@ describe("sending", () => {
     expect(body.metadata).toEqual({});
   });
 
-  it("transactionalBatch", async () => {
-    const result = await client.sending.transactionalBatch(
+  it("sendTransactionalBatch", async () => {
+    const result = await client.sending.sendTransactionalBatch(
       {
         requests: [
           {
-            from: { email: "test@example.com", name: "test-name" },
-            to: [{ email: "test@example.com", name: "test-name" }],
-            cc: [{ email: "test@example.com", name: "test-name" }],
-            bcc: [{ email: "test@example.com", name: "test-name" }],
-            replyTo: [{ email: "test@example.com", name: "test-name" }],
-            subject: "test-subject",
-            html: "test-html",
-            text: "test-text",
+            from: { email: "from@yourdomain.com", name: "From name" },
+            to: [{ email: "to@example.com", name: "To name" }],
+            cc: [{ email: "cc@example.com", name: "Cc name" }],
+            bcc: [{ email: "bcc@example.com", name: "Bcc name" }],
+            replyTo: [{ email: "reply-to@example.com", name: "Reply-To name" }],
+            subject: "Hello from Helo",
+            html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
+            text: "This is a test message, delivered with <3 by Helo.",
             template: {
               subject: "test-subject",
               html: "test-html",
@@ -143,7 +143,7 @@ describe("sending", () => {
                 disposition: Helo.AttachmentDisposition.ATTACHMENT,
               },
             ],
-            tags: ["example1", "example2"],
+            tags: ["welcome", "onboarding"],
             headers: {},
             metadata: {},
           },
@@ -166,14 +166,14 @@ describe("sending", () => {
     const body = JSON.parse(lastRequest.body!);
     expect(body.requests).toEqual([
       {
-        from: { email: "test@example.com", name: "test-name" },
-        to: [{ email: "test@example.com", name: "test-name" }],
-        cc: [{ email: "test@example.com", name: "test-name" }],
-        bcc: [{ email: "test@example.com", name: "test-name" }],
-        replyTo: [{ email: "test@example.com", name: "test-name" }],
-        subject: "test-subject",
-        html: "test-html",
-        text: "test-text",
+        from: { email: "from@yourdomain.com", name: "From name" },
+        to: [{ email: "to@example.com", name: "To name" }],
+        cc: [{ email: "cc@example.com", name: "Cc name" }],
+        bcc: [{ email: "bcc@example.com", name: "Bcc name" }],
+        replyTo: [{ email: "reply-to@example.com", name: "Reply-To name" }],
+        subject: "Hello from Helo",
+        html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
+        text: "This is a test message, delivered with <3 by Helo.",
         template: {
           subject: "test-subject",
           html: "test-html",
@@ -191,15 +191,15 @@ describe("sending", () => {
             disposition: Helo.AttachmentDisposition.ATTACHMENT,
           },
         ],
-        tags: ["example1", "example2"],
+        tags: ["welcome", "onboarding"],
         headers: {},
         metadata: {},
       },
     ]);
   });
 
-  it("broadcast", async () => {
-    const result = await client.sending.broadcast(
+  it("sendBroadcast", async () => {
+    const result = await client.sending.sendBroadcast(
       {
         from: { email: "test@example.com", name: "test-name" },
         replyTo: [{ email: "test@example.com", name: "test-name" }],
@@ -287,8 +287,8 @@ describe("sending", () => {
     ]);
   });
 
-  it("broadcastMessage", async () => {
-    const result = await client.sending.broadcastMessage(
+  it("sendBroadcastMessage", async () => {
+    const result = await client.sending.sendBroadcastMessage(
       {
         from: { email: "from@yourdomain.com", name: "From name" },
         to: [{ email: "to@example.com", name: "To name" }],

@@ -1,15 +1,15 @@
 # Helo.sending
 
-| Method                                                  | HTTP request                       | Description                        |
-| ------------------------------------------------------- | ---------------------------------- | ---------------------------------- |
-| [**transactional**](Sending.md#transactional)           | **POST** /send/transactional       | Send a transactional email         |
-| [**transactionalBatch**](Sending.md#transactionalBatch) | **POST** /send/transactional/batch | Send transactional emails in batch |
-| [**broadcast**](Sending.md#broadcast)                   | **POST** /send/broadcast           | Send a broadcast email             |
-| [**broadcastMessage**](Sending.md#broadcastMessage)     | **POST** /send/broadcast/message   | Send a single broadcast email      |
+| Method                                                          | HTTP request                       | Description                        |
+| --------------------------------------------------------------- | ---------------------------------- | ---------------------------------- |
+| [**sendTransactional**](Sending.md#sendTransactional)           | **POST** /send/transactional       | Send a transactional email         |
+| [**sendTransactionalBatch**](Sending.md#sendTransactionalBatch) | **POST** /send/transactional/batch | Send transactional emails in batch |
+| [**sendBroadcast**](Sending.md#sendBroadcast)                   | **POST** /send/broadcast           | sendBroadcast operation            |
+| [**sendBroadcastMessage**](Sending.md#sendBroadcastMessage)     | **POST** /send/broadcast/message   | Send a single broadcast email      |
 
-## transactional
+## sendTransactional
 
-> transactional({ ... }, { channelId, idempotencyKey }) → Object
+> sendTransactional({ ... }, { channelId, idempotencyKey }) → Object
 
 Send a transactional email
 
@@ -17,13 +17,13 @@ Sends a single transactional email such as receipts, confirmations, or notificat
 
 ### Example
 
-```javascript Sending_transactional
+```javascript Sending_sendTransactional
 import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
 
-const result = await helo.sending.transactional(
+const result = await helo.sending.sendTransactional(
   {
     from: { email: "from@yourdomain.com", name: "From name" },
     to: [{ email: "to@example.com", name: "To name" }],
@@ -61,9 +61,9 @@ const result = await helo.sending.transactional(
 );
 ```
 
-## transactionalBatch
+## sendTransactionalBatch
 
-> transactionalBatch({ ... }, { channelId, idempotencyKey }) → Object
+> sendTransactionalBatch({ ... }, { channelId, idempotencyKey }) → Object
 
 Send transactional emails in batch
 
@@ -71,24 +71,24 @@ Sends multiple transactional emails in a single API request for better performan
 
 ### Example
 
-```javascript Sending_transactionalBatch
+```javascript Sending_sendTransactionalBatch
 import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
 
-const result = await helo.sending.transactionalBatch(
+const result = await helo.sending.sendTransactionalBatch(
   {
     requests: [
       {
-        from: { email: "test@example.com", name: "test-name" },
-        to: [{ email: "test@example.com", name: "test-name" }],
-        cc: [{ email: "test@example.com", name: "test-name" }],
-        bcc: [{ email: "test@example.com", name: "test-name" }],
-        replyTo: [{ email: "test@example.com", name: "test-name" }],
-        subject: "test-subject",
-        html: "test-html",
-        text: "test-text",
+        from: { email: "from@yourdomain.com", name: "From name" },
+        to: [{ email: "to@example.com", name: "To name" }],
+        cc: [{ email: "cc@example.com", name: "Cc name" }],
+        bcc: [{ email: "bcc@example.com", name: "Bcc name" }],
+        replyTo: [{ email: "reply-to@example.com", name: "Reply-To name" }],
+        subject: "Hello from Helo",
+        html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
+        text: "This is a test message, delivered with <3 by Helo.",
         template: {
           subject: "test-subject",
           html: "test-html",
@@ -106,7 +106,7 @@ const result = await helo.sending.transactionalBatch(
             disposition: Helo.AttachmentDisposition.ATTACHMENT,
           },
         ],
-        tags: ["example1", "example2"],
+        tags: ["welcome", "onboarding"],
         headers: {},
         metadata: {},
       },
@@ -119,23 +119,21 @@ const result = await helo.sending.transactionalBatch(
 );
 ```
 
-## broadcast
+## sendBroadcast
 
-> broadcast({ ... }, { channelId, idempotencyKey }) → Object
+> sendBroadcast({ ... }, { channelId, idempotencyKey }) → Object
 
-Send a broadcast email
-
-Sends a broadcast email to multiple recipients for marketing or announcement purposes.
+sendBroadcast operation
 
 ### Example
 
-```javascript Sending_broadcast
+```javascript Sending_sendBroadcast
 import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
 
-const result = await helo.sending.broadcast(
+const result = await helo.sending.sendBroadcast(
   {
     from: { email: "test@example.com", name: "test-name" },
     replyTo: [{ email: "test@example.com", name: "test-name" }],
@@ -178,9 +176,9 @@ const result = await helo.sending.broadcast(
 );
 ```
 
-## broadcastMessage
+## sendBroadcastMessage
 
-> broadcastMessage({ ... }, { channelId, idempotencyKey }) → Object
+> sendBroadcastMessage({ ... }, { channelId, idempotencyKey }) → Object
 
 Send a single broadcast email
 
@@ -188,13 +186,13 @@ Sends a single broadcast email message.
 
 ### Example
 
-```javascript Sending_broadcastMessage
+```javascript Sending_sendBroadcastMessage
 import Helo from "@helo-email/sdk";
 
 const apiKey = process.env.HELO_API_KEY;
 const helo = new Helo(apiKey);
 
-const result = await helo.sending.broadcastMessage(
+const result = await helo.sending.sendBroadcastMessage(
   {
     from: { email: "from@yourdomain.com", name: "From name" },
     to: [{ email: "to@example.com", name: "To name" }],

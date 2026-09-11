@@ -4,6 +4,29 @@ export interface ClientConfig {
   baseUrl: string;
   apiKey: string | (() => string);
   fetch?: typeof fetch;
+  /** Product token and version, e.g. "helo-email-sdk/1.2.3". */
+  userAgent?: string;
+}
+
+/**
+ * Names the JS runtime the SDK is running on. Browsers are reported without a
+ * version: they forbid a script from setting User-Agent at all, so the header
+ * is dropped there anyway and there is nothing to be gained from sniffing.
+ */
+function runtimeDescription(): string {
+  const g = globalThis as Record<string, any>;
+
+  if (g.Deno?.version?.deno) return `deno ${g.Deno.version.deno}`;
+  if (g.Bun?.version) return `bun ${g.Bun.version}`;
+
+  const node = g.process?.versions?.node;
+  if (node) {
+    const platform = g.process.platform ?? "unknown";
+    const arch = g.process.arch ?? "unknown";
+    return `node ${node}; ${platform}/${arch}`;
+  }
+
+  return "browser";
 }
 
 /**
@@ -55,6 +78,11 @@ export class Client {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
     };
+
+    if (this._config.userAgent) {
+      headers["User-Agent"] =
+        `${this._config.userAgent} (${runtimeDescription()})`;
+    }
 
     if (extraHeaders) {
       for (const [key, value] of Object.entries(extraHeaders)) {

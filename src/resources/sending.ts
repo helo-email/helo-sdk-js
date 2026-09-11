@@ -21,7 +21,7 @@ export class Sending {
   /**
    * Send a transactional email
    */
-  async transactional(
+  async sendTransactional(
     params: SendMessageRequest,
     options: { channelId?: string; idempotencyKey?: string } = {},
   ): Promise<SendMessageAcceptedResponse> {
@@ -38,7 +38,7 @@ export class Sending {
   /**
    * Send transactional emails in batch
    */
-  async transactionalBatch(
+  async sendTransactionalBatch(
     params: SendMessageBatchRequest,
     options: { channelId?: string; idempotencyKey?: string } = {},
   ): Promise<SendMessageBatchResponse> {
@@ -57,9 +57,9 @@ export class Sending {
   }
 
   /**
-   * Send a broadcast email
+   * sendBroadcast operation
    */
-  async broadcast(
+  async sendBroadcast(
     params: SendBroadcastRequest,
     options: { channelId?: string; idempotencyKey?: string } = {},
   ): Promise<SendBroadcastResponse> {
@@ -76,7 +76,7 @@ export class Sending {
   /**
    * Send a single broadcast email
    */
-  async broadcastMessage(
+  async sendBroadcastMessage(
     params: SendMessageRequest,
     options: { channelId?: string; idempotencyKey?: string } = {},
   ): Promise<SendMessageAcceptedResponse> {

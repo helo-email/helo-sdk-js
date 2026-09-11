@@ -1,6 +1,6 @@
 # @helo-email/sdk
 
-Helo API
+Helo Email API (https://helohq.com)
 
 ## Installation
 
