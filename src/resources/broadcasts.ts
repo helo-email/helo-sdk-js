@@ -24,6 +24,8 @@ export class Broadcasts {
     channelId: string;
     status?: BroadcastStatus;
     subject?: string;
+    from?: string;
+    to?: string;
     limit?: number;
     offset?: number;
   }): Promise<PaginatedResponseOfBroadcast> {

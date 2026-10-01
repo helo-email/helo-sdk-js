@@ -32,6 +32,8 @@ describe("broadcasts", () => {
       channelId: "550e8400-e29b-41d4-a716-446655440000",
       status: Helo.BroadcastStatus.ACCEPTED,
       subject: "example",
+      from: "2024-01-01T00:00:00Z",
+      to: "2024-01-01T00:00:00Z",
       limit: 10,
       offset: 10,
     });
@@ -48,6 +50,8 @@ describe("broadcasts", () => {
       String(Helo.BroadcastStatus.ACCEPTED),
     );
     expect(url.searchParams.get("subject")).toBe(String("example"));
+    expect(url.searchParams.get("from")).toBe(String("2024-01-01T00:00:00Z"));
+    expect(url.searchParams.get("to")).toBe(String("2024-01-01T00:00:00Z"));
     expect(url.searchParams.get("limit")).toBe(String(10));
     expect(url.searchParams.get("offset")).toBe(String(10));
   });
