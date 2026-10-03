@@ -1,0 +1,62 @@
+name: Publish
+
+# Stages a release on npm when a version tag (e.g. 1.0.1, 1.0.1-beta.1) is
+# pushed, once the same tests that gate pull requests pass. A staged version is
+# not installable until a maintainer approves it with 2FA (`npm stage list`,
+# then `npm stage approve <stage-id>`). Stable versions get the `latest`
+# dist-tag; prereleases get `prerelease`.
+on:
+  push:
+    tags: ["[0-9]+.[0-9]+.[0-9]+*"]
+  workflow_dispatch:
+
+concurrency:
+  group: publish-${{ github.ref_name }}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    if: github.ref_type == 'tag'
+    uses: ./.github/workflows/test.yml
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write # npm trusted publishing
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          registry-url: https://registry.npmjs.org
+          cache: npm
+
+      # `npm stage` arrived in npm 11.15.0, newer than the npm bundled with the
+      # Node 24 a runner may have cached.
+      - name: Update npm
+        run: npm install --global npm@^11.15.0
+
+      - name: Check tag matches package.json version
+        run: |
+          version=$(node -p 'require("./package.json").version')
+          if [ "$GITHUB_REF_NAME" != "$version" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match package.json version $version" && exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # The dist-tag is fixed at staging time and applied on approval.
+      - name: Stage publish
+        run: |
+          dist_tag=$([[ "$GITHUB_REF_NAME" == *-* ]] && echo prerelease || echo latest)
+          npm stage publish --access public --tag "$dist_tag"
