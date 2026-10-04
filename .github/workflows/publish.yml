@@ -5,6 +5,8 @@ name: Publish
 # not installable until a maintainer approves it with 2FA (`npm stage list`,
 # then `npm stage approve <stage-id>`). Stable versions get the `latest`
 # dist-tag; prereleases get `prerelease`.
+# release.yml also dispatches it against the tag it creates, since tags pushed
+# with GITHUB_TOKEN don't trigger `push` workflows.
 on:
   push:
     tags: ["[0-9]+.[0-9]+.[0-9]+*"]
