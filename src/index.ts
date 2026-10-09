@@ -61,7 +61,7 @@ class Helo {
       apiKey,
       baseUrl: options.baseUrl || "https://api.helohq.com",
       fetch: options.fetch,
-      userAgent: "helo-email-sdk/1.0.2",
+      userAgent: "helo-email-sdk/1.1.0",
     });
 
     this.channels = new Channels(client);
