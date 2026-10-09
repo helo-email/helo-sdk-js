@@ -39,6 +39,7 @@ describe("sending", () => {
         html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
         text: "This is a test message, delivered with <3 by Helo.",
         template: {
+          id: "550e8400-e29b-41d4-a716-446655440000",
           subject: "test-subject",
           html: "test-html",
           text: "test-text",
@@ -92,6 +93,7 @@ describe("sending", () => {
       "This is a test message, delivered with <3 by Helo.",
     );
     expect(body.template).toEqual({
+      id: "550e8400-e29b-41d4-a716-446655440000",
       subject: "test-subject",
       html: "test-html",
       text: "test-text",
@@ -127,6 +129,7 @@ describe("sending", () => {
             html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
             text: "This is a test message, delivered with <3 by Helo.",
             template: {
+              id: "550e8400-e29b-41d4-a716-446655440000",
               subject: "test-subject",
               html: "test-html",
               text: "test-text",
@@ -175,6 +178,7 @@ describe("sending", () => {
         html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
         text: "This is a test message, delivered with <3 by Helo.",
         template: {
+          id: "550e8400-e29b-41d4-a716-446655440000",
           subject: "test-subject",
           html: "test-html",
           text: "test-text",
@@ -204,6 +208,7 @@ describe("sending", () => {
         from: { email: "test@example.com", name: "test-name" },
         replyTo: [{ email: "test@example.com", name: "test-name" }],
         template: {
+          id: "550e8400-e29b-41d4-a716-446655440000",
           subject: "test-subject",
           html: "test-html",
           text: "test-text",
@@ -255,6 +260,7 @@ describe("sending", () => {
       { email: "test@example.com", name: "test-name" },
     ]);
     expect(body.template).toEqual({
+      id: "550e8400-e29b-41d4-a716-446655440000",
       subject: "test-subject",
       html: "test-html",
       text: "test-text",
@@ -299,6 +305,7 @@ describe("sending", () => {
         html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
         text: "This is a test message, delivered with <3 by Helo.",
         template: {
+          id: "550e8400-e29b-41d4-a716-446655440000",
           subject: "test-subject",
           html: "test-html",
           text: "test-text",
@@ -352,6 +359,7 @@ describe("sending", () => {
       "This is a test message, delivered with <3 by Helo.",
     );
     expect(body.template).toEqual({
+      id: "550e8400-e29b-41d4-a716-446655440000",
       subject: "test-subject",
       html: "test-html",
       text: "test-text",

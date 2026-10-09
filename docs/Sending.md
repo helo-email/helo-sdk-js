@@ -4,7 +4,7 @@
 | --------------------------------------------------------------- | ---------------------------------- | ---------------------------------- |
 | [**sendTransactional**](Sending.md#sendTransactional)           | **POST** /send/transactional       | Send a transactional email         |
 | [**sendTransactionalBatch**](Sending.md#sendTransactionalBatch) | **POST** /send/transactional/batch | Send transactional emails in batch |
-| [**sendBroadcast**](Sending.md#sendBroadcast)                   | **POST** /send/broadcast           | sendBroadcast operation            |
+| [**sendBroadcast**](Sending.md#sendBroadcast)                   | **POST** /send/broadcast           | Send a broadcast                   |
 | [**sendBroadcastMessage**](Sending.md#sendBroadcastMessage)     | **POST** /send/broadcast/message   | Send a single broadcast email      |
 
 ## sendTransactional
@@ -34,6 +34,7 @@ const result = await helo.sending.sendTransactional(
     html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
     text: "This is a test message, delivered with <3 by Helo.",
     template: {
+      id: "550e8400-e29b-41d4-a716-446655440000",
       subject: "test-subject",
       html: "test-html",
       text: "test-text",
@@ -90,6 +91,7 @@ const result = await helo.sending.sendTransactionalBatch(
         html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
         text: "This is a test message, delivered with <3 by Helo.",
         template: {
+          id: "550e8400-e29b-41d4-a716-446655440000",
           subject: "test-subject",
           html: "test-html",
           text: "test-text",
@@ -123,7 +125,9 @@ const result = await helo.sending.sendTransactionalBatch(
 
 > sendBroadcast({ ... }, { channelId, idempotencyKey }) → Object
 
-sendBroadcast operation
+Send a broadcast
+
+Sends a broadcast of multiple messages for marketing or announcement purposes.
 
 ### Example
 
@@ -138,6 +142,7 @@ const result = await helo.sending.sendBroadcast(
     from: { email: "test@example.com", name: "test-name" },
     replyTo: [{ email: "test@example.com", name: "test-name" }],
     template: {
+      id: "550e8400-e29b-41d4-a716-446655440000",
       subject: "test-subject",
       html: "test-html",
       text: "test-text",
@@ -203,6 +208,7 @@ const result = await helo.sending.sendBroadcastMessage(
     html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
     text: "This is a test message, delivered with <3 by Helo.",
     template: {
+      id: "550e8400-e29b-41d4-a716-446655440000",
       subject: "test-subject",
       html: "test-html",
       text: "test-text",

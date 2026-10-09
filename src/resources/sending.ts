@@ -57,7 +57,7 @@ export class Sending {
   }
 
   /**
-   * sendBroadcast operation
+   * Send a broadcast
    */
   async sendBroadcast(
     params: SendBroadcastRequest,
