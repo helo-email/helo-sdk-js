@@ -53,6 +53,7 @@ const helo = new Helo(apiKey);
 const result = await helo.domains.create({
   name: "test-name",
   channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
+  enableCustomTracking: true,
 });
 ```
 
@@ -97,6 +98,7 @@ const result = await helo.domains.update(
   "550e8400-e29b-41d4-a716-446655440000",
   {
     channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
+    enableCustomTracking: true,
   },
 );
 ```

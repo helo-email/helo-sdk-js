@@ -52,6 +52,7 @@ describe("domains", () => {
     const result = await client.domains.create({
       name: "test-name",
       channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
+      enableCustomTracking: true,
     });
 
     expect(result).toBeDefined();
@@ -61,6 +62,7 @@ describe("domains", () => {
     const body = JSON.parse(lastRequest.body!);
     expect(body.name).toEqual("test-name");
     expect(body.channelIds).toEqual(["550e8400-e29b-41d4-a716-446655440000"]);
+    expect(body.enableCustomTracking).toEqual(true);
   });
 
   it("retrieve", async () => {
@@ -80,7 +82,10 @@ describe("domains", () => {
   it("update", async () => {
     const result = await client.domains.update(
       "550e8400-e29b-41d4-a716-446655440000",
-      { channelIds: ["550e8400-e29b-41d4-a716-446655440000"] },
+      {
+        channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
+        enableCustomTracking: true,
+      },
     );
 
     expect(result).toBeDefined();
@@ -89,6 +94,7 @@ describe("domains", () => {
     expect(lastRequest.headers["Authorization"]).toBe("Bearer test-token-123");
     const body = JSON.parse(lastRequest.body!);
     expect(body.channelIds).toEqual(["550e8400-e29b-41d4-a716-446655440000"]);
+    expect(body.enableCustomTracking).toEqual(true);
     expect(lastRequest.url).toContain(
       "/domains/550e8400-e29b-41d4-a716-446655440000",
     );

@@ -7,6 +7,7 @@ import { Sending } from "./resources/sending.js";
 import { Broadcasts } from "./resources/broadcasts.js";
 import { Statistics } from "./resources/statistics.js";
 import { Suppressions } from "./resources/suppressions.js";
+import { Templates } from "./resources/templates.js";
 import { Webhooks } from "./resources/webhooks.js";
 import { MailType } from "./enums.js";
 import { DeliveryType } from "./enums.js";
@@ -44,6 +45,7 @@ class Helo {
   readonly broadcasts: Broadcasts;
   readonly statistics: Statistics;
   readonly suppressions: Suppressions;
+  readonly templates: Templates;
   readonly webhooks: Webhooks;
 
   /**
@@ -61,7 +63,7 @@ class Helo {
       apiKey,
       baseUrl: options.baseUrl || "https://api.helohq.com",
       fetch: options.fetch,
-      userAgent: "helo-email-sdk/1.1.0",
+      userAgent: "helo-email-sdk/1.2.0",
     });
 
     this.channels = new Channels(client);
@@ -71,6 +73,7 @@ class Helo {
     this.broadcasts = new Broadcasts(client);
     this.statistics = new Statistics(client);
     this.suppressions = new Suppressions(client);
+    this.templates = new Templates(client);
     this.webhooks = new Webhooks(client);
   }
 

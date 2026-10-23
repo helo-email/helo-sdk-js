@@ -113,4 +113,5 @@ To compute a signature yourself — signing a fixture in tests, for example — 
 - [Helo.broadcasts](docs/Broadcasts.md)
 - [Helo.statistics](docs/Statistics.md)
 - [Helo.suppressions](docs/Suppressions.md)
+- [Helo.templates](docs/Templates.md)
 - [Helo.webhooks](docs/Webhooks.md)

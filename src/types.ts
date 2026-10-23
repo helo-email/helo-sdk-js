@@ -166,6 +166,7 @@ export interface MessageDetailsResponse {
 export interface CreateDomainRequest {
   name: string;
   channelIds?: string[];
+  enableCustomTracking?: boolean;
 }
 
 export interface DnsRecordResponse {
@@ -180,6 +181,7 @@ export interface DnsRecordsResponse {
   domainKeyActive?: DnsRecordResponse;
   domainKeyPending?: DnsRecordResponse;
   returnPath?: DnsRecordResponse[];
+  tracking?: DnsRecordResponse;
 }
 
 export interface DomainChannelResponse {
@@ -213,6 +215,7 @@ export interface PaginatedResponseOfDomainResponse {
 
 export interface UpdateDomainRequest {
   channelIds?: string[];
+  enableCustomTracking?: boolean;
 }
 
 export interface MailAddress {
@@ -458,6 +461,72 @@ export interface RemoveSuppressionResult {
   email: string;
   success: boolean;
   message?: string;
+}
+
+export interface CreateTemplateRequest {
+  name: string;
+  subject: string;
+  html?: string;
+  mjml?: string;
+  text?: string;
+  channelIds?: string[];
+}
+
+export interface UpdateTemplateRequest {
+  name?: string;
+  subject?: string;
+  html?: string;
+  mjml?: string;
+  text?: string;
+  channelIds?: string[];
+  version?: number;
+}
+
+export interface RenderTemplateRequest {
+  inlineStyles?: boolean;
+  data?: Record<string, unknown>;
+}
+
+export interface RenderDraftRequest {
+  subject: string;
+  html?: string;
+  mjml?: string;
+  text?: string;
+  inlineStyles?: boolean;
+  data?: Record<string, unknown>;
+}
+
+export interface TemplateResponse {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  version: number;
+  name: string;
+  subject: string;
+  html?: string;
+  mjml?: string;
+  text?: string;
+  channelIds?: string[];
+}
+
+export interface TemplateSummaryResponse {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  subject: string;
+  channelIds?: string[];
+}
+
+export interface RenderTemplateResponse {
+  subject: string;
+  html?: string;
+  text?: string;
+}
+
+export interface PaginatedResponseOfTemplateSummaryResponse {
+  totalCount: number;
+  results: TemplateSummaryResponse[];
 }
 
 export interface CreateWebhookRequest {
