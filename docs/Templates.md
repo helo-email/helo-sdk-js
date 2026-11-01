@@ -1,22 +1,22 @@
 # Helo.templates
 
-| Method                                      | HTTP request                    | Description           |
-| ------------------------------------------- | ------------------------------- | --------------------- |
-| [**list**](Templates.md#list)               | **GET** /templates              | list operation        |
-| [**create**](Templates.md#create)           | **POST** /templates             | create operation      |
-| [**renderDraft**](Templates.md#renderDraft) | **POST** /templates/render      | renderDraft operation |
-| [**retrieve**](Templates.md#retrieve)       | **GET** /templates/{id}         | retrieve operation    |
-| [**update**](Templates.md#update)           | **PATCH** /templates/{id}       | update operation      |
-| [**del**](Templates.md#del)                 | **DELETE** /templates/{id}      | del operation         |
-| [**render**](Templates.md#render)           | **POST** /templates/{id}/render | render operation      |
+| Method                                      | HTTP request                    | Description             |
+| ------------------------------------------- | ------------------------------- | ----------------------- |
+| [**list**](Templates.md#list)               | **GET** /templates              | List all templates      |
+| [**create**](Templates.md#create)           | **POST** /templates             | Create a template       |
+| [**renderDraft**](Templates.md#renderDraft) | **POST** /templates/render      | Render template content |
+| [**retrieve**](Templates.md#retrieve)       | **GET** /templates/{id}         | Retrieve a template     |
+| [**update**](Templates.md#update)           | **PATCH** /templates/{id}       | Update a template       |
+| [**del**](Templates.md#del)                 | **DELETE** /templates/{id}      | Delete a template       |
+| [**render**](Templates.md#render)           | **POST** /templates/{id}/render | Render a template       |
 
 ## list
 
 > list({ ... }) → Object
 
-list operation
+List all templates
 
-Fetch a paginated list of templates.
+Retrieves a paginated list of templates, optionally filtered by name or channel.
 
 ### Example
 
@@ -38,9 +38,9 @@ const result = await helo.templates.list({
 
 > create({ ... }) → Object
 
-create operation
+Create a template
 
-Create a new template.
+Creates a new template from HTML, MJML, or plain-text content. MJML is compiled to HTML when the template is saved.
 
 ### Example
 
@@ -64,9 +64,9 @@ const result = await helo.templates.create({
 
 > renderDraft({ ... }) → Object
 
-renderDraft operation
+Render template content
 
-Render ad-hoc template content (Subject/Html/Text) with sample data, without persisting anything.
+Renders unsaved template content (subject, HTML or MJML, and text) with sample data, without persisting anything.
 
 ### Example
 
@@ -90,9 +90,9 @@ const result = await helo.templates.renderDraft({
 
 > retrieve(id) → Object
 
-retrieve operation
+Retrieve a template
 
-Fetch a single template.
+Fetches the details and content of a specific template.
 
 ### Example
 
@@ -111,9 +111,9 @@ const result = await helo.templates.retrieve(
 
 > update(id, { ... }) → Object
 
-update operation
+Update a template
 
-Update an existing template.
+Modifies an existing template. Only the provided fields are changed.
 
 ### Example
 
@@ -141,9 +141,9 @@ const result = await helo.templates.update(
 
 > del(id) → null
 
-del operation
+Delete a template
 
-Delete a template.
+Permanently removes a template. This action cannot be undone.
 
 ### Example
 
@@ -160,9 +160,9 @@ await helo.templates.del("550e8400-e29b-41d4-a716-446655440000");
 
 > render(id, { ... }) → Object
 
-render operation
+Render a template
 
-Render a saved template with sample data.
+Renders a saved template with sample data, to preview the output before sending.
 
 ### Example
 

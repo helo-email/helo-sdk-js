@@ -20,7 +20,7 @@ export class Templates {
   }
 
   /**
-   * list operation
+   * List all templates
    */
   async list(
     params: {
@@ -37,7 +37,7 @@ export class Templates {
   }
 
   /**
-   * create operation
+   * Create a template
    */
   async create(params: CreateTemplateRequest): Promise<TemplateResponse> {
     const response = await this._client.request("post", `/templates`, {
@@ -47,7 +47,7 @@ export class Templates {
   }
 
   /**
-   * renderDraft operation
+   * Render template content
    */
   async renderDraft(
     params: RenderDraftRequest,
@@ -59,7 +59,7 @@ export class Templates {
   }
 
   /**
-   * retrieve operation
+   * Retrieve a template
    */
   async retrieve(id: string): Promise<TemplateResponse> {
     const response = await this._client.request("get", `/templates/${id}`);
@@ -67,7 +67,7 @@ export class Templates {
   }
 
   /**
-   * update operation
+   * Update a template
    */
   async update(
     id: string,
@@ -80,7 +80,7 @@ export class Templates {
   }
 
   /**
-   * del operation
+   * Delete a template
    */
   async del(id: string): Promise<null> {
     const response = await this._client.request("delete", `/templates/${id}`);
@@ -88,7 +88,7 @@ export class Templates {
   }
 
   /**
-   * render operation
+   * Render a template
    */
   async render(
     id: string,
