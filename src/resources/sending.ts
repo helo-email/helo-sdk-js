@@ -1,4 +1,4 @@
-import { Client } from "../core/client.js";
+import { Client, idempotencyKey } from "../core/client.js";
 import type {
   SendBroadcastRequest,
   SendBroadcastResponse,
@@ -29,7 +29,7 @@ export class Sending {
       body: params,
       headers: {
         "X-Helo-Channel-Id": options.channelId,
-        "X-Helo-Idempotency-Key": options.idempotencyKey,
+        "X-Helo-Idempotency-Key": options.idempotencyKey ?? idempotencyKey(),
       },
     });
     return response.json();
@@ -49,7 +49,7 @@ export class Sending {
         body: params,
         headers: {
           "X-Helo-Channel-Id": options.channelId,
-          "X-Helo-Idempotency-Key": options.idempotencyKey,
+          "X-Helo-Idempotency-Key": options.idempotencyKey ?? idempotencyKey(),
         },
       },
     );
@@ -67,7 +67,7 @@ export class Sending {
       body: params,
       headers: {
         "X-Helo-Channel-Id": options.channelId,
-        "X-Helo-Idempotency-Key": options.idempotencyKey,
+        "X-Helo-Idempotency-Key": options.idempotencyKey ?? idempotencyKey(),
       },
     });
     return response.json();
@@ -87,7 +87,7 @@ export class Sending {
         body: params,
         headers: {
           "X-Helo-Channel-Id": options.channelId,
-          "X-Helo-Idempotency-Key": options.idempotencyKey,
+          "X-Helo-Idempotency-Key": options.idempotencyKey ?? idempotencyKey(),
         },
       },
     );

@@ -38,14 +38,6 @@ describe("sending", () => {
         subject: "Hello from Helo",
         html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
         text: "This is a test message, delivered with <3 by Helo.",
-        template: {
-          id: "550e8400-e29b-41d4-a716-446655440000",
-          subject: "test-subject",
-          html: "test-html",
-          text: "test-text",
-          inlineStyles: true,
-          data: {},
-        },
         tracking: { opens: true, links: true },
         attachments: [
           {
@@ -92,14 +84,6 @@ describe("sending", () => {
     expect(body.text).toEqual(
       "This is a test message, delivered with <3 by Helo.",
     );
-    expect(body.template).toEqual({
-      id: "550e8400-e29b-41d4-a716-446655440000",
-      subject: "test-subject",
-      html: "test-html",
-      text: "test-text",
-      inlineStyles: true,
-      data: {},
-    });
     expect(body.tracking).toEqual({ opens: true, links: true });
     expect(body.attachments).toEqual([
       {
@@ -115,6 +99,57 @@ describe("sending", () => {
     expect(body.metadata).toEqual({});
   });
 
+  // A send whose response is lost must not be sent twice: the retry reuses the key the SDK generated.
+  it("sendTransactional generates one idempotency key per call", async () => {
+    const keys: string[] = [];
+    const replies = [503, 200];
+    const retrying = new Helo("test-token-123", {
+      baseUrl: "http://localhost:8002",
+      fetch: async (_url, options) => {
+        keys.push(
+          (options!.headers as Record<string, string>)[
+            "X-Helo-Idempotency-Key"
+          ],
+        );
+        return new Response("{}", {
+          status: replies.shift()!,
+          headers: { "Retry-After": "0" },
+        });
+      },
+    });
+
+    await retrying.sending.sendTransactional(
+      {
+        from: { email: "from@yourdomain.com", name: "From name" },
+        to: [{ email: "to@example.com", name: "To name" }],
+        cc: [{ email: "cc@example.com", name: "Cc name" }],
+        bcc: [{ email: "bcc@example.com", name: "Bcc name" }],
+        replyTo: [{ email: "reply-to@example.com", name: "Reply-To name" }],
+        subject: "Hello from Helo",
+        html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
+        text: "This is a test message, delivered with <3 by Helo.",
+        tracking: { opens: true, links: true },
+        attachments: [
+          {
+            content: "test-content",
+            contentId: "test-contentId",
+            contentType: "test-contentType",
+            fileName: "test-fileName",
+            disposition: Helo.AttachmentDisposition.ATTACHMENT,
+          },
+        ],
+        tags: ["welcome", "onboarding"],
+        headers: {},
+        metadata: {},
+      },
+      { channelId: "550e8400-e29b-41d4-a716-446655440000" },
+    );
+
+    expect(keys).toHaveLength(2);
+    expect(keys[0]).toBe(keys[1]);
+    expect(keys[0]).toMatch(/^[0-9a-f-]{36}$/);
+  });
+
   it("sendTransactionalBatch", async () => {
     const result = await client.sending.sendTransactionalBatch(
       {
@@ -128,14 +163,6 @@ describe("sending", () => {
             subject: "Hello from Helo",
             html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
             text: "This is a test message, delivered with <3 by Helo.",
-            template: {
-              id: "550e8400-e29b-41d4-a716-446655440000",
-              subject: "test-subject",
-              html: "test-html",
-              text: "test-text",
-              inlineStyles: true,
-              data: {},
-            },
             tracking: { opens: true, links: true },
             attachments: [
               {
@@ -177,14 +204,6 @@ describe("sending", () => {
         subject: "Hello from Helo",
         html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
         text: "This is a test message, delivered with <3 by Helo.",
-        template: {
-          id: "550e8400-e29b-41d4-a716-446655440000",
-          subject: "test-subject",
-          html: "test-html",
-          text: "test-text",
-          inlineStyles: true,
-          data: {},
-        },
         tracking: { opens: true, links: true },
         attachments: [
           {
@@ -202,16 +221,70 @@ describe("sending", () => {
     ]);
   });
 
+  // A send whose response is lost must not be sent twice: the retry reuses the key the SDK generated.
+  it("sendTransactionalBatch generates one idempotency key per call", async () => {
+    const keys: string[] = [];
+    const replies = [503, 200];
+    const retrying = new Helo("test-token-123", {
+      baseUrl: "http://localhost:8002",
+      fetch: async (_url, options) => {
+        keys.push(
+          (options!.headers as Record<string, string>)[
+            "X-Helo-Idempotency-Key"
+          ],
+        );
+        return new Response("{}", {
+          status: replies.shift()!,
+          headers: { "Retry-After": "0" },
+        });
+      },
+    });
+
+    await retrying.sending.sendTransactionalBatch(
+      {
+        requests: [
+          {
+            from: { email: "from@yourdomain.com", name: "From name" },
+            to: [{ email: "to@example.com", name: "To name" }],
+            cc: [{ email: "cc@example.com", name: "Cc name" }],
+            bcc: [{ email: "bcc@example.com", name: "Bcc name" }],
+            replyTo: [{ email: "reply-to@example.com", name: "Reply-To name" }],
+            subject: "Hello from Helo",
+            html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
+            text: "This is a test message, delivered with <3 by Helo.",
+            tracking: { opens: true, links: true },
+            attachments: [
+              {
+                content: "test-content",
+                contentId: "test-contentId",
+                contentType: "test-contentType",
+                fileName: "test-fileName",
+                disposition: Helo.AttachmentDisposition.ATTACHMENT,
+              },
+            ],
+            tags: ["welcome", "onboarding"],
+            headers: {},
+            metadata: {},
+          },
+        ],
+      },
+      { channelId: "550e8400-e29b-41d4-a716-446655440000" },
+    );
+
+    expect(keys).toHaveLength(2);
+    expect(keys[0]).toBe(keys[1]);
+    expect(keys[0]).toMatch(/^[0-9a-f-]{36}$/);
+  });
+
   it("sendBroadcast", async () => {
     const result = await client.sending.sendBroadcast(
       {
         from: { email: "test@example.com", name: "test-name" },
         replyTo: [{ email: "test@example.com", name: "test-name" }],
         template: {
-          id: "550e8400-e29b-41d4-a716-446655440000",
-          subject: "test-subject",
-          html: "test-html",
-          text: "test-text",
+          subject: "Hello, {{name}}",
+          html: "<html><body><h1>Hi {{name}}.</h1><p>This is a broadcast, delivered with <3 by Helo.</p></body></html>",
+          text: "Hi {{name}}. This is a broadcast, delivered with <3 by Helo.",
           inlineStyles: true,
           data: {},
         },
@@ -260,10 +333,9 @@ describe("sending", () => {
       { email: "test@example.com", name: "test-name" },
     ]);
     expect(body.template).toEqual({
-      id: "550e8400-e29b-41d4-a716-446655440000",
-      subject: "test-subject",
-      html: "test-html",
-      text: "test-text",
+      subject: "Hello, {{name}}",
+      html: "<html><body><h1>Hi {{name}}.</h1><p>This is a broadcast, delivered with <3 by Helo.</p></body></html>",
+      text: "Hi {{name}}. This is a broadcast, delivered with <3 by Helo.",
       inlineStyles: true,
       data: {},
     });
@@ -293,6 +365,69 @@ describe("sending", () => {
     ]);
   });
 
+  // A send whose response is lost must not be sent twice: the retry reuses the key the SDK generated.
+  it("sendBroadcast generates one idempotency key per call", async () => {
+    const keys: string[] = [];
+    const replies = [503, 200];
+    const retrying = new Helo("test-token-123", {
+      baseUrl: "http://localhost:8002",
+      fetch: async (_url, options) => {
+        keys.push(
+          (options!.headers as Record<string, string>)[
+            "X-Helo-Idempotency-Key"
+          ],
+        );
+        return new Response("{}", {
+          status: replies.shift()!,
+          headers: { "Retry-After": "0" },
+        });
+      },
+    });
+
+    await retrying.sending.sendBroadcast(
+      {
+        from: { email: "test@example.com", name: "test-name" },
+        replyTo: [{ email: "test@example.com", name: "test-name" }],
+        template: {
+          subject: "Hello, {{name}}",
+          html: "<html><body><h1>Hi {{name}}.</h1><p>This is a broadcast, delivered with <3 by Helo.</p></body></html>",
+          text: "Hi {{name}}. This is a broadcast, delivered with <3 by Helo.",
+          inlineStyles: true,
+          data: {},
+        },
+        tracking: { opens: true, links: true },
+        attachments: [
+          {
+            content: "test-content",
+            contentId: "test-contentId",
+            contentType: "test-contentType",
+            fileName: "test-fileName",
+            disposition: Helo.AttachmentDisposition.ATTACHMENT,
+          },
+        ],
+        tags: ["example1", "example2"],
+        headers: {},
+        metadata: {},
+        messages: [
+          {
+            to: [{ email: "test@example.com", name: "test-name" }],
+            cc: [{ email: "test@example.com", name: "test-name" }],
+            bcc: [{ email: "test@example.com", name: "test-name" }],
+            tags: ["example1", "example2"],
+            headers: {},
+            metadata: {},
+            data: {},
+          },
+        ],
+      },
+      { channelId: "550e8400-e29b-41d4-a716-446655440000" },
+    );
+
+    expect(keys).toHaveLength(2);
+    expect(keys[0]).toBe(keys[1]);
+    expect(keys[0]).toMatch(/^[0-9a-f-]{36}$/);
+  });
+
   it("sendBroadcastMessage", async () => {
     const result = await client.sending.sendBroadcastMessage(
       {
@@ -304,14 +439,6 @@ describe("sending", () => {
         subject: "Hello from Helo",
         html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
         text: "This is a test message, delivered with <3 by Helo.",
-        template: {
-          id: "550e8400-e29b-41d4-a716-446655440000",
-          subject: "test-subject",
-          html: "test-html",
-          text: "test-text",
-          inlineStyles: true,
-          data: {},
-        },
         tracking: { opens: true, links: true },
         attachments: [
           {
@@ -358,14 +485,6 @@ describe("sending", () => {
     expect(body.text).toEqual(
       "This is a test message, delivered with <3 by Helo.",
     );
-    expect(body.template).toEqual({
-      id: "550e8400-e29b-41d4-a716-446655440000",
-      subject: "test-subject",
-      html: "test-html",
-      text: "test-text",
-      inlineStyles: true,
-      data: {},
-    });
     expect(body.tracking).toEqual({ opens: true, links: true });
     expect(body.attachments).toEqual([
       {
@@ -379,5 +498,56 @@ describe("sending", () => {
     expect(body.tags).toEqual(["welcome", "onboarding"]);
     expect(body.headers).toEqual({});
     expect(body.metadata).toEqual({});
+  });
+
+  // A send whose response is lost must not be sent twice: the retry reuses the key the SDK generated.
+  it("sendBroadcastMessage generates one idempotency key per call", async () => {
+    const keys: string[] = [];
+    const replies = [503, 200];
+    const retrying = new Helo("test-token-123", {
+      baseUrl: "http://localhost:8002",
+      fetch: async (_url, options) => {
+        keys.push(
+          (options!.headers as Record<string, string>)[
+            "X-Helo-Idempotency-Key"
+          ],
+        );
+        return new Response("{}", {
+          status: replies.shift()!,
+          headers: { "Retry-After": "0" },
+        });
+      },
+    });
+
+    await retrying.sending.sendBroadcastMessage(
+      {
+        from: { email: "from@yourdomain.com", name: "From name" },
+        to: [{ email: "to@example.com", name: "To name" }],
+        cc: [{ email: "cc@example.com", name: "Cc name" }],
+        bcc: [{ email: "bcc@example.com", name: "Bcc name" }],
+        replyTo: [{ email: "reply-to@example.com", name: "Reply-To name" }],
+        subject: "Hello from Helo",
+        html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
+        text: "This is a test message, delivered with <3 by Helo.",
+        tracking: { opens: true, links: true },
+        attachments: [
+          {
+            content: "test-content",
+            contentId: "test-contentId",
+            contentType: "test-contentType",
+            fileName: "test-fileName",
+            disposition: Helo.AttachmentDisposition.ATTACHMENT,
+          },
+        ],
+        tags: ["welcome", "onboarding"],
+        headers: {},
+        metadata: {},
+      },
+      { channelId: "550e8400-e29b-41d4-a716-446655440000" },
+    );
+
+    expect(keys).toHaveLength(2);
+    expect(keys[0]).toBe(keys[1]);
+    expect(keys[0]).toMatch(/^[0-9a-f-]{36}$/);
   });
 });

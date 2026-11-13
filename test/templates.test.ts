@@ -139,6 +139,21 @@ describe("templates", () => {
     );
   });
 
+  // Leaving a field out leaves it as it is; null clears it.
+  it("update sends null to clear a field", async () => {
+    await client.templates.update("550e8400-e29b-41d4-a716-446655440000", {
+      name: "test-name",
+      subject: "test-subject",
+      mjml: "test-mjml",
+      text: "test-text",
+      channelIds: ["550e8400-e29b-41d4-a716-446655440000"],
+      version: 123,
+      html: null,
+    });
+
+    expect(JSON.parse(lastRequest.body!).html).toBeNull();
+  });
+
   it("del", async () => {
     const result = await client.templates.del(
       "550e8400-e29b-41d4-a716-446655440000",

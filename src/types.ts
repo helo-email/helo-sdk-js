@@ -475,10 +475,14 @@ export interface CreateTemplateRequest {
 export interface UpdateTemplateRequest {
   name?: string;
   subject?: string;
-  html?: string;
-  mjml?: string;
-  text?: string;
-  channelIds?: string[];
+  /** Send null to clear it; leave it out to leave it as it is. */
+  html?: string | null;
+  /** Send null to clear it; leave it out to leave it as it is. */
+  mjml?: string | null;
+  /** Send null to clear it; leave it out to leave it as it is. */
+  text?: string | null;
+  /** Send null to clear it; leave it out to leave it as it is. */
+  channelIds?: string[] | null;
   version?: number;
 }
 
@@ -550,8 +554,10 @@ export interface PaginationResultOfWebhookResponse {
 export interface UpdateWebhookRequest {
   url?: string;
   events?: WebhookEvent[];
-  channelId?: string;
-  additionalHeaders?: WebhookHeader[];
+  /** Send null to clear it; leave it out to leave it as it is. */
+  channelId?: string | null;
+  /** Send null to clear it; leave it out to leave it as it is. */
+  additionalHeaders?: WebhookHeader[] | null;
   enabled?: boolean;
 }
 

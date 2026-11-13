@@ -124,6 +124,22 @@ describe("webhooks", () => {
     );
   });
 
+  // Leaving a field out leaves it as it is; null clears it.
+  it("update sends null to clear a field", async () => {
+    await client.webhooks.update("550e8400-e29b-41d4-a716-446655440000", {
+      url: "test-url",
+      events: [
+        Helo.WebhookEvent.MESSAGE_ACCEPTED,
+        Helo.WebhookEvent.MESSAGE_PROCESSED,
+      ],
+      additionalHeaders: [{ name: "test-name", value: "test-value" }],
+      enabled: true,
+      channelId: null,
+    });
+
+    expect(JSON.parse(lastRequest.body!).channelId).toBeNull();
+  });
+
   it("del", async () => {
     const result = await client.webhooks.del(
       "550e8400-e29b-41d4-a716-446655440000",

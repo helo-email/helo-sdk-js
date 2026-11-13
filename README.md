@@ -30,7 +30,33 @@ docs](#resources) for the full list, with a runnable example per method.
 const helo = new Helo(process.env.HELO_API_KEY!, {
   baseUrl: "https://api.helohq.com", // override the default host
   fetch: myCustomFetch, // inject your own fetch (proxies, tests, non-Node runtimes)
+  maxRetries: 2, // see "Automatic retries"; 0 disables them
+  timeout: 30, // seconds per attempt; 0 disables it
 });
+```
+
+### Automatic retries
+
+A request that fails with a network error, a timeout, or a `408`, `429`, `500`, `502`, `503` or
+`504` response is retried up to 2 times, with exponential backoff and full jitter. It
+is only retried when sending it again can't do anything twice: a `GET`, `PUT` or `DELETE`,
+or a request carrying an idempotency key. A `429` is always retried, since the server
+refused the request without acting on it. A `Retry-After` header is honoured; one asking
+for more than 8 seconds is not retried early, and the error is returned instead.
+
+Operations that take an idempotency key generate one for each call when you don't pass
+one, and send it on every retry, so a send whose response was lost is never sent twice.
+Pass your own key to make your own retries (a background job run again, say) safe too.
+
+Pass `maxRetries` to the constructor to change how many, or `0` to disable them.
+
+### Clearing a field
+
+Leaving a field out leaves it as it is. To clear one the API accepts `null` for, send `null`
+(those fields are typed `| null`):
+
+```ts
+await helo.templates.update(templateId, { text: null });
 ```
 
 ### Errors

@@ -35,6 +35,10 @@ export * from "./enums.js";
 interface HeloOptions {
   baseUrl?: string;
   fetch?: typeof fetch;
+  /** Retries after a network failure, timeout, 408, 429 or 5xx; 0 disables them. Defaults to 2. */
+  maxRetries?: number;
+  /** Seconds each attempt may take before it is abandoned (and retried); 0 disables it. Defaults to 30. */
+  timeout?: number;
 }
 
 class Helo {
@@ -63,7 +67,9 @@ class Helo {
       apiKey,
       baseUrl: options.baseUrl || "https://api.helohq.com",
       fetch: options.fetch,
-      userAgent: "helo-email-sdk/1.2.0",
+      maxRetries: options.maxRetries,
+      timeout: options.timeout,
+      userAgent: "helo-email-sdk/1.3.0",
     });
 
     this.channels = new Channels(client);

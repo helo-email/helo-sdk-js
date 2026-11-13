@@ -33,5 +33,9 @@ jobs:
       - name: Type check
         run: npx tsc --noEmit
 
+      # vitest strips the tests' types without checking them.
+      - name: Type check tests
+        run: npx tsc -p tsconfig.test.json
+
       - name: Test
         run: npm test
