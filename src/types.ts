@@ -7,6 +7,7 @@ import type {
   DnsRecordType,
   BroadcastStatus,
   AttachmentDisposition,
+  BatchValidationMode,
   SuppressionReason,
   WebhookEvent,
 } from "./enums.js";
@@ -299,9 +300,11 @@ export interface SendMessageFailedResponse {
   status: string;
   errorCode: string;
   errorMessage: string;
+  errors?: Record<string, unknown>;
 }
 
 export interface SendMessageBatchRequest {
+  validation?: BatchValidationMode;
   requests: SendMessageRequest[];
 }
 

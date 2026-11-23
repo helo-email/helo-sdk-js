@@ -68,6 +68,14 @@ export const AttachmentDisposition = {
 export type AttachmentDisposition =
   (typeof AttachmentDisposition)[keyof typeof AttachmentDisposition];
 
+export const BatchValidationMode = {
+  STRICT: "strict",
+  RELAXED: "relaxed",
+} as const;
+
+export type BatchValidationMode =
+  (typeof BatchValidationMode)[keyof typeof BatchValidationMode];
+
 export const SuppressionReason = {
   BOUNCE: "bounce",
   COMPLAINT: "complaint",

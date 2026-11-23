@@ -153,6 +153,7 @@ describe("sending", () => {
   it("sendTransactionalBatch", async () => {
     const result = await client.sending.sendTransactionalBatch(
       {
+        validation: Helo.BatchValidationMode.STRICT,
         requests: [
           {
             from: { email: "from@yourdomain.com", name: "From name" },
@@ -194,6 +195,7 @@ describe("sending", () => {
     );
     expect(lastRequest.headers["X-Helo-Idempotency-Key"]).toBe("example");
     const body = JSON.parse(lastRequest.body!);
+    expect(body.validation).toEqual(Helo.BatchValidationMode.STRICT);
     expect(body.requests).toEqual([
       {
         from: { email: "from@yourdomain.com", name: "From name" },
@@ -242,6 +244,7 @@ describe("sending", () => {
 
     await retrying.sending.sendTransactionalBatch(
       {
+        validation: Helo.BatchValidationMode.STRICT,
         requests: [
           {
             from: { email: "from@yourdomain.com", name: "From name" },

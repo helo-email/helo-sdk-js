@@ -17,6 +17,7 @@ import { DnsRecordStatus } from "./enums.js";
 import { DnsRecordType } from "./enums.js";
 import { BroadcastStatus } from "./enums.js";
 import { AttachmentDisposition } from "./enums.js";
+import { BatchValidationMode } from "./enums.js";
 import { SuppressionReason } from "./enums.js";
 import { WebhookEvent } from "./enums.js";
 
@@ -69,7 +70,7 @@ class Helo {
       fetch: options.fetch,
       maxRetries: options.maxRetries,
       timeout: options.timeout,
-      userAgent: "helo-email-sdk/1.3.0",
+      userAgent: "helo-email-sdk/1.4.0",
     });
 
     this.channels = new Channels(client);
@@ -92,6 +93,7 @@ class Helo {
   static DnsRecordType = DnsRecordType;
   static BroadcastStatus = BroadcastStatus;
   static AttachmentDisposition = AttachmentDisposition;
+  static BatchValidationMode = BatchValidationMode;
   static SuppressionReason = SuppressionReason;
   static WebhookEvent = WebhookEvent;
 }

@@ -72,6 +72,7 @@ const helo = new Helo(apiKey);
 
 const result = await helo.sending.sendTransactionalBatch(
   {
+    validation: Helo.BatchValidationMode.STRICT,
     requests: [
       {
         from: { email: "from@yourdomain.com", name: "From name" },
