@@ -48,7 +48,10 @@ export class Channels {
    * Retrieve a channel
    */
   async retrieve(id: string): Promise<ChannelDetailsResponse> {
-    const response = await this._client.request("get", `/channels/${id}`);
+    const response = await this._client.request(
+      "get",
+      `/channels/${encodeURIComponent(id)}`,
+    );
     return response.json();
   }
 
@@ -59,9 +62,11 @@ export class Channels {
     id: string,
     params: UpdateChannelRequest,
   ): Promise<ChannelDetailsResponse> {
-    const response = await this._client.request("patch", `/channels/${id}`, {
-      body: params,
-    });
+    const response = await this._client.request(
+      "patch",
+      `/channels/${encodeURIComponent(id)}`,
+      { body: params },
+    );
     return response.json();
   }
 
@@ -69,7 +74,10 @@ export class Channels {
    * Delete a channel
    */
   async del(id: string): Promise<null> {
-    const response = await this._client.request("delete", `/channels/${id}`);
+    const response = await this._client.request(
+      "delete",
+      `/channels/${encodeURIComponent(id)}`,
+    );
     return null;
   }
 }

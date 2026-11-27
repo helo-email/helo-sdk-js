@@ -69,7 +69,7 @@ export class Activity {
   async retrieveMessage(id: string): Promise<MessageDetailsResponse> {
     const response = await this._client.request(
       "get",
-      `/activity/messages/${id}`,
+      `/activity/messages/${encodeURIComponent(id)}`,
     );
     return response.json();
   }

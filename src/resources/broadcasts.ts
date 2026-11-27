@@ -39,7 +39,10 @@ export class Broadcasts {
    * Retrieve a broadcast
    */
   async retrieve(id: string): Promise<BroadcastDetailsResponse> {
-    const response = await this._client.request("get", `/broadcasts/${id}`);
+    const response = await this._client.request(
+      "get",
+      `/broadcasts/${encodeURIComponent(id)}`,
+    );
     return response.json();
   }
 
@@ -52,7 +55,7 @@ export class Broadcasts {
   ): Promise<PaginatedResponseOfBroadcastFailure> {
     const response = await this._client.request(
       "get",
-      `/broadcasts/${id}/failures`,
+      `/broadcasts/${encodeURIComponent(id)}/failures`,
       { params: params as Record<string, unknown> },
     );
     return response.json();
@@ -67,7 +70,7 @@ export class Broadcasts {
   ): Promise<PaginatedResponseOfBroadcastSuppression> {
     const response = await this._client.request(
       "get",
-      `/broadcasts/${id}/suppressions`,
+      `/broadcasts/${encodeURIComponent(id)}/suppressions`,
       { params: params as Record<string, unknown> },
     );
     return response.json();

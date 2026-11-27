@@ -42,7 +42,10 @@ export class Webhooks {
    * Retrieve a webhook
    */
   async retrieve(id: string): Promise<WebhookResponse> {
-    const response = await this._client.request("get", `/webhooks/${id}`);
+    const response = await this._client.request(
+      "get",
+      `/webhooks/${encodeURIComponent(id)}`,
+    );
     return response.json();
   }
 
@@ -53,9 +56,11 @@ export class Webhooks {
     id: string,
     params: UpdateWebhookRequest,
   ): Promise<WebhookResponse> {
-    const response = await this._client.request("patch", `/webhooks/${id}`, {
-      body: params,
-    });
+    const response = await this._client.request(
+      "patch",
+      `/webhooks/${encodeURIComponent(id)}`,
+      { body: params },
+    );
     return response.json();
   }
 
@@ -63,7 +68,10 @@ export class Webhooks {
    * Delete a webhook
    */
   async del(id: string): Promise<null> {
-    const response = await this._client.request("delete", `/webhooks/${id}`);
+    const response = await this._client.request(
+      "delete",
+      `/webhooks/${encodeURIComponent(id)}`,
+    );
     return null;
   }
 
@@ -73,7 +81,7 @@ export class Webhooks {
   async regenerateSigningKey(id: string): Promise<WebhookResponse> {
     const response = await this._client.request(
       "post",
-      `/webhooks/${id}/regenerate-signing-key`,
+      `/webhooks/${encodeURIComponent(id)}/regenerate-signing-key`,
     );
     return response.json();
   }

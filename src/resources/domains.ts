@@ -50,7 +50,10 @@ export class Domains {
    * Retrieve a domain
    */
   async retrieve(id: string): Promise<DomainWithDnsResponse> {
-    const response = await this._client.request("get", `/domains/${id}`);
+    const response = await this._client.request(
+      "get",
+      `/domains/${encodeURIComponent(id)}`,
+    );
     return response.json();
   }
 
@@ -61,9 +64,11 @@ export class Domains {
     id: string,
     params: UpdateDomainRequest,
   ): Promise<DomainResponse> {
-    const response = await this._client.request("patch", `/domains/${id}`, {
-      body: params,
-    });
+    const response = await this._client.request(
+      "patch",
+      `/domains/${encodeURIComponent(id)}`,
+      { body: params },
+    );
     return response.json();
   }
 
@@ -71,7 +76,10 @@ export class Domains {
    * Delete a domain
    */
   async del(id: string): Promise<null> {
-    const response = await this._client.request("delete", `/domains/${id}`);
+    const response = await this._client.request(
+      "delete",
+      `/domains/${encodeURIComponent(id)}`,
+    );
     return null;
   }
 
@@ -81,7 +89,7 @@ export class Domains {
   async verify(id: string): Promise<DnsRecordsResponse> {
     const response = await this._client.request(
       "post",
-      `/domains/${id}/verify`,
+      `/domains/${encodeURIComponent(id)}/verify`,
     );
     return response.json();
   }
@@ -92,7 +100,7 @@ export class Domains {
   async rotateKey(id: string): Promise<DnsRecordResponse> {
     const response = await this._client.request(
       "post",
-      `/domains/${id}/rotate-key`,
+      `/domains/${encodeURIComponent(id)}/rotate-key`,
     );
     return response.json();
   }

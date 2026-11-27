@@ -62,7 +62,10 @@ export class Templates {
    * Retrieve a template
    */
   async retrieve(id: string): Promise<TemplateResponse> {
-    const response = await this._client.request("get", `/templates/${id}`);
+    const response = await this._client.request(
+      "get",
+      `/templates/${encodeURIComponent(id)}`,
+    );
     return response.json();
   }
 
@@ -73,9 +76,11 @@ export class Templates {
     id: string,
     params: UpdateTemplateRequest,
   ): Promise<TemplateResponse> {
-    const response = await this._client.request("patch", `/templates/${id}`, {
-      body: params,
-    });
+    const response = await this._client.request(
+      "patch",
+      `/templates/${encodeURIComponent(id)}`,
+      { body: params },
+    );
     return response.json();
   }
 
@@ -83,7 +88,10 @@ export class Templates {
    * Delete a template
    */
   async del(id: string): Promise<null> {
-    const response = await this._client.request("delete", `/templates/${id}`);
+    const response = await this._client.request(
+      "delete",
+      `/templates/${encodeURIComponent(id)}`,
+    );
     return null;
   }
 
@@ -96,7 +104,7 @@ export class Templates {
   ): Promise<RenderTemplateResponse> {
     const response = await this._client.request(
       "post",
-      `/templates/${id}/render`,
+      `/templates/${encodeURIComponent(id)}/render`,
       { body: params },
     );
     return response.json();
